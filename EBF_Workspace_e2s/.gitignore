@@ -1,7 +1,0 @@
-/.metadata/
-
-# 忽略由软件自动生成的文件
-Debug/
-ra/
-ra_cfg/
-ra_gen/
