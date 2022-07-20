@@ -10,10 +10,11 @@
     <stringAttribute key="com.renesas.cdt.core.runCommands" value=""/>
     <stringAttribute key="com.renesas.cdt.core.secondGDBExe" value="green_dsp-elf-gdb"/>
     <intAttribute key="com.renesas.cdt.core.secondGdbPortNumber" value="61237"/>
-    <stringAttribute key="com.renesas.cdt.core.serverParam" value="-g SEGGERJLINKARM -t R7FA6M5BH -uConnectionTimeout= 30 -uSelect= &quot;USB&quot; -uJLinkSetting= &quot;${workspace_loc:/${ProjName}}/${LaunchConfigName}.jlink&quot; -uLowPower= 0 -uInteface= &quot;SWD&quot; -uIfSpeed= &quot;4000&quot; -uNoReset= 1 -uResetPreRun= 1 -uResetCon= 1 -uResetBefDownload= 1 -uReleaseCM3= 0 -uSWOcoreClock= &quot;0&quot; -uresetOnReload= 1 -n &quot;0&quot; -uFlashBp= 1 -uSimulation= 0 -ueraseRomOnDownload= 0 -ueraseDataRomOnDownload= 0 -uOSRestriction= 0 -uProgReWriteIRom= 0 -uCPUFrequency= &quot;0&quot; -uCECycle= 1"/>
+    <stringAttribute key="com.renesas.cdt.core.serverParam" value="-g SEGGERJLINKARM -t R7FA6M5AH -uConnectionTimeout= 30 -uSelect= &quot;USB&quot; -uJLinkSetting= &quot;${workspace_loc:/${ProjName}}/${LaunchConfigName}.jlink&quot; -uLowPower= 0 -uInteface= &quot;SWD&quot; -uIfSpeed= &quot;4000&quot; -uNoReset= 1 -uResetPreRun= 1 -uResetCon= 1 -uResetBefDownload= 1 -uReleaseCM3= 0 -uSWOcoreClock= &quot;0&quot; -uresetOnReload= 1 -n &quot;0&quot; -uFlashBp= 1 -uSimulation= 0 -ueraseRomOnDownload= 0 -ueraseDataRomOnDownload= 0 -uOSRestriction= 0 -uProgReWriteIRom= 0 -uCPUFrequency= &quot;0&quot; -uCECycle= 1"/>
     <booleanAttribute key="com.renesas.cdt.core.setResume" value="true"/>
-    <stringAttribute key="com.renesas.cdt.core.targetDevice" value="R7FA6M5BH"/>
+    <stringAttribute key="com.renesas.cdt.core.targetDevice" value="R7FA6M5AH"/>
     <booleanAttribute key="com.renesas.cdt.core.useRemoteTarget" value="true"/>
+    <stringAttribute key="com.renesas.cdt.debug.ioview.dsf.registerSelection0" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;no&quot;?&gt;&#13;&#10;&lt;selectedRegisterList ioFilePath=&quot;C:\Users\admin\.eclipse\com.renesas.platform_1435879475\DebugComp\RA\IoFiles\R7FA6M5AH.sfrx&quot;/&gt;&#13;&#10;"/>
     <stringAttribute key="com.renesas.cdt.launch.dsf.IO_MAP" value="${support_area_loc}"/>
     <booleanAttribute key="com.renesas.cdt.launch.dsf.USE_DEFAULT_IO_MAP" value="true"/>
     <stringAttribute key="com.renesas.cdt.launch.dsf.launchSeqType" value="com.renesas.cdt.launch.dsf.launchSequence.e2GdbServer"/>
@@ -65,14 +66,15 @@
     <booleanAttribute key="org.eclipse.cdt.debug.gdbjtag.core.useProjBinaryForSymbols" value="true"/>
     <stringAttribute key="org.eclipse.cdt.dsf.gdb.DEBUG_NAME" value="arm-none-eabi-gdb"/>
     <booleanAttribute key="org.eclipse.cdt.dsf.gdb.NON_STOP" value="true"/>
-    <stringAttribute key="org.eclipse.cdt.launch.PROGRAM_NAME" value="Debug/05_Template.elf"/>
-    <stringAttribute key="org.eclipse.cdt.launch.PROJECT_ATTR" value="05_Template"/>
+    <stringAttribute key="org.eclipse.cdt.launch.PROGRAM_NAME" value="Debug/17_IRQbasic.elf"/>
+    <stringAttribute key="org.eclipse.cdt.launch.PROJECT_ATTR" value="17_IRQbasic"/>
     <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
-        <listEntry value="/05_Template"/>
+        <listEntry value="/17_IRQbasic"/>
     </listAttribute>
     <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES">
         <listEntry value="4"/>
     </listAttribute>
     <booleanAttribute key="org.eclipse.debug.ui.ATTR_LAUNCH_IN_BACKGROUND" value="false"/>
+    <stringAttribute key="org.eclipse.dsf.launch.MEMORY_BLOCKS" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;no&quot;?&gt;&lt;memoryBlockExpressionList context=&quot;reserved-for-future-use&quot;/&gt;"/>
     <stringAttribute key="process_factory_id" value="org.eclipse.cdt.dsf.gdb.GdbProcessFactory"/>
 </launchConfiguration>
