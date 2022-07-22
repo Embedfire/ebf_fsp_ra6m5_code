@@ -1,11 +1,9 @@
 stages:
   - sonarqube_scan
-
 sonarqube_scan_job:
   stage: sonarqube_scan
   script:
     - sonar-scanner -Dsonar.projectName=$CI_PROJECT_NAME -Dsonar.projectKey=$CI_PROJECT_NAME -Dsonar.branch.name=${CI_COMMIT_REF_NAME}  -Dsonar.host.url=http://10.255.200.129:9000 -Dsonar.login=admin -Dsonar.password=admin
     - echo -e "projectName:$CI_PROJECT_NAME\nusername:admin\npassword:admin\nhttp://10.255.200.129:9000"
- 
   tags:
     - Scanner
