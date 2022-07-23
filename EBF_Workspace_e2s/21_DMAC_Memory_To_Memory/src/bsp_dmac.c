@@ -36,7 +36,8 @@
 
 
 
-/* 定义aSRC_Const_Buffer数组作为DMA传输数据源
+/*
+ * 定义aSRC_Const_Buffer数组作为DMAC传输数据源
  * const关键字将aSRC_Const_Buffer数组变量定义为常量类型
  * 表示数据存储在内部的FLASH中
  */
@@ -49,7 +50,8 @@ const uint32_t aSRC_Const_Buffer[BUFFER_SIZE]= {
                                     0x51525354,0x55565758,0x595A5B5C,0x5D5E5F60,
                                     0x61626364,0x65666768,0x696A6B6C,0x6D6E6F70,
                                     0x71727374,0x75767778,0x797A7B7C,0x7D7E7F80};
-/* 定义DMA传输目标存储器
+/*
+ * 定义DMAC传输目标存储器
  * 存储在内部的SRAM中
  */
 uint32_t aDST_Buffer[BUFFER_SIZE * 2] = {0};

@@ -54,10 +54,10 @@ void hal_entry(void)
     while (1) {
         //printf("embedfire-野火 www.embedfire.com\r\n");
 
-        //g_uart_on_sci.write(g_uart4.p_ctrl, (uint8_t *)&(_temp), 1);
-
         err = g_transfer_on_dtc.enable(g_uart4.p_cfg->p_transfer_tx->p_ctrl);
         assert(FSP_SUCCESS == err);
+
+        // 可以尝试在 configuration.xml 中将 DTC模块去除，再执行代码，会有什么变化
         g_uart_on_sci.write(g_uart4.p_ctrl, (uint8_t *)(test_str), sizeof(test_str)/sizeof(test_str[0]));
 
         led_task(_temp++);  //LED 闪烁任务
