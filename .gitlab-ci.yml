@@ -1,0 +1,26 @@
+#阶段步骤
+stages:
+  - sonarqube_scan
+sonarqube_scan_job:
+  stage: sonarqube_scan
+  script:
+    - sonar-scanner -Dsonar.projectName=$CI_PROJECT_NAME -Dsonar.projectKey=$CI_PROJECT_NAME -Dsonar.branch.name=${CI_COMMIT_REF_NAME} -Dsonar.host.url=http://10.255.200.129:9000 -Dsonar.login=admin -Dsonar.password=admin
+    - echo -e "projectName:$CI_PROJECT_NAME\nusername:admin\npassword:admin\nhttp://10.255.200.129:9000"
+  tags:
+    - Scanner
+
+#参数说明：
+
+#tag: gitlab-runner中的tag
+
+#$CI_PROJECT_NAME： gitlab内置参数，为项目名称
+
+#$CI_COMMIT_REF_NAME： gitlab内置参数，本次提交的分支
+
+#-Dsonar.projectName=$CI_PROJECT_NAME 在sonarqube中项目的名称
+
+#-Dsonar.projectKey=$CI_PROJECT_NAME 在sonarqube中项目的唯一标识
+
+#-Dsonar.host.url=https://your-sonarqube.com  sonarqube服务的url
+
+#-Dsonar.login=admin -Dsonar.password=admin  sonarqube web的用户名和密码配置
