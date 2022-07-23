@@ -218,8 +218,8 @@ FSP Configuration
       P800 133 - - - - Disabled - - "ADC1: AN125; AGT4: AGTOA4; BUS_ASYNCH0: D14; SCI0: CTS0" - None - - 
       P801 134 - - - - Disabled - - "ADC1: AN126; AGT4: AGTOB4; BUS_ASYNCH0: D15; SCI8: CTS8" - None - - 
       P802 135 - - - - Disabled - - "ADC1: AN127; ICU0: IRQ03" - None - - 
-      P803 136 GPIO - - None "Input mode" - None "ADC1: AN128; ICU0: IRQ02" - IO - - 
-      P804 137 GPIO - - None "Input mode" - None "ICU0: IRQ01" - IO - - 
+      P803 136 ICU0_IRQ02 - - IRQ02 "IRQ mode" - None "ADC1: AN128; ICU0: IRQ02" - IO - - 
+      P804 137 ICU0_IRQ01 - - IRQ01 "IRQ mode" - None "ICU0: IRQ01" - IO - - 
       P805 173 - - - - Disabled - - "SCI5: SDA5; SCI5: TXD5" - None - - 
       P806 172 - - - - Disabled - - "ICU0: IRQ00" - None - - 
       P900 58 - - - - Disabled - - "BUS_ASYNCH0: A23; SCI4: SDA4; SCI4: TXD4" - None - - 
@@ -282,6 +282,9 @@ FSP Configuration
   Module "I/O Port (r_ioport)"
     Parameter Checking: Default (BSP)
     
+  Module "External IRQ (r_icu)"
+    Parameter Checking: Default (BSP)
+    
   HAL
     Instance "g_ioport I/O Port (r_ioport)"
       Name: g_ioport
@@ -294,4 +297,22 @@ FSP Configuration
       Port D ELC Trigger Source: Disabled
       Port E ELC Trigger Source: Disabled
       Pin Configuration Name: g_bsp_pin_cfg
+      
+    Instance "g_external_irq1 External IRQ (r_icu)"
+      Name: g_external_irq1
+      Channel: 1
+      Trigger: Rising
+      Digital Filtering: Disabled
+      Digital Filtering Sample Clock (Only valid when Digital Filtering is Enabled): PCLK / 8
+      Callback: button2_callback
+      Pin Interrupt Priority: Priority 9
+      
+    Instance "g_external_irq2 External IRQ (r_icu)"
+      Name: g_external_irq2
+      Channel: 2
+      Trigger: Rising
+      Digital Filtering: Disabled
+      Digital Filtering Sample Clock (Only valid when Digital Filtering is Enabled): PCLK / 8
+      Callback: button3_callback
+      Pin Interrupt Priority: Priority 9
       

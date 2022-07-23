@@ -62,11 +62,11 @@
     <pincfg active="true" name="" symbol="">
       <configSetting altId="debug0.swclk.p300" configurationId="debug0.swclk" isUsedByDriver="true"/>
       <configSetting altId="debug0.swdio.p108" configurationId="debug0.swdio" isUsedByDriver="true"/>
+      <configSetting altId="irq0.irq01.p804" configurationId="irq0.irq01" isUsedByDriver="true"/>
+      <configSetting altId="irq0.irq02.p803" configurationId="irq0.irq02" isUsedByDriver="true"/>
       <configSetting altId="p601.output.high" configurationId="p601"/>
       <configSetting altId="p602.output.high" configurationId="p602"/>
       <configSetting altId="p604.output.high" configurationId="p604"/>
-      <configSetting altId="p803.input" configurationId="p803"/>
-      <configSetting altId="p804.input" configurationId="p804"/>
     </pincfg>
   </raPinConfiguration>
 </raConfiguration>
