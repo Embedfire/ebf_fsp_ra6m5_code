@@ -15,9 +15,9 @@ void hal_entry(void)
     SysTick_Init (1000);   //初始化系统时钟
     while (1)
     {
-        R_BSP_PinWrite (BSP_IO_PORT_00_PIN_07, BSP_IO_LEVEL_LOW);
+        R_BSP_PinWrite (LED_G, BSP_IO_LEVEL_LOW);
         SysTick_Delay (1, SYS_DELAY_UNITS_SECONDS);
-        R_BSP_PinWrite (BSP_IO_PORT_00_PIN_07, BSP_IO_LEVEL_HIGH);
+        R_BSP_PinWrite (LED_G, BSP_IO_LEVEL_HIGH);
         SysTick_Delay (1, SYS_DELAY_UNITS_SECONDS);
     }
 #if BSP_TZ_SECURE_BUILD
@@ -49,7 +49,6 @@ void R_BSP_WarmStart(bsp_warm_start_event_t event)
     if (BSP_WARM_START_POST_C == event)
     {
         /* C runtime environment and system clocks are setup. */
-
         /* Configure pins. */
         R_IOPORT_Open (&g_ioport_ctrl, g_ioport.p_cfg);
     }

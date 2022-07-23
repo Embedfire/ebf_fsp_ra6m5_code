@@ -238,8 +238,8 @@
     <symbolicName propertyId="p007.symbolic_name" value="LED_G_"/>
     <symbolicName propertyId="p008.symbolic_name" value="LED_R_"/>
     <symbolicName propertyId="p601.symbolic_name" value="LED_R__"/>
-    <symbolicName propertyId="p602.symbolic_name" value="LED_G__"/>
-    <symbolicName propertyId="p604.symbolic_name" value="LED_B__"/>
+    <symbolicName propertyId="p602.symbolic_name" value="LED_B__"/>
+    <symbolicName propertyId="p604.symbolic_name" value="LED_G__"/>
     <pincfg active="true" name="R7FA6M5BH3CFC.pincfg" selected="true" symbol="g_bsp_pin_cfg">
       <configSetting altId="debug0.mode.swd" configurationId="debug0.mode"/>
       <configSetting altId="debug0.swclk.p300" configurationId="debug0.swclk"/>

@@ -10,9 +10,9 @@
 
 #include "hal_data.h"
 
-#define LED_R(a) R_BSP_PinWrite(LED_R_,a)
-#define LED_G(a) R_BSP_PinWrite(LED_G_,a)
-#define LED_B(a) R_BSP_PinWrite(LED_B_,a)
+#define LED_R(a) R_BSP_PinWrite(LED_R__,a)
+#define LED_G(a) R_BSP_PinWrite(LED_G__,a)
+#define LED_B(a) R_BSP_PinWrite(LED_B__,a)
 
 #define LED_RED     LED_R(1);LED_G(0);LED_B(0)
 #define LED_GREEN   LED_R(0);LED_G(1);LED_B(0)

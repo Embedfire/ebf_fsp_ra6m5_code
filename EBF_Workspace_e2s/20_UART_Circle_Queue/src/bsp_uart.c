@@ -30,13 +30,13 @@ void UART_Init(void)
     R_SCI_UART_Read (&g_uart0_ctrl, &buffer, 1);   //开始接收数据,因为这只是个串口收发回显，为不定长接收，因此接收长度为1即可
 }
 
-void UART_Callback(uart_callback_args_t * p_args)
+void UART_Callback(uart_callback_args_t *p_args)
 {
-    switch(p_args->event)
+    switch (p_args->event)
     {
         case UART_EVENT_RX_CHAR:
             /*接收到数据后马上写入队列中*/
-            Queue_Wirte(&Circular_queue, (uint8_t *)&p_args->data, 1);
+            Queue_Wirte (&Circular_queue, (uint8_t*) &p_args->data, 1);
             /*将标志位置5，表示正在接收数据*/
             uart_receiving = 5;
             break;
@@ -49,16 +49,17 @@ void UART_Callback(uart_callback_args_t * p_args)
 }
 
 //重定向printf输出
- #if defined __GNUC__ && !defined __clang__
- int _write(int fd, char *pBuffer, int size)
- {
-    (void)fd;
-    R_SCI_UART_Write(&g_uart0_ctrl, (uint8_t *)pBuffer, (uint32_t)size);
-    while(uart_send_complete_flag == false);
+#if defined __GNUC__ && !defined __clang__
+int _write(int fd, char *pBuffer, int size)
+{
+    (void) fd;
+    R_SCI_UART_Write (&g_uart0_ctrl, (uint8_t*) pBuffer, (uint32_t) size);
+    while (uart_send_complete_flag == false)
+        ;
     uart_send_complete_flag = false;
     return size;
- }
- #else
+}
+#else
  int fputc(int ch, FILE *f)
  {
     (void)f;

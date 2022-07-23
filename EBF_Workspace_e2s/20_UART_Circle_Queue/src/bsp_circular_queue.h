@@ -10,7 +10,7 @@
 
 #include "hal_data.h"
 
-#define DATA_LEN 300
+#define DATA_LEN 300 //队列缓存大小
 
 typedef struct
 {
