@@ -25,8 +25,8 @@ FSP_CPP_HEADER
 void R_BSP_WarmStart(bsp_warm_start_event_t event);
 FSP_CPP_FOOTER
 
-
-uint8_t test_str[] = {"embedfire-野火 www.embedfire.com\r\n"};
+uart_info_t my_uart_info;
+uint8_t sci_tx_data[] = {"embedfire-野火 www.embedfire.com\r\n"};
 
 void led_task(uint16_t Led_state);  //LED 闪烁任务
 
@@ -54,11 +54,8 @@ void hal_entry(void)
     while (1) {
         //printf("embedfire-野火 www.embedfire.com\r\n");
 
-        err = g_transfer_on_dtc.enable(g_uart4.p_cfg->p_transfer_tx->p_ctrl);
-        assert(FSP_SUCCESS == err);
-
-        // 可以尝试在 configuration.xml 中将 DTC模块去除，再执行代码，会有什么变化
-        g_uart_on_sci.write(g_uart4.p_ctrl, (uint8_t *)(test_str), sizeof(test_str)/sizeof(test_str[0]));
+        // 可以尝试在 configuration.xml 中将 DTC 模块去除，再进行代码调试，看看会有什么区别
+        g_uart_on_sci.write(g_uart4.p_ctrl, (uint8_t *)(sci_tx_data), sizeof(sci_tx_data)/sizeof(sci_tx_data[0]));
 
         led_task(_temp++);  //LED 闪烁任务
 
@@ -75,21 +72,13 @@ void hal_entry(void)
 void led_task(uint16_t Led_state) {
 
     if (Led_state % 2 == 1) {
-        g_ioport.p_api->pinWrite(&g_ioport_ctrl, BSP_IO_PORT_00_PIN_06, BSP_IO_LEVEL_HIGH); //评估板
-        g_ioport.p_api->pinWrite(&g_ioport_ctrl, BSP_IO_PORT_00_PIN_07, BSP_IO_LEVEL_HIGH);
-        g_ioport.p_api->pinWrite(&g_ioport_ctrl, BSP_IO_PORT_00_PIN_08, BSP_IO_LEVEL_HIGH);
-
-//        g_ioport.p_api->pinWrite(&g_ioport_ctrl, BSP_IO_PORT_06_PIN_01, BSP_IO_LEVEL_HIGH); //启明
-//        g_ioport.p_api->pinWrite(&g_ioport_ctrl, BSP_IO_PORT_06_PIN_02, BSP_IO_LEVEL_HIGH);
-//        g_ioport.p_api->pinWrite(&g_ioport_ctrl, BSP_IO_PORT_06_PIN_04, BSP_IO_LEVEL_HIGH);
+        g_ioport.p_api->pinWrite(&g_ioport_ctrl, BSP_IO_PORT_06_PIN_01, BSP_IO_LEVEL_HIGH);
+        g_ioport.p_api->pinWrite(&g_ioport_ctrl, BSP_IO_PORT_06_PIN_02, BSP_IO_LEVEL_HIGH);
+        g_ioport.p_api->pinWrite(&g_ioport_ctrl, BSP_IO_PORT_06_PIN_04, BSP_IO_LEVEL_HIGH);
     } else {
-        g_ioport.p_api->pinWrite(&g_ioport_ctrl, BSP_IO_PORT_00_PIN_06, BSP_IO_LEVEL_LOW); //评估板
-        g_ioport.p_api->pinWrite(&g_ioport_ctrl, BSP_IO_PORT_00_PIN_07, BSP_IO_LEVEL_LOW);
-        g_ioport.p_api->pinWrite(&g_ioport_ctrl, BSP_IO_PORT_00_PIN_08, BSP_IO_LEVEL_LOW);
-
-//        g_ioport.p_api->pinWrite(&g_ioport_ctrl, BSP_IO_PORT_06_PIN_01, BSP_IO_LEVEL_LOW); //启明
-//        g_ioport.p_api->pinWrite(&g_ioport_ctrl, BSP_IO_PORT_06_PIN_02, BSP_IO_LEVEL_LOW);
-//        g_ioport.p_api->pinWrite(&g_ioport_ctrl, BSP_IO_PORT_06_PIN_04, BSP_IO_LEVEL_LOW);
+        g_ioport.p_api->pinWrite(&g_ioport_ctrl, BSP_IO_PORT_06_PIN_01, BSP_IO_LEVEL_LOW);
+        g_ioport.p_api->pinWrite(&g_ioport_ctrl, BSP_IO_PORT_06_PIN_02, BSP_IO_LEVEL_LOW);
+        g_ioport.p_api->pinWrite(&g_ioport_ctrl, BSP_IO_PORT_06_PIN_04, BSP_IO_LEVEL_LOW);
     }
 }
 

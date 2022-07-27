@@ -75,14 +75,14 @@ FSP Configuration
     PLL Src: XTAL
     PLL Div /3
     PLL Mul x25.0
-    PLL2 Disabled
+    PLL2 Src: XTAL
     PLL2 Div /2
     PLL2 Mul x20.0
     Clock Src: PLL
     CLKOUT Disabled
     UCLK Disabled
     OCTASPICLK Disabled
-    CANFDCLK Disabled
+    CANFDCLK Src: PLL2
     ICLK Div /1
     PCLKA Div /2
     PCLKB Div /4
@@ -163,8 +163,8 @@ FSP Configuration
       P314 56 - - - - Disabled - - "ADC0: ADTRG0; BUS_ASYNCH0: A21" - None - - 
       P315 57 - - - - Disabled - - "BUS_ASYNCH0: A22; SCI4: RXD4; SCI4: SCL4" - None - - 
       P400 1 - - - - Disabled - - "ADC1: ADTRG1; AGT1: AGTIO1; ETHERC_MII0: ET0_WOL; ETHERC_RMII0: ET0_WOL; GPT6: GTIOC6A; ICU0: IRQ00; IIC0: SCL0; SCI4: SCK4; SCI7: SCK7; SSI_COMMON0: AUDIO_CLK" - None - - 
-      P401 2 - - - - Disabled - - "CAN0: CTX0; ETHERC_MII0: ET0_MDC; ETHERC_RMII0: ET0_MDC; GPT_POEG0: GTETRGA; GPT6: GTIOC6B; ICU0: IRQ05; IIC0: SDA0; SCI4: CTSRTS4; SCI7: SDA7; SCI7: TXD7" - None - - 
-      P402 3 - - - - Disabled - - "AGT0: AGTIO0; AGT1: AGTIO1; AGT2: AGTIO2; AGT3: AGTIO3; CAC0: CACREF; CAN0: CRX0; ETHERC_MII0: ET0_MDIO; ETHERC_RMII0: ET0_MDIO; ICU0: IRQ04; RTC0: RTCIC0; SCI4: CTS4; SCI7: RXD7; SCI7: SCL7; SSI_COMMON0: AUDIO_CLK" - None - - 
+      P401 2 CANFD0_CTX0 - Low None "Peripheral mode" CMOS None "CAN0: CTX0; ETHERC_MII0: ET0_MDC; ETHERC_RMII0: ET0_MDC; GPT_POEG0: GTETRGA; GPT6: GTIOC6B; ICU0: IRQ05; IIC0: SDA0; SCI4: CTSRTS4; SCI7: SDA7; SCI7: TXD7" - IO - - 
+      P402 3 CANFD0_CRX0 - Low None "Peripheral mode" CMOS None "AGT0: AGTIO0; AGT1: AGTIO1; AGT2: AGTIO2; AGT3: AGTIO3; CAC0: CACREF; CAN0: CRX0; ETHERC_MII0: ET0_MDIO; ETHERC_RMII0: ET0_MDIO; ICU0: IRQ04; RTC0: RTCIC0; SCI4: CTS4; SCI7: RXD7; SCI7: SCL7; SSI_COMMON0: AUDIO_CLK" - IO - - 
       P403 4 - - - - Disabled - - "AGT0: AGTIO0; AGT1: AGTIO1; AGT2: AGTIO2; AGT3: AGTIO3; ETHERC_MII0: ET0_LINKSTA; ETHERC_RMII0: ET0_LINKSTA; GPT3: GTIOC3A; ICU0: IRQ14; RTC0: RTCIC1; SCI7: CTSRTS7; SSI0: SSIBCK0" - None - - 
       P404 5 - - - - Disabled - - "AGT0: AGTIO0; AGT1: AGTIO1; AGT2: AGTIO2; AGT3: AGTIO3; ETHERC_MII0: ET0_EXOUT; ETHERC_RMII0: ET0_EXOUT; GPT3: GTIOC3B; ICU0: IRQ15; RTC0: RTCIC2; SCI7: CTS7; SSI0: SSILRCK0" - None - - 
       P405 6 - - - - Disabled - - "ETHERC_MII0: ET0_TX_EN; ETHERC_RMII0: RMII_TXD_EN; GPT1: GTIOC1A; SSI0: SSITXD0" - None - - 
@@ -199,8 +199,8 @@ FSP Configuration
       P606 116 - - - - Disabled - - "RTC0: RTCOUT; SCI8: CTSRTS8" - None - - 
       P607 115 - - - - Disabled - - "SCI8: RXD8; SCI8: SCL8" - None - - 
       P608 99 - - - - Disabled - - "BUS_ASYNCH0: A00; GPT4: GTIOC4B" - None - - 
-      P609 100 - - - - Disabled - - "AGT5: AGTO5; BUS_ASYNCH0: CS1; CAN1: CTX1; GPT5: GTIOC5A" - None - - 
-      P610 101 - - - - Disabled - - "AGT4: AGTO4; BUS_ASYNCH0: CS0; CAN1: CRX1; GPT5: GTIOC5B; OSPI0: OMCS0; SCI7: CTS7" - None - - 
+      P609 100 CANFD1_CTX1 - Low - "Peripheral mode" CMOS None "AGT5: AGTO5; BUS_ASYNCH0: CS1; CAN1: CTX1; GPT5: GTIOC5A" - IO - - 
+      P610 101 CANFD1_CRX1 - Low - "Peripheral mode" CMOS None "AGT4: AGTO4; BUS_ASYNCH0: CS0; CAN1: CRX1; GPT5: GTIOC5B; OSPI0: OMCS0; SCI7: CTS7" - IO - - 
       P611 102 - - - - Disabled - - "AGT3: AGTO3; CAC0: CACREF; CGC0: CLKOUT; SCI7: CTSRTS7" - None - - 
       P612 103 - - - - Disabled - - "AGT2: AGTO2; BUS_ASYNCH0: D08; SCI7: SCK7" - None - - 
       P613 104 - - - - Disabled - - "AGT1: AGTO1; BUS_ASYNCH0: D09; SCI7: SDA7; SCI7: TXD7" - None - - 
@@ -282,6 +282,62 @@ FSP Configuration
   Module "I/O Port (r_ioport)"
     Parameter Checking: Default (BSP)
     
+  Module "CAN FD (r_canfd)"
+    Parameter Checking: Default (BSP)
+    Global Error Interrupt: Priority: Priority 2
+    Global Error Interrupt: Sources: DLC Check, Message Lost, FD Payload Overflow
+    Global Error Interrupt: Callback Channel: Channel 0
+    Transmission Priority: Buffer Number
+    DLC Check: Disabled
+    Flexible Data (FD): FD Frame Format: ISO 11898-1
+    Flexible Data (FD): Protocol Exceptions: Enabled (ISO 11898-1)
+    Flexible Data (FD): Payload Overflow: Reject
+    Reception: Message Buffers: Number of Buffers: 1
+    Reception: Message Buffers: Payload Size: 64 bytes
+    Reception: FIFOs: Interrupt Priority: Priority 2
+    Reception: FIFOs: FIFO 0: Enable: Enabled
+    Reception: FIFOs: FIFO 0: Interrupt Mode: Every Frame
+    Reception: FIFOs: FIFO 0: Interrupt Threshold: 1/2 full
+    Reception: FIFOs: FIFO 0: Payload Size: 64 bytes
+    Reception: FIFOs: FIFO 0: Depth: 16 stages
+    Reception: FIFOs: FIFO 1: Enable: Enabled
+    Reception: FIFOs: FIFO 1: Interrupt Mode: Every Frame
+    Reception: FIFOs: FIFO 1: Interrupt Threshold: 1/2 full
+    Reception: FIFOs: FIFO 1: Payload Size: 64 bytes
+    Reception: FIFOs: FIFO 1: Depth: 16 stages
+    Reception: FIFOs: FIFO 2: Enable: Disabled
+    Reception: FIFOs: FIFO 2: Interrupt Mode: Every Frame
+    Reception: FIFOs: FIFO 2: Interrupt Threshold: 1/2 full
+    Reception: FIFOs: FIFO 2: Payload Size: 8 bytes
+    Reception: FIFOs: FIFO 2: Depth: 16 stages
+    Reception: FIFOs: FIFO 3: Enable: Disabled
+    Reception: FIFOs: FIFO 3: Interrupt Mode: Every Frame
+    Reception: FIFOs: FIFO 3: Interrupt Threshold: 1/2 full
+    Reception: FIFOs: FIFO 3: Payload Size: 8 bytes
+    Reception: FIFOs: FIFO 3: Depth: 16 stages
+    Reception: FIFOs: FIFO 4: Enable: Disabled
+    Reception: FIFOs: FIFO 4: Interrupt Mode: Every Frame
+    Reception: FIFOs: FIFO 4: Interrupt Threshold: 1/2 full
+    Reception: FIFOs: FIFO 4: Payload Size: 8 bytes
+    Reception: FIFOs: FIFO 4: Depth: 16 stages
+    Reception: FIFOs: FIFO 5: Enable: Disabled
+    Reception: FIFOs: FIFO 5: Interrupt Mode: Every Frame
+    Reception: FIFOs: FIFO 5: Interrupt Threshold: 1/2 full
+    Reception: FIFOs: FIFO 5: Payload Size: 8 bytes
+    Reception: FIFOs: FIFO 5: Depth: 16 stages
+    Reception: FIFOs: FIFO 6: Enable: Disabled
+    Reception: FIFOs: FIFO 6: Interrupt Mode: Every Frame
+    Reception: FIFOs: FIFO 6: Interrupt Threshold: 1/2 full
+    Reception: FIFOs: FIFO 6: Payload Size: 8 bytes
+    Reception: FIFOs: FIFO 6: Depth: 16 stages
+    Reception: FIFOs: FIFO 7: Enable: Disabled
+    Reception: FIFOs: FIFO 7: Interrupt Mode: Every Frame
+    Reception: FIFOs: FIFO 7: Interrupt Threshold: 1/2 full
+    Reception: FIFOs: FIFO 7: Payload Size: 8 bytes
+    Reception: FIFOs: FIFO 7: Depth: 16 stages
+    Reception: Acceptance Filtering: Channel 0 Rule Count: 64
+    Reception: Acceptance Filtering: Channel 1 Rule Count: 64
+    
   Module "UART (r_sci_uart)"
     Parameter Checking: Default (BSP)
     FIFO Support: Disable
@@ -306,6 +362,28 @@ FSP Configuration
       Port E ELC Trigger Source: Disabled
       Pin Configuration Name: g_bsp_pin_cfg
       
+    Instance "g_canfd0 CAN FD (r_canfd)"
+      General: Name: g_canfd0
+      General: Channel: 0
+      Bitrate: Automatic: Nominal Rate (bps): 500000
+      Bitrate: Automatic: Data Rate (bps): 2000000
+      Bitrate: Automatic: Sample Point (%): 75
+      Bitrate: Delay Compensation: Enable
+      Bitrate: Manual: Nominal: Prescaler (divisor): 2
+      Bitrate: Manual: Nominal: Time Segment 1 (Tq): 14
+      Bitrate: Manual: Nominal: Time Segment 2 (Tq): 5
+      Bitrate: Manual: Nominal: Sync Jump Width (Tq): 3
+      Bitrate: Manual: Data: Prescaler (divisor): 1
+      Bitrate: Manual: Data: Time Segment 1 (Tq): 5
+      Bitrate: Manual: Data: Time Segment 2 (Tq): 2
+      Bitrate: Manual: Data: Sync Jump Width (Tq): 2
+      Bitrate: Manual: Use manual settings: Yes
+      Interrupts: Callback: canfd0_callback
+      Transmit Interrupts: TXMB 0
+      Channel Error Interrupts: Error Warning, Error Passive, Bus-Off Entry, Bus-Off Recovery, Overload
+      Interrupts: Channel Interrupt Priority Level: Priority 12
+      Filter List Array: p_canfd0_afl
+      
     Instance "g_uart4 UART (r_sci_uart)"
       General: Name: g_uart4
       General: Channel: 4
@@ -327,13 +405,13 @@ FSP Configuration
       Extra: RS-485: DE Port Number: Disabled
       Extra: RS-485: DE Pin Number: Disabled
       Interrupts: Callback: g_uart4_callback
-      Interrupts: Receive Interrupt Priority: Priority 2
-      Interrupts: Transmit Data Empty Interrupt Priority: Priority 2
-      Interrupts: Transmit End Interrupt Priority: Priority 2
-      Interrupts: Error Interrupt Priority: Priority 2
+      Interrupts: Receive Interrupt Priority: Priority 1
+      Interrupts: Transmit Data Empty Interrupt Priority: Priority 1
+      Interrupts: Transmit End Interrupt Priority: Priority 1
+      Interrupts: Error Interrupt Priority: Priority 1
       
-      Instance "g_transfer4_tx Transfer (r_dtc) SCI4 TXI (Transmit data empty)"
-        Name: g_transfer4_tx
+      Instance "g_transfer_tx Transfer (r_dtc) SCI4 TXI (Transmit data empty)"
+        Name: g_transfer_tx
         Mode: Normal
         Transfer Size: 1 Byte
         Destination Address Mode: Fixed
@@ -346,17 +424,25 @@ FSP Configuration
         Number of Blocks (Valid only in Block Mode): 0
         Activation Source: SCI4 TXI (Transmit data empty)
         
-      Instance "g_transfer4_rx Transfer (r_dtc) SCI4 RXI (Received data full)"
-        Name: g_transfer4_rx
-        Mode: Normal
-        Transfer Size: 1 Byte
-        Destination Address Mode: Incremented
-        Source Address Mode: Fixed
-        Repeat Area (Unused in Normal Mode): Destination
-        Destination Pointer: NULL
-        Source Pointer: NULL
-        Interrupt Frequency: After all transfers have completed
-        Number of Transfers: 0
-        Number of Blocks (Valid only in Block Mode): 0
-        Activation Source: SCI4 RXI (Received data full)
-        
+    Instance "g_canfd1 CAN FD (r_canfd)"
+      General: Name: g_canfd1
+      General: Channel: 1
+      Bitrate: Automatic: Nominal Rate (bps): 500000
+      Bitrate: Automatic: Data Rate (bps): 2000000
+      Bitrate: Automatic: Sample Point (%): 75
+      Bitrate: Delay Compensation: Enable
+      Bitrate: Manual: Nominal: Prescaler (divisor): 2
+      Bitrate: Manual: Nominal: Time Segment 1 (Tq): 14
+      Bitrate: Manual: Nominal: Time Segment 2 (Tq): 5
+      Bitrate: Manual: Nominal: Sync Jump Width (Tq): 3
+      Bitrate: Manual: Data: Prescaler (divisor): 1
+      Bitrate: Manual: Data: Time Segment 1 (Tq): 5
+      Bitrate: Manual: Data: Time Segment 2 (Tq): 2
+      Bitrate: Manual: Data: Sync Jump Width (Tq): 2
+      Bitrate: Manual: Use manual settings: Yes
+      Interrupts: Callback: canfd1_callback
+      Transmit Interrupts: TXMB 0
+      Channel Error Interrupts: Error Warning, Error Passive, Bus-Off Entry, Bus-Off Recovery, Overload
+      Interrupts: Channel Interrupt Priority Level: Priority 12
+      Filter List Array: p_canfd1_afl
+      

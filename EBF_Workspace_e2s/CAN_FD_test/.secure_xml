@@ -23,7 +23,7 @@
     <node id="board.clock.pll.div" option="board.clock.pll.div.3"/>
     <node id="board.clock.pll.mul" option="board.clock.pll.mul.250"/>
     <node id="board.clock.pll.display" option="board.clock.pll.display.value"/>
-    <node id="board.clock.pll2.source" option="board.clock.pll2.source.disabled"/>
+    <node id="board.clock.pll2.source" option="board.clock.pll2.source.xtal"/>
     <node id="board.clock.pll2.div" option="board.clock.pll2.div.2"/>
     <node id="board.clock.pll2.mul" option="board.clock.pll2.mul.200"/>
     <node id="board.clock.pll2.display" option="board.clock.pll2.display.value"/>
@@ -31,7 +31,7 @@
     <node id="board.clock.clkout.source" option="board.clock.clkout.source.disabled"/>
     <node id="board.clock.uclk.source" option="board.clock.uclk.source.disabled"/>
     <node id="board.clock.octaspiclk.source" option="board.clock.octaspiclk.source.disabled"/>
-    <node id="board.clock.canfdclk.source" option="board.clock.canfdclk.source.disabled"/>
+    <node id="board.clock.canfdclk.source" option="board.clock.octaspiclk.source.pll2"/>
     <node id="board.clock.iclk.div" option="board.clock.iclk.div.1"/>
     <node id="board.clock.pclka.div" option="board.clock.pclka.div.2"/>
     <node id="board.clock.pclkb.div" option="board.clock.pclkb.div.4"/>
@@ -60,6 +60,10 @@
   <raModuleConfiguration/>
   <raPinConfiguration>
     <pincfg active="true" name="" symbol="">
+      <configSetting altId="can0.crx.p402" configurationId="can0.crx"/>
+      <configSetting altId="can0.ctx.p401" configurationId="can0.ctx"/>
+      <configSetting altId="can1.crx.p610" configurationId="can1.crx"/>
+      <configSetting altId="can1.ctx.p609" configurationId="can1.ctx"/>
       <configSetting altId="debug0.swclk.p300" configurationId="debug0.swclk" isUsedByDriver="true"/>
       <configSetting altId="debug0.swdio.p108" configurationId="debug0.swdio" isUsedByDriver="true"/>
       <configSetting altId="p601.output.high" configurationId="p601"/>

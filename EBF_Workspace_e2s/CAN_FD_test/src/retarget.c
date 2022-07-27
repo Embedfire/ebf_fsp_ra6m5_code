@@ -19,7 +19,7 @@
 #include "hal_data.h"
 #include "bsp_uart.h"
 
-extern volatile bool uart_send_complete_flag;
+extern volatile uint8_t uart_send_complete_flag;
 
 
 //重定向printf输出
@@ -28,8 +28,8 @@ int _write(int fd, char *pBuffer, int size)
 {
     (void)fd;
     R_SCI_UART_Write(&g_uart4_ctrl, (uint8_t *)pBuffer, (uint32_t)size);
-    while(uart_send_complete_flag == false);
-    uart_send_complete_flag = false;
+    while(uart_send_complete_flag == 0);
+    uart_send_complete_flag = 0;
 
     return size;
 }

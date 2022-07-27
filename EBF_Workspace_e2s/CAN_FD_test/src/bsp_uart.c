@@ -46,26 +46,9 @@ void bsp_uart4_init(void)
 }
 
 
-//设置波特率
-//#define SCI_UART_BAUDRATE_19200              (19200)
-//#define SCI_UART_BAUDRATE_ERROR_PERCENT_5    (5000)
-void r_sci_uart_baud_example(uint32_t _sci_uart_baudrate, uint32_t _error_percent)
-{
-    baud_setting_t baud_setting;
-    uint32_t baud_rate = _sci_uart_baudrate;
-    bool enable_bitrate_modulation = false;
-    uint32_t error_rate_x_1000 = _error_percent * 1000;
-    fsp_err_t err;
-
-    err = R_SCI_UART_BaudCalculate(baud_rate, enable_bitrate_modulation, error_rate_x_1000, &baud_setting);
-    assert(FSP_SUCCESS == err);
-    err = R_SCI_UART_BaudSet(&g_uart4_ctrl, (void *) &baud_setting);
-    assert(FSP_SUCCESS == err);
-}
-
 
 /* 串口4的回调函数 */
-volatile bool uart_send_complete_flag = false;
+volatile uint8_t uart_send_complete_flag = 0;
 volatile bool uart_receive_complete_flag = false;
 void g_uart4_callback(uart_callback_args_t *p_args)
 {
@@ -79,12 +62,11 @@ void g_uart4_callback(uart_callback_args_t *p_args)
         }
         case UART_EVENT_TX_COMPLETE:  // 发送完成事件
         {
-            uart_send_complete_flag = true;  //printf重定向用
+            uart_send_complete_flag = 1;  //printf重定向用
             break;
         }
         case UART_EVENT_RX_CHAR:  ///< Character received 接收到的字符
         {
-            g_uart_on_sci.write(g_uart4.p_ctrl, (uint8_t *)&(p_args->data), 1);
             break;
         }
         case UART_EVENT_TX_DATA_EMPTY:  ///< Last byte is transmitting, ready for more data
