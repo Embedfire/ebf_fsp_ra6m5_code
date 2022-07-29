@@ -6,18 +6,24 @@ void R_BSP_WarmStart(bsp_warm_start_event_t event);
 FSP_CPP_FOOTER
 
 
-#define LED_RED_IO_PIN  BSP_IO_PORT_00_PIN_08
-#define LED_GREEN_IO_PIN  BSP_IO_PORT_00_PIN_07
-#define LED_BLUE_IO_PIN  BSP_IO_PORT_00_PIN_06
-//#define LED_RED_IO_PIN  BSP_IO_PORT_06_PIN_01
-//#define LED_GREEN_IO_PIN  BSP_IO_PORT_06_PIN_04
-//#define LED_BLUE_IO_PIN  BSP_IO_PORT_06_PIN_02
+
+#define LED_RED_IO_PIN    BSP_IO_PORT_06_PIN_01
+#define LED_GREEN_IO_PIN  BSP_IO_PORT_06_PIN_04
+#define LED_BLUE_IO_PIN   BSP_IO_PORT_06_PIN_02
+
+#define LED_RED_ON()      R_IOPORT_PinWrite(&g_ioport_ctrl, LED_RED_IO_PIN, BSP_IO_LEVEL_LOW)
+#define LED_GREEN_ON()    R_IOPORT_PinWrite(&g_ioport_ctrl, LED_GREEN_IO_PIN, BSP_IO_LEVEL_LOW)
+#define LED_BLUE_ON()     R_IOPORT_PinWrite(&g_ioport_ctrl, LED_BLUE_IO_PIN, BSP_IO_LEVEL_LOW)
+
+#define LED_RED_OFF()     R_IOPORT_PinWrite(&g_ioport_ctrl, LED_RED_IO_PIN, BSP_IO_LEVEL_HIGH)
+#define LED_GREEN_OFF()   R_IOPORT_PinWrite(&g_ioport_ctrl, LED_GREEN_IO_PIN, BSP_IO_LEVEL_HIGH)
+#define LED_BLUE_OFF()    R_IOPORT_PinWrite(&g_ioport_ctrl, LED_BLUE_IO_PIN, BSP_IO_LEVEL_HIGH)
+
 
 extern const uint32_t aSRC_Const_Buffer[BUFFER_SIZE];
 extern uint32_t aDST_Buffer[BUFFER_SIZE];
 extern volatile bool dmac0_complete_transmission_sign;
 
-void led_task(uint16_t Led_state);  //LED 闪烁任务
 uint8_t Buffercmp(const uint32_t* pBuffer, uint32_t* pBuffer1, uint16_t BufferLength);
 
 /*******************************************************************************************************************//**
@@ -78,17 +84,17 @@ void hal_entry(void)
     if(TransferStatus == 0)
     {
         /* 源数据与传输后数据不相等时RGB彩色灯显示红色 */
-        led_task(0x04);
+        LED_RED_ON();
     }
     else
     {
         /* 源数据与传输后数据相等时RGB彩色灯显示蓝色 */
-        led_task(0x01);
+        LED_BLUE_ON();
     }
 
     while (1)
     {
-        //led_task(_temp++);  //LED 闪烁任务
+
     }
 
 #if BSP_TZ_SECURE_BUILD
@@ -120,34 +126,6 @@ uint8_t Buffercmp(const uint32_t* pBuffer, uint32_t* pBuffer1, uint16_t BufferLe
     return 1;
 }
 
-
-void led_task(uint16_t Led_state)
-{
-    uint16_t _temp = Led_state;
-    if ((_temp & 0x01) == 1) {
-        g_ioport.p_api->pinWrite(&g_ioport_ctrl, BSP_IO_PORT_00_PIN_06, BSP_IO_LEVEL_HIGH); //评估板 LED_B
-//        g_ioport.p_api->pinWrite(&g_ioport_ctrl, BSP_IO_PORT_06_PIN_01, BSP_IO_LEVEL_LOW);
-    } else {
-        g_ioport.p_api->pinWrite(&g_ioport_ctrl, BSP_IO_PORT_00_PIN_06, BSP_IO_LEVEL_LOW);
-//        g_ioport.p_api->pinWrite(&g_ioport_ctrl, BSP_IO_PORT_06_PIN_01, BSP_IO_LEVEL_HIGH);
-    }
-    _temp >>= 1;
-    if ((_temp & 0x01) == 1) {
-        g_ioport.p_api->pinWrite(&g_ioport_ctrl, BSP_IO_PORT_00_PIN_07, BSP_IO_LEVEL_HIGH); //评估板 LED_G
-//        g_ioport.p_api->pinWrite(&g_ioport_ctrl, BSP_IO_PORT_06_PIN_02, BSP_IO_LEVEL_LOW);
-    } else {
-        g_ioport.p_api->pinWrite(&g_ioport_ctrl, BSP_IO_PORT_00_PIN_07, BSP_IO_LEVEL_LOW);
-//        g_ioport.p_api->pinWrite(&g_ioport_ctrl, BSP_IO_PORT_06_PIN_02, BSP_IO_LEVEL_HIGH);
-    }
-    _temp >>= 1;
-    if ((_temp & 0x01) == 1) {
-        g_ioport.p_api->pinWrite(&g_ioport_ctrl, BSP_IO_PORT_00_PIN_08, BSP_IO_LEVEL_HIGH); //评估板 LED_R
-//        g_ioport.p_api->pinWrite(&g_ioport_ctrl, BSP_IO_PORT_06_PIN_04, BSP_IO_LEVEL_LOW);
-    } else {
-        g_ioport.p_api->pinWrite(&g_ioport_ctrl, BSP_IO_PORT_00_PIN_08, BSP_IO_LEVEL_LOW);
-//        g_ioport.p_api->pinWrite(&g_ioport_ctrl, BSP_IO_PORT_06_PIN_04, BSP_IO_LEVEL_HIGH);
-    }
-}
 
 /*******************************************************************************************************************//**
  * This function is called at various points during the startup process.  This implementation uses the event that is

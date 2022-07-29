@@ -113,7 +113,6 @@ void transfer_dmac_sci4_rx_callback(dmac_callback_args_t *p_args)
 {
     (void)(p_args);
     dmac_sci4_rx_flag = 1;
-
 }
 
 

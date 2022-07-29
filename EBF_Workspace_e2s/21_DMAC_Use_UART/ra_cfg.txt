@@ -108,9 +108,9 @@ FSP Configuration
       P003 166 - - - - Disabled - - "ADC0: AN003" - None - - 
       P004 165 - - - - Disabled - - "ADC0: AN004; ICU0: IRQ09" - None - - 
       P005 164 - - - - Disabled - - "ADC0: AN005; ICU0: IRQ10" - None - - 
-      P006 163 GPIO - - None "Output mode (Initial Low)" CMOS - "ADC0: AN006; ICU0: IRQ11" - IO - - 
-      P007 162 GPIO - - - "Output mode (Initial Low)" CMOS - "ADC0: AN007" - IO - - 
-      P008 161 GPIO - - None "Output mode (Initial Low)" CMOS - "ADC0: AN008; ICU0: IRQ12" - IO - - 
+      P006 163 - - - - Disabled - - "ADC0: AN006; ICU0: IRQ11" - None - - 
+      P007 162 - - - - Disabled - - "ADC0: AN007" - None - - 
+      P008 161 - - - - Disabled - - "ADC0: AN008; ICU0: IRQ12" - None - - 
       P009 160 - - - - Disabled - - "ADC0: AN009; ICU0: IRQ13" - None - - 
       P010 159 - - - - Disabled - - "ADC0: AN010; ICU0: IRQ14" - None - - 
       P014 152 - - - - Disabled - - "ADC0: AN012; DAC0: DA0" - None - - 
@@ -191,10 +191,10 @@ FSP Configuration
       P512 175 SCI4_TXD4 - Low None "Peripheral mode" CMOS None "CAN1: CTX1; GPT0: GTIOC0A; ICU0: IRQ14; IIC1: SCL1; SCI4: SDA4; SCI4: TXD4" - IO - - 
       P513 174 - - - - Disabled - - "SCI5: RXD5; SCI5: SCL5" - None - - 
       P600 122 - - - - Disabled - - "AGT3: AGTIO3; BUS_ASYNCH0: RD; CAC0: CACREF; CGC0: CLKOUT; GPT6: GTIOC6B; OSPI0: OMSIO4; SCI9: SCK9" - None - - 
-      P601 121 - - - - Disabled - - "AGT3: AGTEE3; BUS_ASYNCH0: WR; GPT6: GTIOC6A; OSPI0: OMSIO2; SCI9: RXD9; SCI9: SCL9" - None - - 
-      P602 120 - - - - Disabled - - "AGT3: AGTO3; BUS_ASYNCH0: EBCLK; GPT7: GTIOC7B; OSPI0: OMCS1; SCI9: SDA9; SCI9: TXD9" - None - - 
+      P601 121 GPIO - Low - "Output mode (Initial High)" CMOS - "AGT3: AGTEE3; BUS_ASYNCH0: WR; GPT6: GTIOC6A; OSPI0: OMSIO2; SCI9: RXD9; SCI9: SCL9" - IO - - 
+      P602 120 GPIO - Low - "Output mode (Initial High)" CMOS - "AGT3: AGTO3; BUS_ASYNCH0: EBCLK; GPT7: GTIOC7B; OSPI0: OMCS1; SCI9: SDA9; SCI9: TXD9" - IO - - 
       P603 119 - - - - Disabled - - "AGT4: AGTIO4; BUS_ASYNCH0: D13; GPT7: GTIOC7A; SCI9: CTSRTS9" - None - - 
-      P604 118 - - - - Disabled - - "AGT4: AGTEE4; BUS_ASYNCH0: D12; GPT8: GTIOC8B; SCI9: CTS9" - None - - 
+      P604 118 GPIO - Low - "Output mode (Initial High)" CMOS - "AGT4: AGTEE4; BUS_ASYNCH0: D12; GPT8: GTIOC8B; SCI9: CTS9" - IO - - 
       P605 117 - - - - Disabled - - "AGT4: AGTO4; BUS_ASYNCH0: D11; GPT8: GTIOC8A; SCI8: CTS8" - None - - 
       P606 116 - - - - Disabled - - "RTC0: RTCOUT; SCI8: CTSRTS8" - None - - 
       P607 115 - - - - Disabled - - "SCI8: RXD8; SCI8: SCL8" - None - - 
@@ -346,7 +346,7 @@ FSP Configuration
       Activation Source: SCI4 TXI (Transmit data empty)
       Callback: transfer_dmac_sci4_tx_callback
       Context: NULL
-      Transfer End Interrupt Priority: Priority 8
+      Transfer End Interrupt Priority: Priority 6
       Interrupt Frequency: Interrupt after all transfers have completed
       Offset value (Valid only when address mode is \'Offset\'): 1
       Source Buffer Size: 1
@@ -358,7 +358,7 @@ FSP Configuration
       Transfer Size: 1 Byte
       Destination Address Mode: Incremented
       Source Address Mode: Fixed
-      Repeat Area (Unused in Normal Mode): Source
+      Repeat Area (Unused in Normal Mode): Destination
       Destination Pointer: NULL
       Source Pointer: NULL
       Number of Transfers: 1
@@ -367,7 +367,7 @@ FSP Configuration
       Callback: transfer_dmac_sci4_rx_callback
       Context: NULL
       Transfer End Interrupt Priority: Priority 8
-      Interrupt Frequency: Interrupt after all transfers have completed
+      Interrupt Frequency: Interrupt after each block, or repeat size is transfered
       Offset value (Valid only when address mode is \'Offset\'): 1
       Source Buffer Size: 1
       

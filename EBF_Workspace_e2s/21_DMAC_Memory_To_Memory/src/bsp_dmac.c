@@ -106,10 +106,6 @@ void bsp_dmac_init(void)
 {
     fsp_err_t err;
 
-//    set_transfer_dst_src_address(&g_transfer_dmac_cfg, my_transfer_info.p_src, my_transfer_info.p_dest);
-//    err = g_transfer_on_dmac.open(&g_transfer_dmac_ctrl, &g_transfer_dmac_cfg);
-//        assert(FSP_SUCCESS == err);
-
     err = g_transfer_on_dmac.open(&g_transfer_dmac_ctrl, &g_transfer_dmac_cfg);
     assert(FSP_SUCCESS == err);
 #if (DTC_TRANSFER_MODE == DTC_TRANSFER_BLOCK_MODE)     //块模式

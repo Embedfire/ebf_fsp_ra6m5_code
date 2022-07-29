@@ -237,7 +237,7 @@
       <property id="module.driver.transfer.activation_event" value="_signal.event.sci4.txi"/>
       <property id="module.driver.transfer.p_callback" value="transfer_dmac_sci4_tx_callback"/>
       <property id="module.driver.transfer.p_context" value="NULL"/>
-      <property id="module.driver.transfer.ipl" value="board.icu.common.irq.priority8"/>
+      <property id="module.driver.transfer.ipl" value="board.icu.common.irq.priority6"/>
       <property id="module.driver.transfer.interrupt" value="module.driver.transfer.interrupt.interrupt_end"/>
       <property id="module.driver.transfer.offset" value="1"/>
       <property id="module.driver.transfer.src.buffer" value="1"/>
@@ -249,7 +249,7 @@
       <property id="module.driver.transfer.size" value="module.driver.transfer.size.size_1_byte"/>
       <property id="module.driver.transfer.dest_addr_mode" value="module.driver.transfer.dest_addr_mode.addr_mode_incremented"/>
       <property id="module.driver.transfer.src_addr_mode" value="module.driver.transfer.src_addr_mode.addr_mode_fixed"/>
-      <property id="module.driver.transfer.repeat_area" value="module.driver.transfer.repeat_area.repeat_area_source"/>
+      <property id="module.driver.transfer.repeat_area" value="module.driver.transfer.repeat_area.repeat_area_destination"/>
       <property id="module.driver.transfer.p_dest" value="NULL"/>
       <property id="module.driver.transfer.p_src" value="NULL"/>
       <property id="module.driver.transfer.length" value="1"/>
@@ -258,7 +258,7 @@
       <property id="module.driver.transfer.p_callback" value="transfer_dmac_sci4_rx_callback"/>
       <property id="module.driver.transfer.p_context" value="NULL"/>
       <property id="module.driver.transfer.ipl" value="board.icu.common.irq.priority8"/>
-      <property id="module.driver.transfer.interrupt" value="module.driver.transfer.interrupt.interrupt_end"/>
+      <property id="module.driver.transfer.interrupt" value="module.driver.transfer.interrupt.interrupt_each"/>
       <property id="module.driver.transfer.offset" value="1"/>
       <property id="module.driver.transfer.src.buffer" value="1"/>
     </module>
@@ -287,12 +287,6 @@
       <configSetting altId="debug0.mode.swd" configurationId="debug0.mode"/>
       <configSetting altId="debug0.swclk.p300" configurationId="debug0.swclk"/>
       <configSetting altId="debug0.swdio.p108" configurationId="debug0.swdio"/>
-      <configSetting altId="p006.output.low" configurationId="p006"/>
-      <configSetting altId="p006.gpio_mode.gpio_mode_out.low" configurationId="p006.gpio_mode"/>
-      <configSetting altId="p007.output.low" configurationId="p007"/>
-      <configSetting altId="p007.gpio_mode.gpio_mode_out.low" configurationId="p007.gpio_mode"/>
-      <configSetting altId="p008.output.low" configurationId="p008"/>
-      <configSetting altId="p008.gpio_mode.gpio_mode_out.low" configurationId="p008.gpio_mode"/>
       <configSetting altId="p108.debug0.swdio" configurationId="p108"/>
       <configSetting altId="p108.gpio_mode.gpio_mode_peripheral" configurationId="p108.gpio_mode"/>
       <configSetting altId="p300.debug0.swclk" configurationId="p300"/>
@@ -301,6 +295,12 @@
       <configSetting altId="p511.gpio_mode.gpio_mode_peripheral" configurationId="p511.gpio_mode"/>
       <configSetting altId="p512.sci4.txd" configurationId="p512"/>
       <configSetting altId="p512.gpio_mode.gpio_mode_peripheral" configurationId="p512.gpio_mode"/>
+      <configSetting altId="p601.output.high" configurationId="p601"/>
+      <configSetting altId="p601.gpio_mode.gpio_mode_out.high" configurationId="p601.gpio_mode"/>
+      <configSetting altId="p602.output.high" configurationId="p602"/>
+      <configSetting altId="p602.gpio_mode.gpio_mode_out.high" configurationId="p602.gpio_mode"/>
+      <configSetting altId="p604.output.high" configurationId="p604"/>
+      <configSetting altId="p604.gpio_mode.gpio_mode_out.high" configurationId="p604.gpio_mode"/>
       <configSetting altId="sci4.mode.asynchronous.free" configurationId="sci4.mode"/>
       <configSetting altId="sci4.rxd.p511" configurationId="sci4.rxd"/>
       <configSetting altId="sci4.txd.p512" configurationId="sci4.txd"/>

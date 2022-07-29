@@ -73,11 +73,14 @@ void r_sci_uart_baud_example(uint32_t _sci_uart_baudrate, uint32_t _error_percen
 
 /* 串口4的回调函数 */
 volatile uint8_t uart_cpu_tx_complete_flag = 0;
+volatile uint8_t uart_cpu_rx_complete_flag = 0;
+volatile uint32_t uart_cpu_rx_count = 0;
 void g_uart4_callback(uart_callback_args_t *p_args)
 {
     switch ((uint32_t)p_args->event) {
     case UART_EVENT_RX_COMPLETE:  // 接收完成事件
     {
+        uart_cpu_rx_complete_flag = 1;
         break;
     }
     case UART_EVENT_TX_COMPLETE:  // 发送完成事件
@@ -87,7 +90,8 @@ void g_uart4_callback(uart_callback_args_t *p_args)
     }
     case UART_EVENT_RX_CHAR:  ///< Character received 接收到的字符
     {
-        g_uart_on_sci.write(g_uart4.p_ctrl, (uint8_t *)&(p_args->data), 1);
+//        g_uart_on_sci.write(g_uart4.p_ctrl, (uint8_t *)&(p_args->data), 1);
+        uart_cpu_rx_count++;
         break;
     }
     case UART_EVENT_ERR_PARITY:  ///< 奇偶校验错误事件

@@ -8,15 +8,20 @@ FSP_CPP_FOOTER
 
 #define BUFFER_SIZE  (37)
 
-#define LED_RED_IO_PIN  BSP_IO_PORT_00_PIN_08
-#define LED_GREEN_IO_PIN  BSP_IO_PORT_00_PIN_07
-#define LED_BLUE_IO_PIN  BSP_IO_PORT_00_PIN_06
-//#define LED_RED_IO_PIN  BSP_IO_PORT_06_PIN_01
-//#define LED_GREEN_IO_PIN  BSP_IO_PORT_06_PIN_04
-//#define LED_BLUE_IO_PIN  BSP_IO_PORT_06_PIN_02
+
+#define LED_RED_IO_PIN    BSP_IO_PORT_06_PIN_01
+#define LED_GREEN_IO_PIN  BSP_IO_PORT_06_PIN_04
+#define LED_BLUE_IO_PIN   BSP_IO_PORT_06_PIN_02
+
+#define LED_RED_ON()      R_IOPORT_PinWrite(&g_ioport_ctrl, LED_RED_IO_PIN, BSP_IO_LEVEL_LOW)
+#define LED_GREEN_ON()    R_IOPORT_PinWrite(&g_ioport_ctrl, LED_GREEN_IO_PIN, BSP_IO_LEVEL_LOW)
+#define LED_BLUE_ON()     R_IOPORT_PinWrite(&g_ioport_ctrl, LED_BLUE_IO_PIN, BSP_IO_LEVEL_LOW)
+
+#define LED_RED_OFF()     R_IOPORT_PinWrite(&g_ioport_ctrl, LED_RED_IO_PIN, BSP_IO_LEVEL_HIGH)
+#define LED_GREEN_OFF()   R_IOPORT_PinWrite(&g_ioport_ctrl, LED_GREEN_IO_PIN, BSP_IO_LEVEL_HIGH)
+#define LED_BLUE_OFF()    R_IOPORT_PinWrite(&g_ioport_ctrl, LED_BLUE_IO_PIN, BSP_IO_LEVEL_HIGH)
 
 
-void led_task(uint16_t Led_state);  //LED 闪烁任务
 uint8_t Buffercmp(const uint32_t* pBuffer, uint32_t* pBuffer1, uint16_t BufferLength);
 
 
@@ -73,38 +78,42 @@ void hal_entry(void)
     /* 手动触发传输数据寄存器空中断 */
     R_SCI4->SCR_b.TE = 0;
     R_SCI4->SCR_b.RE = 0;
-
     R_SCI4->SCR |= (0xF0);
 
-//    /* 确保TE和TIE为0 */
 //    R_SCI4->SCR_b.TE = 0;
 //    R_SCI4->SCR_b.TIE = 0;
-//
-//    /* 读取当前SCR值，查看是否设置了RIE、RE、MPIE、CKE位 */
 //    uint8_t temp = (uint8_t)(R_SCI4->SCR & 0x53);  //0x53 = 101 0011
-//
-//    /* 同时设置TIE和TE位，并保持RIE、RE、MPIE和CKE[1:0]。
-//     * 同时设置将生成TXI中断。*/
 //    R_SCI4->SCR = (uint8_t)(0xa0 | temp);  //0x0a = 1010 0000
 
-    while (1){
+
+    while (1) {
 
         if(( 1 == dmac_sci4_tx_flag ) && ( 1 == dmac_sci4_rx_flag ))
         {
-            led_task(0x07);  //RGB灯全亮 - 接收成功、发送成功
+            //全亮 - 接收成功、发送成功
+            LED_RED_OFF();
+            LED_GREEN_ON();
+            LED_BLUE_ON();
         }
         else if(( 1 == dmac_sci4_tx_flag ) && ( 0 == dmac_sci4_rx_flag ))
         {
-            led_task(0x01);  //蓝色灯亮 - 接收失败、发送成功
+            LED_GREEN_OFF();
+            LED_BLUE_ON();   //蓝色灯亮 - 接收失败、发送成功
+            LED_RED_OFF();
         }
         else if(( 0 == dmac_sci4_tx_flag ) && ( 1 == dmac_sci4_rx_flag ))
         {
-            led_task(0x02);  //绿色灯亮 - 接收成功、发送失败
+            LED_GREEN_ON();  //绿色灯亮 - 接收成功、发送失败
+            LED_BLUE_OFF();
+            LED_RED_OFF();
         }
         else
         {
-            led_task(0x04);  //红色灯亮 - 接收失败、发送失败
+            LED_GREEN_OFF();
+            LED_RED_OFF();
+            LED_RED_ON();    //红色灯亮 - 接收失败、发送失败
         }
+
     }
 
 #if BSP_TZ_SECURE_BUILD
@@ -137,34 +146,6 @@ uint8_t Buffercmp(const uint32_t* pBuffer, uint32_t* pBuffer1, uint16_t BufferLe
     return 1;
 }
 
-
-void led_task(uint16_t Led_state)
-{
-    uint16_t _temp = Led_state;
-    if ((_temp & 0x01) == 1) {
-        g_ioport.p_api->pinWrite(&g_ioport_ctrl, BSP_IO_PORT_00_PIN_06, BSP_IO_LEVEL_HIGH); //评估板 LED_B
-//        g_ioport.p_api->pinWrite(&g_ioport_ctrl, BSP_IO_PORT_06_PIN_01, BSP_IO_LEVEL_LOW);
-    } else {
-        g_ioport.p_api->pinWrite(&g_ioport_ctrl, BSP_IO_PORT_00_PIN_06, BSP_IO_LEVEL_LOW);
-//        g_ioport.p_api->pinWrite(&g_ioport_ctrl, BSP_IO_PORT_06_PIN_01, BSP_IO_LEVEL_HIGH);
-    }
-    _temp >>= 1;
-    if ((_temp & 0x01) == 1) {
-        g_ioport.p_api->pinWrite(&g_ioport_ctrl, BSP_IO_PORT_00_PIN_07, BSP_IO_LEVEL_HIGH); //评估板 LED_G
-//        g_ioport.p_api->pinWrite(&g_ioport_ctrl, BSP_IO_PORT_06_PIN_02, BSP_IO_LEVEL_LOW);
-    } else {
-        g_ioport.p_api->pinWrite(&g_ioport_ctrl, BSP_IO_PORT_00_PIN_07, BSP_IO_LEVEL_LOW);
-//        g_ioport.p_api->pinWrite(&g_ioport_ctrl, BSP_IO_PORT_06_PIN_02, BSP_IO_LEVEL_HIGH);
-    }
-    _temp >>= 1;
-    if ((_temp & 0x01) == 1) {
-        g_ioport.p_api->pinWrite(&g_ioport_ctrl, BSP_IO_PORT_00_PIN_08, BSP_IO_LEVEL_HIGH); //评估板 LED_R
-//        g_ioport.p_api->pinWrite(&g_ioport_ctrl, BSP_IO_PORT_06_PIN_04, BSP_IO_LEVEL_LOW);
-    } else {
-        g_ioport.p_api->pinWrite(&g_ioport_ctrl, BSP_IO_PORT_00_PIN_08, BSP_IO_LEVEL_LOW);
-//        g_ioport.p_api->pinWrite(&g_ioport_ctrl, BSP_IO_PORT_06_PIN_04, BSP_IO_LEVEL_HIGH);
-    }
-}
 
 /*******************************************************************************************************************//**
  * This function is called at various points during the startup process.  This implementation uses the event that is

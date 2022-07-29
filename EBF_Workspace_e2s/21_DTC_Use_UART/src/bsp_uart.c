@@ -84,7 +84,7 @@ void g_uart4_callback(uart_callback_args_t *p_args)
         }
         case UART_EVENT_RX_CHAR:  ///< Character received 接收到的字符
         {
-            g_uart_on_sci.write(g_uart4.p_ctrl, (uint8_t *)&(p_args->data), 1);
+            //g_uart_on_sci.write(g_uart4.p_ctrl, (uint8_t *)&(p_args->data), 1);
             break;
         }
         case UART_EVENT_TX_DATA_EMPTY:  ///< Last byte is transmitting, ready for more data
