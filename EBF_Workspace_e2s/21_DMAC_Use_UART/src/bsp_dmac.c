@@ -36,35 +36,6 @@
 
 
 
-transfer_info_t my_transfer_sci_tx = {
-  .transfer_settings_word_b.dest_addr_mode = TRANSFER_ADDR_MODE_FIXED,        //每次传输后，目的地址指针不变
-  .transfer_settings_word_b.repeat_area = TRANSFER_REPEAT_AREA_SOURCE,        //源区域重复 (正常模式下无效)
-  .transfer_settings_word_b.irq = TRANSFER_IRQ_END,                           //传输完成后中断
-  .transfer_settings_word_b.chain_mode = TRANSFER_CHAIN_MODE_DISABLED,        //不使能
-  .transfer_settings_word_b.src_addr_mode = TRANSFER_ADDR_MODE_INCREMENTED,   //每次传输后，源地址指针都会增加
-  .transfer_settings_word_b.size = TRANSFER_SIZE_1_BYTE,                      //每次传输1字节
-  .transfer_settings_word_b.mode = TRANSFER_MODE_NORMAL,                      //正常模式
-//  .p_dest = (void*)(g_uart4_ctrl.p_reg->TDR),  //目标地址
-//  .p_src = (void const*)sic_send_test_data,     //源地址
-  .num_blocks = 0,                              //使用时要传输的块数 (仅在 Repeat, Block, Repeat-Block 模式下有效)
-  .length = 0,                    //每次传输的长度
-};
-
-transfer_info_t my_transfer_sci_rx = {
-  .transfer_settings_word_b.dest_addr_mode = TRANSFER_ADDR_MODE_INCREMENTED,  //每次传输后，目的地址指针都会增加
-  .transfer_settings_word_b.repeat_area = TRANSFER_REPEAT_AREA_SOURCE,        //源区域重复 (正常模式下无效)
-  .transfer_settings_word_b.irq = TRANSFER_IRQ_END,                           //传输完成后中断
-  .transfer_settings_word_b.chain_mode = TRANSFER_CHAIN_MODE_DISABLED,        //不使能
-  .transfer_settings_word_b.src_addr_mode = TRANSFER_ADDR_MODE_FIXED,         //每次传输后，源地址指针不变
-  .transfer_settings_word_b.size = TRANSFER_SIZE_1_BYTE,                      //每次传输1字节
-  .transfer_settings_word_b.mode = TRANSFER_MODE_NORMAL,                      //正常模式
-//  .p_dest = (void*) uart_receive_buffer,               //目标地址
-//  .p_src = (void const*)(g_uart4_ctrl.p_reg->RDR),     //源地址
-  .num_blocks = 0,                                  //使用时要传输的块数 (仅在 Repeat, Block, Repeat-Block 模式下有效)
-  .length = 0,                            //每次传输的长度
-};
-
-
 void bsp_dmac_init(void)
 {
     fsp_err_t err;
@@ -72,16 +43,12 @@ void bsp_dmac_init(void)
     /* 配置发送 */
     err = g_transfer_on_dmac.open(g_transfer_dmac_sci4_tx.p_ctrl, g_transfer_dmac_sci4_tx.p_cfg);
     assert(FSP_SUCCESS == err);
-//    err = g_transfer_on_dmac.reconfigure(g_transfer_dmac_sci4_tx.p_ctrl, &my_transfer_sci_tx);
-//    assert(FSP_SUCCESS == err);
     err = g_transfer_on_dmac.enable(g_transfer_dmac_sci4_tx.p_ctrl);
     assert(FSP_SUCCESS == err);
 
     /* 配置接收 */
     err = g_transfer_on_dmac.open(g_transfer_dmac_sci4_rx.p_ctrl, g_transfer_dmac_sci4_rx.p_cfg);
     assert(FSP_SUCCESS == err);
-//    err = g_transfer_on_dmac.reconfigure(g_transfer_dmac_sci4_rx.p_ctrl, &my_transfer_sci_rx);
-//    assert(FSP_SUCCESS == err);
     err = g_transfer_on_dmac.enable(g_transfer_dmac_sci4_rx.p_ctrl);
     assert(FSP_SUCCESS == err);
 }

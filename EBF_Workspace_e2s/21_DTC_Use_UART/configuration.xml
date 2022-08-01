@@ -222,8 +222,8 @@
       <property id="module.driver.uart.tei_ipl" value="board.icu.common.irq.priority2"/>
       <property id="module.driver.uart.eri_ipl" value="board.icu.common.irq.priority2"/>
     </module>
-    <module id="module.driver.transfer_on_dtc.364287414">
-      <property id="module.driver.transfer.name" value="g_transfer4_rx"/>
+    <module id="module.driver.transfer_on_dtc.1615113976">
+      <property id="module.driver.transfer.name" value="g_transfer4_tx"/>
       <property id="module.driver.transfer.mode" value="module.driver.transfer.mode.mode_normal"/>
       <property id="module.driver.transfer.size" value="module.driver.transfer.size.size_2_byte"/>
       <property id="module.driver.transfer.dest_addr_mode" value="module.driver.transfer.dest_addr_mode.addr_mode_fixed"/>
@@ -236,8 +236,8 @@
       <property id="module.driver.transfer.num_blocks" value="0"/>
       <property id="module.driver.transfer.activation_source" value="_disabled"/>
     </module>
-    <module id="module.driver.transfer_on_dtc.1557188321">
-      <property id="module.driver.transfer.name" value="g_transfer4_tx"/>
+    <module id="module.driver.transfer_on_dtc.1393496595">
+      <property id="module.driver.transfer.name" value="g_transfer4_rx"/>
       <property id="module.driver.transfer.mode" value="module.driver.transfer.mode.mode_normal"/>
       <property id="module.driver.transfer.size" value="module.driver.transfer.size.size_2_byte"/>
       <property id="module.driver.transfer.dest_addr_mode" value="module.driver.transfer.dest_addr_mode.addr_mode_fixed"/>
@@ -253,8 +253,8 @@
     <context id="_hal.0">
       <stack module="module.driver.ioport_on_ioport.0"/>
       <stack module="module.driver.uart_on_sci_uart.976245069">
-        <stack module="module.driver.transfer_on_dtc.1557188321" requires="module.driver.uart_on_sci_uart.requires.transfer_tx"/>
-        <stack module="module.driver.transfer_on_dtc.364287414" requires="module.driver.uart_on_sci_uart.requires.transfer_rx"/>
+        <stack module="module.driver.transfer_on_dtc.1615113976" requires="module.driver.uart_on_sci_uart.requires.transfer_tx"/>
+        <stack module="module.driver.transfer_on_dtc.1393496595" requires="module.driver.uart_on_sci_uart.requires.transfer_rx"/>
       </stack>
     </context>
     <config id="config.driver.ioport">

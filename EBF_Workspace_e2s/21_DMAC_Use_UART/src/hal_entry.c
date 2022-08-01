@@ -90,7 +90,7 @@ void hal_entry(void)
 
         if(( 1 == dmac_sci4_tx_flag ) && ( 1 == dmac_sci4_rx_flag ))
         {
-            //全亮 - 接收成功、发送成功
+            //蓝、绿灯亮 - 接收成功、发送成功
             LED_RED_OFF();
             LED_GREEN_ON();
             LED_BLUE_ON();
