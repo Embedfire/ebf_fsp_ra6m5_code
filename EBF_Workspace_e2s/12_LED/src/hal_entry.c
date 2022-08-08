@@ -12,8 +12,25 @@ void hal_entry(void)
 {
     /* TODO: add your own code here */
 
+    /* 初始化配置引脚（这里重复初始化了，可以注释掉） */
+    //R_IOPORT_Open (&g_ioport_ctrl, g_ioport.p_cfg);
 
-    //Nothing now.
+//    R_IOPORT_PinWrite(&g_ioport_ctrl, BSP_IO_PORT_06_PIN_01, BSP_IO_LEVEL_HIGH);
+//    R_IOPORT_PinWrite(&g_ioport_ctrl, BSP_IO_PORT_06_PIN_02, BSP_IO_LEVEL_HIGH);
+    R_IOPORT_PinWrite(&g_ioport_ctrl, BSP_IO_PORT_06_PIN_04, BSP_IO_LEVEL_HIGH);
+
+
+    while(1)
+    {
+        R_IOPORT_PinWrite(&g_ioport_ctrl, BSP_IO_PORT_06_PIN_01, BSP_IO_LEVEL_HIGH);
+//        R_IOPORT_PinWrite(&g_ioport_ctrl, BSP_IO_PORT_06_PIN_02, BSP_IO_LEVEL_HIGH);
+//        R_IOPORT_PinWrite(&g_ioport_ctrl, BSP_IO_PORT_06_PIN_04, BSP_IO_LEVEL_HIGH);
+        R_BSP_SoftwareDelay(1, BSP_DELAY_UNITS_SECONDS);
+        R_IOPORT_PinWrite(&g_ioport_ctrl, BSP_IO_PORT_06_PIN_01, BSP_IO_LEVEL_LOW);
+//        R_IOPORT_PinWrite(&g_ioport_ctrl, BSP_IO_PORT_06_PIN_02, BSP_IO_LEVEL_LOW);
+//        R_IOPORT_PinWrite(&g_ioport_ctrl, BSP_IO_PORT_06_PIN_04, BSP_IO_LEVEL_LOW);
+        R_BSP_SoftwareDelay(1, BSP_DELAY_UNITS_SECONDS);
+    }
 
 
 

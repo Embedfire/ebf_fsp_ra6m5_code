@@ -72,7 +72,7 @@ FSP Configuration
   Clocks
     XTAL 24000000Hz
     HOCO 20MHz
-    PLL Src: XTAL
+    PLL Src: HOCO
     PLL Div /3
     PLL Mul x25.0
     PLL2 Disabled

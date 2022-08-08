@@ -12,32 +12,39 @@ void hal_entry(void)
 {
     /* TODO: add your own code here */
 
-
     /* 取消写保护 */
     R_PMISC->PWPR = 0;                               ///< Clear BOWI bit - writing to PFSWE bit enabled
     R_PMISC->PWPR = 1U << BSP_IO_PWPR_PFSWE_OFFSET;  ///< Set PFSWE bit - writing to PFS register enabled
 
-
-    /* 配置PFS寄存器 */
-    R_PFS->PORT[BSP_IO_PORT_00_PIN_06>>8].PIN[BSP_IO_PORT_00_PIN_06 & 0xFF].PmnPFS =
+    /* LED1：配置引脚 P601 对应的PFS寄存器 */
+    R_PFS->PORT[BSP_IO_PORT_06_PIN_01>>8].PIN[BSP_IO_PORT_06_PIN_01 & 0xFF].PmnPFS =
+        IOPORT_CFG_PORT_DIRECTION_OUTPUT | IOPORT_CFG_PORT_OUTPUT_HIGH;
+    /* LED2：配置引脚 P602 对应的PFS寄存器 */
+    R_PFS->PORT[BSP_IO_PORT_06_PIN_02>>8].PIN[BSP_IO_PORT_06_PIN_02 & 0xFF].PmnPFS =
+        IOPORT_CFG_PORT_DIRECTION_OUTPUT | IOPORT_CFG_PORT_OUTPUT_HIGH;
+    /* LED3：配置引脚 P604 对应的PFS寄存器 */
+    R_PFS->PORT[BSP_IO_PORT_06_PIN_04>>8].PIN[BSP_IO_PORT_06_PIN_04 & 0xFF].PmnPFS =
         IOPORT_CFG_PORT_DIRECTION_OUTPUT | IOPORT_CFG_PORT_OUTPUT_HIGH;
 
+    /** 此时3个LED灯的引脚默认输出的是低电平
+     *  所以3个LED灯都会默认亮起来
+     *  我们在 while 循环里让 LED1 闪烁：每秒钟翻转一次状态
+     */
 
     while(1)
     {
-        /* 翻转LED灯 */
-//        R_PORT0->PODR |= 1<<(BSP_IO_PORT_00_PIN_06 & 0xFF);
-//        R_BSP_SoftwareDelay(1000, BSP_DELAY_UNITS_MILLISECONDS);
-//        R_PORT0->PODR &= (uint16_t)~(1 << (BSP_IO_PORT_00_PIN_06 & 0xFF));
-//        R_BSP_SoftwareDelay(1000, BSP_DELAY_UNITS_MILLISECONDS);
+       /* 翻转LED灯：LED1 */
+       //R_PORT0->PODR |= 1<<(BSP_IO_PORT_06_PIN_01 & 0xFF);
+       //R_BSP_SoftwareDelay(1000, BSP_DELAY_UNITS_MILLISECONDS);
+       //R_PORT0->PODR &= (uint16_t)~(1 << (BSP_IO_PORT_06_PIN_01 & 0xFF));
+       //R_BSP_SoftwareDelay(1000, BSP_DELAY_UNITS_MILLISECONDS);
 
-        /* 或者也可以这样 */
-        R_PORT0->PODR ^= 1<<(BSP_IO_PORT_00_PIN_06 & 0xFF);
-        R_BSP_SoftwareDelay(1000, BSP_DELAY_UNITS_MILLISECONDS);
+       /* 或者也可以这样用位异或操作来翻转LED1 */
+       R_PORT0->PODR ^= 1<<(BSP_IO_PORT_06_PIN_01 & 0xFF);
+       R_BSP_SoftwareDelay(1000, BSP_DELAY_UNITS_MILLISECONDS);
     }
 
-
-
+    //这后面的代码无需理会
 #if BSP_TZ_SECURE_BUILD
     /* Enter non-secure code */
     R_BSP_NonSecureEnter();
