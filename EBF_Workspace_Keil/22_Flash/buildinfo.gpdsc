@@ -54,16 +54,15 @@
         <file category="header" name="ra/arm/CMSIS_5/CMSIS/Core/Include/tz_context.h" path=""/>
         <file category="other" name="ra/arm/CMSIS_5/LICENSE.txt"/>
         <file category="header" name="ra/fsp/inc/api/bsp_api.h" path=""/>
-        <file category="header" name="ra/fsp/inc/api/r_cgc_api.h" path=""/>
         <file category="header" name="ra/fsp/inc/api/r_ioport_api.h" path=""/>
-        <file category="header" name="ra/fsp/inc/api/r_rtc_api.h" path=""/>
+        <file category="header" name="ra/fsp/inc/api/r_spi_flash_api.h" path=""/>
         <file category="header" name="ra/fsp/inc/api/r_transfer_api.h" path=""/>
         <file category="header" name="ra/fsp/inc/api/r_uart_api.h" path=""/>
         <file category="header" name="ra/fsp/inc/fsp_common_api.h" path=""/>
         <file category="header" name="ra/fsp/inc/fsp_features.h" path=""/>
         <file category="header" name="ra/fsp/inc/fsp_version.h" path=""/>
         <file category="header" name="ra/fsp/inc/instances/r_ioport.h" path=""/>
-        <file category="header" name="ra/fsp/inc/instances/r_rtc.h" path=""/>
+        <file category="header" name="ra/fsp/inc/instances/r_qspi.h" path=""/>
         <file category="header" name="ra/fsp/inc/instances/r_sci_uart.h" path=""/>
         <file category="header" name="ra/fsp/src/bsp/cmsis/Device/RENESAS/Include/base_addresses.h" path=""/>
         <file category="header" name="ra/fsp/src/bsp/cmsis/Device/RENESAS/Include/renesas.h" path=""/>
@@ -99,14 +98,16 @@
         <file category="header" name="ra/fsp/src/bsp/mcu/ra6m5/bsp_feature.h" path=""/>
         <file category="header" name="ra/fsp/src/bsp/mcu/ra6m5/bsp_mcu_info.h" path=""/>
         <file category="source" name="ra/fsp/src/r_ioport/r_ioport.c"/>
-        <file category="source" name="ra/fsp/src/r_rtc/r_rtc.c"/>
+        <file category="source" name="ra/fsp/src/r_qspi/r_qspi.c"/>
         <file category="source" name="ra/fsp/src/r_sci_uart/r_sci_uart.c"/>
       </files>
     </component>
     <component Cclass="Flex Software" Cgroup="Build Configuration">
       <files>
+        <file category="include" name="ra_cfg/driver/"/>
         <file category="include" name="ra_cfg/fsp_cfg/"/>
         <file category="include" name="ra_cfg/fsp_cfg/bsp/"/>
+        <file category="header" name="ra_cfg/driver/r_qspi_cfg.h" path=""/>
         <file category="header" name="ra_cfg/fsp_cfg/bsp/board_cfg.h" path=""/>
         <file category="header" name="ra_cfg/fsp_cfg/bsp/bsp_cfg.h" path=""/>
         <file category="header" name="ra_cfg/fsp_cfg/bsp/bsp_mcu_device_cfg.h" path=""/>
@@ -114,7 +115,6 @@
         <file category="header" name="ra_cfg/fsp_cfg/bsp/bsp_mcu_family_cfg.h" path=""/>
         <file category="header" name="ra_cfg/fsp_cfg/bsp/bsp_pin_cfg.h" path=""/>
         <file category="header" name="ra_cfg/fsp_cfg/r_ioport_cfg.h" path=""/>
-        <file category="header" name="ra_cfg/fsp_cfg/r_rtc_cfg.h" path=""/>
         <file category="header" name="ra_cfg/fsp_cfg/r_sci_uart_cfg.h" path=""/>
       </files>
     </component>
