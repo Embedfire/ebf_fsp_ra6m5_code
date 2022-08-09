@@ -6,7 +6,7 @@ void R_BSP_WarmStart(bsp_warm_start_event_t event);
 FSP_CPP_FOOTER
 
 
-/* 自己写库——构建库函数雏形 */
+/* 自己写库——构建库函数雏形 IOPORT头文件 */
 #include "ra6m5_ioport.h"
 
 
@@ -18,47 +18,38 @@ void hal_entry(void)
 {
     /* TODO: add your own code here */
 
-
-    /* 取消写保护 */
-//    R_PMISC->PWPR = 0;                               ///< Clear BOWI bit - writing to PFSWE bit enabled
-//    R_PMISC->PWPR = 1U << BSP_IO_PWPR_PFSWE_OFFSET;  ///< Set PFSWE bit - writing to PFS register enabled
-
     /* 调用取消写保护函数 */
     IOPORT_PinAccessEnable();
 
 
-    /* 配置PFS寄存器 */
-//    R_PFS->PORT[BSP_IO_PORT_00_PIN_06>>8].PIN[BSP_IO_PORT_00_PIN_06 & 0xFF].PmnPFS =
-//        IOPORT_CFG_PORT_DIRECTION_OUTPUT | IOPORT_CFG_PORT_OUTPUT_HIGH;
-
-    /* 使用 IOPORT 初始化结构体和调用初始化函数，替代手动配置PFS寄存器 */
+    /* 使用 IOPORT 初始化结构体和调用初始化函数来配置PFS寄存器 */
     IOPORT_Init_t led_io_init;
-    led_io_init.Port = IO_PORT_00;
-    led_io_init.Pin = IO_PIN_06;
+    led_io_init.Port = IO_PORT_06;
+    led_io_init.Pin = IO_PIN_01;
     led_io_init.Mode = IO_MODE_GPIO;    //普通GPIO模式，而不是复用功能模式或其他的
     led_io_init.Dir = IO_DIR_OUTPUT;
     led_io_init.OType = IO_OTYPE_PP;
     led_io_init.Drive = IO_DRIVE_LOW;
-    led_io_init.Level = IO_LEVEL_HIGH;
+    led_io_init.Level = IO_LEVEL_LOW;   //输出低电平
     //LED_IO_Init.Pull = IO_NO_PULL; //端口方向处于输出模式下是用不了上拉的，所以这个属性没意义
-    IOPORT_Init(&led_io_init); //调用初始化函数，进行初始化
+    IOPORT_Init(&led_io_init); //调用初始化函数，进行 LED1 引脚初始化
 
+    led_io_init.Pin = IO_PIN_02; //更换引脚号
+    IOPORT_Init(&led_io_init); //结构体其他属性不变，再次调用初始化函数，进行 LED2 引脚初始化
+
+    led_io_init.Pin = IO_PIN_04; //更换引脚号
+    IOPORT_Init(&led_io_init); //结构体其他属性不变，再次调用初始化函数，进行 LED3 引脚初始化
+
+
+    /** 此时3个LED灯的引脚默认输出的是低电平
+     *  所以3个LED灯都会默认亮起来
+     *  我们在 while 循环里让 LED1 闪烁：每秒钟翻转一次状态
+     */
 
     while(1)
     {
-        /* 翻转LED灯 */
-//        R_PORT0->PODR |= 1<<(BSP_IO_PORT_00_PIN_06 & 0xFF);
-//        R_BSP_SoftwareDelay(1000, BSP_DELAY_UNITS_MILLISECONDS);
-//        R_PORT0->PODR &= (uint16_t)~(1 << (BSP_IO_PORT_00_PIN_06 & 0xFF));
-//        R_BSP_SoftwareDelay(1000, BSP_DELAY_UNITS_MILLISECONDS);
-
-        /* 或者也可以这样 */
-//        R_PORT0->PODR ^= 1<<(BSP_IO_PORT_00_PIN_06 & 0xFF);
-//        R_BSP_SoftwareDelay(1000, BSP_DELAY_UNITS_MILLISECONDS);
-
-
-        /* 使用函数 IOPORT_PinToggle 翻转引脚电平 */
-        IOPORT_PinToggle(IO_PORT_00, IO_PIN_06);
+        /* 使用函数 IOPORT_PinToggle 翻转 LED1 引脚电平 */
+        IOPORT_PinToggle(IO_PORT_06, IO_PIN_01);
         R_BSP_SoftwareDelay(1000, BSP_DELAY_UNITS_MILLISECONDS);
     }
 
