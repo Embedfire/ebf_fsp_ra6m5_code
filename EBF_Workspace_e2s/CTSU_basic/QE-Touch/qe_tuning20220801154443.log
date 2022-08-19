@@ -1,0 +1,45 @@
+***** 2022/08/01 15:44:43 *****
+QE Version                                        :3.1.0.v20220401-0732
+Project Path                                      :C:\Users\admin\e2_studio\workspace\CTSU_basic
+Configuration File                                :CTSU_basic
+IDE                                               :e2 studio with Emulator
+Emulator                                          :
+MCU                                               :RA6M5 R7FA6M5BH3CFC
+<< METHOD 0 >>
+[Button(self) 1]
+TS                                                : TS12,
+
+<<<< Tuning Type : Advance_SelectManually >>>>
+System Clock Frequency (MHz)                      :200.000
+PCLKB Frequency (MHz)                             :50.000
+CTSU Operating Frequency (MHz)                    :25.000
+Operating Voltage (V)                             :3.300
+
+---------- Phase1 ----------
+<< METHOD 0 >>
+[TS12]
+Count Value                                       : 8249
+Resistance Value (ohm)                            : 560
+Parasitic Capacitance (pF)                        : 27.828941
+Sensor Drive Pulse Frequency (MHz)                : 0.961538
+
+
+---------- Phase2 ----------
+<< METHOD 0 >>
+[TS12]
+Sensor Drive Pulse Frequency (MHz)                : 0.961538
+CTSUSNUM                                          : 1
+CTSUSSDIV                                         : 4
+CTSUSDPA                                          : 12
+CTSUSO                                            : 79
+
+
+---------- Phase3 ----------
+<< METHOD 0 >>
+[Button(self) 1]
+  << TS12 >>
+  Count Value (Off)                               : 15938
+  Count Value (On)                                : 35579
+  Threshold                                       : 11784
+  Hysteresis                                      : 589
+

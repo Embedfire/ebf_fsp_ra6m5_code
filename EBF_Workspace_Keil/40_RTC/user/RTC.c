@@ -9,7 +9,7 @@ static rtc_time_t set_time =
     .tm_mday = 26,
     .tm_wday = 3,
     .tm_mon  = 7,
-    .tm_year = 122,
+    .tm_year = 144,
 };
 
 void RTC_Init(void)
