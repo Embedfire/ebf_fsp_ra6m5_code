@@ -52,51 +52,51 @@ typedef enum io_pin
 /* IO 引脚模式 */
 typedef enum
 {
-    IO_MODE_GPIO = 0, /* 普通 GPIO 功能 */
-    IO_MODE_AF   = 1, /* 复用功能 */
-    IO_MODE_AN   = 2  /* 模拟输入输出功能 */
+    IO_MODE_GPIO = 0,   /* 普通 GPIO 功能 */
+    IO_MODE_AF   = 1,   /* 复用功能 */
+    IO_MODE_AN   = 2    /* 模拟输入输出功能 */
 } IO_Mode_t; 
 
 
 /* IO 引脚方向 */
 typedef enum
 {
-    IO_DIR_INPUT  = 0,  //引脚用作输入功能
-    IO_DIR_OUTPUT = 1   //引脚用作输出功能
+    IO_DIR_INPUT  = 0,  // 引脚用作GPIO输入功能
+    IO_DIR_OUTPUT = 1   // 引脚用作GPIO输出功能
 } IO_Dir_t;
 
 
 /* IO 引脚输出类型 */
 typedef enum
 {
-    IO_OTYPE_PP = 0x00, /*!< 推挽模式 */
-    IO_OTYPE_OD = 0x01  /*!< 开漏模式 */
+    IO_OTYPE_PP = 0x00, /* 推挽模式 */
+    IO_OTYPE_OD = 0x01  /* 开漏模式 */
 } IO_OType_t;
 
 
 /* IO 引脚输出能力 */
 typedef enum
 {
-    IO_DRIVE_LOW    = 0,   //Low drive
-    IO_DRIVE_MIDDLE = 1,   //Middle drive
-    IO_DRIVE_HSHD   = 2,   //High-speed high-drive
-    IO_DRIVE_HIGH   = 3    //High drive
+    IO_DRIVE_LOW    = 0,    // Low drive
+    IO_DRIVE_MIDDLE = 1,    // Middle drive
+    IO_DRIVE_HSHD   = 2,    // High-speed high-drive
+    IO_DRIVE_HIGH   = 3     // High drive
 } IO_DriveCapability_t;
 
 
 /* IO 引脚输出电平 */
 typedef enum io_level
 {
-    IO_LEVEL_LOW = 0,              ///< Low
-    IO_LEVEL_HIGH                  ///< High
+    IO_LEVEL_LOW = 0,       // Low
+    IO_LEVEL_HIGH           // High
 } IO_Level_t;
 
 
 /* IO 引脚输入上下拉 */
 typedef enum
 {
-    IO_NO_PULL =   0x00u, /* 浮空 */
-    IO_PULL_UP =   0x01u, /* 上拉 */
+    IO_NO_PULL =   0x00u,   /* 浮空输入 */
+    IO_PULL_UP =   0x01u,   /* 上拉输入 */
     //IO_PULL_DOWN = 0x02u  /* RA6M5 引脚没有下拉功能 */
 } IO_Pull_t;
 
@@ -113,8 +113,8 @@ typedef struct
     IO_Dir_t                Dir;
     IO_OType_t              OType;
     IO_DriveCapability_t    Drive;
-    IO_Level_t              Level;
     IO_Pull_t               Pull;
+    IO_Level_t              Level;
 } IOPORT_Init_t;
 
 

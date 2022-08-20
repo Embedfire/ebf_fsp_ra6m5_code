@@ -5,7 +5,7 @@ void R_BSP_WarmStart(bsp_warm_start_event_t event);
 FSP_CPP_FOOTER
 
 
-/* 自己写库——构建库函数雏形 IOPORT头文件 */
+/* 9.自己写库——构建库函数雏形  包含IOPORT模块头文件 */
 #include "ra6m5_ioport.h"
 
 
@@ -25,12 +25,12 @@ void hal_entry(void)
     IOPORT_Init_t led_io_init;
     led_io_init.Port = IO_PORT_06;
     led_io_init.Pin = IO_PIN_01;
-    led_io_init.Mode = IO_MODE_GPIO;    //普通GPIO模式，而不是复用功能模式或其他的
+    led_io_init.Mode = IO_MODE_GPIO;  //普通GPIO模式，而不是复用功能模式或其他的
     led_io_init.Dir = IO_DIR_OUTPUT;
     led_io_init.OType = IO_OTYPE_PP;
     led_io_init.Drive = IO_DRIVE_LOW;
-    led_io_init.Level = IO_LEVEL_LOW;   //输出低电平
-    //LED_IO_Init.Pull = IO_NO_PULL; //端口方向处于输出模式下是用不了上拉的，所以这个属性没意义
+    //LED_IO_Init.Pull = IO_NO_PULL; //引脚处于GPIO输出模式下是没有上拉的，所以这个属性没意义
+    led_io_init.Level = IO_LEVEL_LOW; //输出低电平
     IOPORT_Init(&led_io_init); //调用初始化函数，进行 LED1 引脚初始化
 
     led_io_init.Pin = IO_PIN_02; //更换引脚号
@@ -47,8 +47,9 @@ void hal_entry(void)
 
     while(1)
     {
-        /* 使用函数 IOPORT_PinToggle 翻转 LED1 引脚电平 */
+        /* 使用库函数 IOPORT_PinToggle 翻转 LED1 引脚电平 */
         IOPORT_PinToggle(IO_PORT_06, IO_PIN_01);
+        /* 使用延时函数进行延时：此处延时 1000 毫秒 */
         R_BSP_SoftwareDelay(1000, BSP_DELAY_UNITS_MILLISECONDS);
     }
 
