@@ -2,7 +2,7 @@
 #ifndef __RA6M5_IOPORT_H
 #define __RA6M5_IOPORT_H
 
-#include "hal_data.h"
+#include "hal_data.h"   //间接包含了头文件 "R7FA6M5BH.h"
 
 
 /* IOPORT 端口定义 */

@@ -6,7 +6,7 @@ void R_BSP_WarmStart(bsp_warm_start_event_t event);
 FSP_CPP_FOOTER
 
 
-/* 自己写库——构建库函数雏形 IOPORT头文件 */
+/* IOPORT模块头文件 （自己写库——构建库函数雏形） */
 #include "ra6m5_ioport.h"
 
 
