@@ -218,8 +218,8 @@ FSP Configuration
       P800 133 - - - - Disabled - - "ADC1: AN125; AGT4: AGTOA4; BUS_ASYNCH0: D14; SCI0: CTS0" - None - - 
       P801 134 - - - - Disabled - - "ADC1: AN126; AGT4: AGTOB4; BUS_ASYNCH0: D15; SCI8: CTS8" - None - - 
       P802 135 - - - - Disabled - - "ADC1: AN127; ICU0: IRQ03" - None - - 
-      P803 136 - - - - Disabled - - "ADC1: AN128; ICU0: IRQ02" - None - - 
-      P804 137 - - - - Disabled - - "ICU0: IRQ01" - None - - 
+      P803 136 ICU0_IRQ02 - - IRQ02 "IRQ mode" - None "ADC1: AN128; ICU0: IRQ02" - IO - - 
+      P804 137 ICU0_IRQ01 - - IRQ01 "IRQ mode" - None "ICU0: IRQ01" - IO - - 
       P805 173 - - - - Disabled - - "SCI5: SDA5; SCI5: TXD5" - None - - 
       P806 172 - - - - Disabled - - "ICU0: IRQ00" - None - - 
       P900 58 - - - - Disabled - - "BUS_ASYNCH0: A23; SCI4: SDA4; SCI4: TXD4" - None - - 
@@ -349,6 +349,9 @@ FSP Configuration
     Parameter Checking: Default (BSP)
     Linker section to keep DTC vector table: .fsp_dtc_vector_table
     
+  Module "External IRQ (r_icu)"
+    Parameter Checking: Default (BSP)
+    
   HAL
     Instance "g_ioport I/O Port (r_ioport)"
       Name: g_ioport
@@ -381,7 +384,7 @@ FSP Configuration
       Interrupts: Callback: canfd0_callback
       Transmit Interrupts: TXMB 0
       Channel Error Interrupts: Error Warning, Error Passive, Bus-Off Entry, Bus-Off Recovery, Overload
-      Interrupts: Channel Interrupt Priority Level: Priority 12
+      Interrupts: Channel Interrupt Priority Level: Priority 2
       Filter List Array: p_canfd0_afl
       
     Instance "g_uart4 UART (r_sci_uart)"
@@ -405,10 +408,10 @@ FSP Configuration
       Extra: RS-485: DE Port Number: Disabled
       Extra: RS-485: DE Pin Number: Disabled
       Interrupts: Callback: g_uart4_callback
-      Interrupts: Receive Interrupt Priority: Priority 1
-      Interrupts: Transmit Data Empty Interrupt Priority: Priority 1
-      Interrupts: Transmit End Interrupt Priority: Priority 1
-      Interrupts: Error Interrupt Priority: Priority 1
+      Interrupts: Receive Interrupt Priority: Priority 3
+      Interrupts: Transmit Data Empty Interrupt Priority: Priority 3
+      Interrupts: Transmit End Interrupt Priority: Priority 3
+      Interrupts: Error Interrupt Priority: Priority 3
       
       Instance "g_transfer_tx Transfer (r_dtc) SCI4 TXI (Transmit data empty)"
         Name: g_transfer_tx
@@ -443,6 +446,24 @@ FSP Configuration
       Interrupts: Callback: canfd1_callback
       Transmit Interrupts: TXMB 0
       Channel Error Interrupts: Error Warning, Error Passive, Bus-Off Entry, Bus-Off Recovery, Overload
-      Interrupts: Channel Interrupt Priority Level: Priority 12
+      Interrupts: Channel Interrupt Priority Level: Priority 2
       Filter List Array: p_canfd1_afl
+      
+    Instance "g_external_irq2 External IRQ (r_icu)"
+      Name: g_external_irq2
+      Channel: 2
+      Trigger: Falling
+      Digital Filtering: Enabled
+      Digital Filtering Sample Clock (Only valid when Digital Filtering is Enabled): PCLK / 64
+      Callback: external_irq2_callback
+      Pin Interrupt Priority: Priority 12
+      
+    Instance "g_external_irq1 External IRQ (r_icu)"
+      Name: g_external_irq1
+      Channel: 1
+      Trigger: Falling
+      Digital Filtering: Enabled
+      Digital Filtering Sample Clock (Only valid when Digital Filtering is Enabled): PCLK / 64
+      Callback: external_irq1_callback
+      Pin Interrupt Priority: Priority 12
       

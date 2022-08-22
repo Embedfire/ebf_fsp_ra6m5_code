@@ -13,11 +13,12 @@ extern volatile bool b_canfd1_tx_complete;
 extern volatile bool b_canfd1_rx_complete;
 extern volatile bool b_canfd1_err_status;
 extern volatile canfd_error_t canfd1_err_status;
-
+extern can_info_t canfd1_rx_info;
 
 void bsp_canfd1_init(void);
 void canfd1_deinit(void);
 
+void can1_operation(void);
 void canfd1_operation(void);
 void canfd1_write_data(can_frame_t can_transmit_frame);
 

@@ -7,15 +7,16 @@
 #define CAN_FD_DATA_LENGTH_CODE         (64)               //FD帧的数据长度编码
 #define CAN_ID                          (0x1100)           //要在传输帧中更新的ID
 
-/* 验收过滤器数组参数 */
+/* 接收过滤器数组参数 */
 #define CANFD_FILTER_ID                 (0x00001000)
 #define MASK_ID                         (0x1FFFF000)
 #define MASK_ID_MODE                    (1)
 
-#define ZERO                            (0U)               //Array Index value
-#define NULL_CHAR                       ('\0')
-#define WAIT_TIME                       (500U)             //Wait time value
+#define WAIT_TIME                       (0xFFFF)             //Wait time value
 
+#define USE_CLASSIC_CAN   0
+#define USE_CAN_FD        1
+#define USE_CAN           USE_CAN_FD
 
 /*信息输出*/
 #define CANFD_DEBUG_ON            1   //DEBUG开关

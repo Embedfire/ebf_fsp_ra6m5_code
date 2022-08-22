@@ -19,15 +19,7 @@
 can_frame_t canfd1_tx_frame; //CAN transmit frame
 can_frame_t canfd1_rx_frame;
 /* Variable to store rx frame status info*/
-//can_info_t can1_rx_info =
-//{
-//    .error_code  = 0,
-//    .error_count_receive = 0,
-//    .error_count_transmit = 0,
-//    .rx_fifo_status = 0,
-//    .rx_mb_status = 0,
-//    .status = 0,
-//};
+can_info_t canfd1_rx_info;
 
 
 
@@ -81,7 +73,7 @@ void bsp_canfd1_init(void)
     assert(FSP_SUCCESS == err);
 }
 
-void canfd1_operation(void)
+void can1_operation(void)
 {
     /* Update transmit frame parameters */
     canfd1_tx_frame.id = CAN_ID;
@@ -93,54 +85,51 @@ void canfd1_operation(void)
     /* Update transmit frame data with message */
     memcpy((uint8_t*)&canfd1_tx_frame.data[0], (uint8_t*)&tx_data[0], CAN_FD_DATA_LENGTH_CODE);
 
+    CANFD_PRINT("CANFD1 通过经典CAN帧传输数据\r\n");
 
+    /* Transmission of data over classic CAN frame */
+    canfd1_write_data(canfd1_tx_frame);
+}
 
-
-
+void canfd1_operation(void)
+{
     /* Updating FD frame parameters */
+    canfd1_tx_frame.id = CAN_ID;
+    canfd1_tx_frame.id_mode = CAN_ID_MODE_EXTENDED;
+    canfd1_tx_frame.type = CAN_FRAME_TYPE_DATA;
     canfd1_tx_frame.options = CANFD_FRAME_OPTION_FD | CANFD_FRAME_OPTION_BRS;
     canfd1_tx_frame.data_length_code = CAN_FD_DATA_LENGTH_CODE;
 
     /* Fill frame data that is to be sent in FD frame */
     for( uint16_t j = 0; j < 64; j++)
     {
-        canfd1_tx_frame.data[j] = (uint8_t) (j + 1);
+        canfd1_tx_frame.data[j] = (uint8_t) (64 - j);
     }
 
-    CANFD_PRINT("通过CAN-FD帧传输数据\r\n");
+    CANFD_PRINT("CANFD1 通过CAN-FD帧传输数据\r\n");
 
     /* Transmission of data as over FD frame */
     canfd1_write_data(canfd1_tx_frame);
 
-
-
-
-
-//    CANFD_PRINT("通过经典CAN帧传输数据\r\n");
-//
-//    /* Transmission of data over classic CAN frame */
-//    canfd1_write_data(canfd1_tx_frame);
 }
 
 void canfd1_write_data(can_frame_t can_transmit_frame)
 {
     fsp_err_t err = FSP_SUCCESS;
-    volatile uint32_t g_time_out = 1000;
+    volatile uint32_t g_time_out = WAIT_TIME;
 
     /* Transmit the data from mail box #0 with tx_frame */
     err = g_canfd_on_canfd.write(&g_canfd1_ctrl, CAN_MAILBOX_NUMBER_0, &can_transmit_frame);
     assert(FSP_SUCCESS == err);
 
     /* 等待传输完成 */
-    while ((true != b_canfd1_tx_complete) && (g_time_out--));
+    while ((true != b_canfd1_tx_complete) && (--g_time_out));
+    b_canfd1_tx_complete = false;
     if (0 == g_time_out) {
         CANFD_PRINT("can传输超时！！can传输失败！！\r\n");
         return;
     }
     CANFD_PRINT("can传输完成\r\n");
-
-    /* 重置标志位 */
-    b_canfd1_tx_complete = false;
 }
 
 

@@ -184,6 +184,10 @@
       <description>Data Transfer Controller</description>
       <originalPack>Renesas.RA.4.0.0-beta.0.pack</originalPack>
     </component>
+    <component apiversion="" class="HAL Drivers" condition="" group="all" subgroup="r_icu" variant="" vendor="Renesas" version="4.0.0-beta.0">
+      <description>External Interrupt</description>
+      <originalPack>Renesas.RA.4.0.0-beta.0.pack</originalPack>
+    </component>
   </raComponentSelection>
   <raElcConfiguration/>
   <raIcuConfiguration/>
@@ -219,7 +223,7 @@
       <property id="module.driver.canfd.p_callback" value="canfd0_callback"/>
       <property id="module.driver.canfd.txmb.int" value="module.driver.canfd.txmb.int.0"/>
       <property id="module.driver.canfd.ch_err.int" value="module.driver.canfd.ch_err.int.err_warning,module.driver.canfd.ch_err.int.err_passive,module.driver.canfd.ch_err.int.bus_off_entry,module.driver.canfd.ch_err.int.bus_off_recovery,module.driver.canfd.ch_err.int.overload"/>
-      <property id="module.driver.canfd.ipl" value="board.icu.common.irq.priority12"/>
+      <property id="module.driver.canfd.ipl" value="board.icu.common.irq.priority2"/>
       <property id="module.driver.canfd.afl_array" value="p_canfd0_afl"/>
     </module>
     <module id="module.driver.uart_on_sci_uart.192340562">
@@ -243,10 +247,10 @@
       <property id="module.driver.uart.rs485.de_port_number" value="module.driver.uart.rs485.de_port_number.PORT_DISABLE"/>
       <property id="module.driver.uart.rs485.de_pin_number" value="module.driver.uart.rs485.de_pin_number.PIN_DISABLE"/>
       <property id="module.driver.uart.callback" value="g_uart4_callback"/>
-      <property id="module.driver.uart.rxi_ipl" value="board.icu.common.irq.priority1"/>
-      <property id="module.driver.uart.txi_ipl" value="board.icu.common.irq.priority1"/>
-      <property id="module.driver.uart.tei_ipl" value="board.icu.common.irq.priority1"/>
-      <property id="module.driver.uart.eri_ipl" value="board.icu.common.irq.priority1"/>
+      <property id="module.driver.uart.rxi_ipl" value="board.icu.common.irq.priority3"/>
+      <property id="module.driver.uart.txi_ipl" value="board.icu.common.irq.priority3"/>
+      <property id="module.driver.uart.tei_ipl" value="board.icu.common.irq.priority3"/>
+      <property id="module.driver.uart.eri_ipl" value="board.icu.common.irq.priority3"/>
     </module>
     <module id="module.driver.canfd_on_canfd.1330116586">
       <property id="module.driver.canfd.name" value="g_canfd1"/>
@@ -267,7 +271,7 @@
       <property id="module.driver.canfd.p_callback" value="canfd1_callback"/>
       <property id="module.driver.canfd.txmb.int" value="module.driver.canfd.txmb.int.0"/>
       <property id="module.driver.canfd.ch_err.int" value="module.driver.canfd.ch_err.int.err_warning,module.driver.canfd.ch_err.int.err_passive,module.driver.canfd.ch_err.int.bus_off_entry,module.driver.canfd.ch_err.int.bus_off_recovery,module.driver.canfd.ch_err.int.overload"/>
-      <property id="module.driver.canfd.ipl" value="board.icu.common.irq.priority12"/>
+      <property id="module.driver.canfd.ipl" value="board.icu.common.irq.priority2"/>
       <property id="module.driver.canfd.afl_array" value="p_canfd1_afl"/>
     </module>
     <module id="module.driver.transfer_on_dtc.853571327">
@@ -284,6 +288,24 @@
       <property id="module.driver.transfer.num_blocks" value="0"/>
       <property id="module.driver.transfer.activation_source" value="_disabled"/>
     </module>
+    <module id="module.driver.external_irq_on_icu.1877558783">
+      <property id="module.driver.external_irq.name" value="g_external_irq2"/>
+      <property id="module.driver.external_irq.channel" value="2"/>
+      <property id="module.driver.external_irq.trigger" value="module.driver.external_irq.trigger.trig_falling"/>
+      <property id="module.driver.external_irq.filter_enable" value="module.driver.external_irq.filter_enable.true"/>
+      <property id="module.driver.external_irq.pclk_div" value="module.driver.external_irq.pclk_div.pclk_div_by_64"/>
+      <property id="module.driver.external_irq.p_callback" value="external_irq2_callback"/>
+      <property id="module.driver.external_irq.ipl" value="board.icu.common.irq.priority12"/>
+    </module>
+    <module id="module.driver.external_irq_on_icu.1765240051">
+      <property id="module.driver.external_irq.name" value="g_external_irq1"/>
+      <property id="module.driver.external_irq.channel" value="1"/>
+      <property id="module.driver.external_irq.trigger" value="module.driver.external_irq.trigger.trig_falling"/>
+      <property id="module.driver.external_irq.filter_enable" value="module.driver.external_irq.filter_enable.true"/>
+      <property id="module.driver.external_irq.pclk_div" value="module.driver.external_irq.pclk_div.pclk_div_by_64"/>
+      <property id="module.driver.external_irq.p_callback" value="external_irq1_callback"/>
+      <property id="module.driver.external_irq.ipl" value="board.icu.common.irq.priority12"/>
+    </module>
     <context id="_hal.0">
       <stack module="module.driver.ioport_on_ioport.0"/>
       <stack module="module.driver.canfd_on_canfd.544315533"/>
@@ -291,9 +313,14 @@
         <stack module="module.driver.transfer_on_dtc.853571327" requires="module.driver.uart_on_sci_uart.requires.transfer_tx"/>
       </stack>
       <stack module="module.driver.canfd_on_canfd.1330116586"/>
+      <stack module="module.driver.external_irq_on_icu.1877558783"/>
+      <stack module="module.driver.external_irq_on_icu.1765240051"/>
     </context>
     <config id="config.driver.ioport">
       <property id="config.driver.ioport.checking" value="config.driver.ioport.checking.system"/>
+    </config>
+    <config id="config.driver.icu">
+      <property id="config.driver.icu.param_checking_enable" value="config.driver.icu.param_checking_enable.bsp"/>
     </config>
     <config id="config.driver.dtc">
       <property id="config.driver.dtc.param_checking_enable" value="config.driver.dtc.param_checking_enable.bsp"/>
@@ -374,6 +401,9 @@
       <configSetting altId="debug0.mode.swd" configurationId="debug0.mode"/>
       <configSetting altId="debug0.swclk.p300" configurationId="debug0.swclk"/>
       <configSetting altId="debug0.swdio.p108" configurationId="debug0.swdio"/>
+      <configSetting altId="irq0.irq01.p804" configurationId="irq0.irq01"/>
+      <configSetting altId="irq0.irq02.p803" configurationId="irq0.irq02"/>
+      <configSetting altId="irq0.mode.enabled" configurationId="irq0.mode"/>
       <configSetting altId="p108.debug0.swdio" configurationId="p108"/>
       <configSetting altId="p108.gpio_mode.gpio_mode_peripheral" configurationId="p108.gpio_mode"/>
       <configSetting altId="p300.debug0.swclk" configurationId="p300"/>
@@ -396,6 +426,12 @@
       <configSetting altId="p609.gpio_mode.gpio_mode_peripheral" configurationId="p609.gpio_mode"/>
       <configSetting altId="p610.can1.crx" configurationId="p610"/>
       <configSetting altId="p610.gpio_mode.gpio_mode_peripheral" configurationId="p610.gpio_mode"/>
+      <configSetting altId="p803.irq0.irq02" configurationId="p803"/>
+      <configSetting altId="p803.gpio_irq.gpio_irq_enabled" configurationId="p803.gpio_irq"/>
+      <configSetting altId="p803.gpio_mode.gpio_mode_irq" configurationId="p803.gpio_mode"/>
+      <configSetting altId="p804.irq0.irq01" configurationId="p804"/>
+      <configSetting altId="p804.gpio_irq.gpio_irq_enabled" configurationId="p804.gpio_irq"/>
+      <configSetting altId="p804.gpio_mode.gpio_mode_irq" configurationId="p804.gpio_mode"/>
       <configSetting altId="sci4.mode.asynchronous.free" configurationId="sci4.mode"/>
       <configSetting altId="sci4.rxd.p511" configurationId="sci4.rxd"/>
       <configSetting altId="sci4.txd.p512" configurationId="sci4.txd"/>

@@ -19,15 +19,7 @@
 can_frame_t canfd0_tx_frame; //CAN transmit frame
 can_frame_t canfd0_rx_frame;
 /* Variable to store rx frame status info*/
-can_info_t canfd0_rx_info =
-{
-    .error_code  = 0,
-    .error_count_receive = 0,
-    .error_count_transmit = 0,
-    .rx_fifo_status = 0,
-    .rx_mb_status = 0,
-    .status = 0,
-};
+can_info_t canfd0_rx_info;
 
 
 
@@ -85,8 +77,37 @@ void bsp_canfd0_init(void)
     assert(FSP_SUCCESS == err);
 }
 
+void canfd_fd_loopback_example(void)
+{
+    can_frame_t g_can_tx_frame;
+    fsp_err_t err;
 
-void canfd0_operation(void)
+    /* 切换到外部环回模式 */ //CAN_TEST_MODE_LOOPBACK_EXTERNAL CAN_TEST_MODE_LOOPBACK_INTERNAL
+    err = g_canfd_on_canfd.modeTransition(&g_canfd0_ctrl, CAN_OPERATION_MODE_NORMAL, CAN_TEST_MODE_LOOPBACK_EXTERNAL);
+    assert(FSP_SUCCESS == err);
+
+    /* 将帧配置为在启用比特率切换（BRS）的情况下写入64字节 */
+    g_can_tx_frame.id               = CAN_ID;
+    g_can_tx_frame.id_mode          = CAN_ID_MODE_EXTENDED;
+    g_can_tx_frame.type             = CAN_FRAME_TYPE_DATA;
+    g_can_tx_frame.data_length_code = CAN_FD_DATA_LENGTH_CODE;
+    g_can_tx_frame.options          = CANFD_FRAME_OPTION_FD | CANFD_FRAME_OPTION_BRS;
+
+    /* 将数据写入传输帧 */
+    for (uint32_t i = 0; i < CAN_DATA_BUFFER_LENGTH; i++)
+    {
+        g_can_tx_frame.data[i] = (uint8_t) i;
+    }
+
+    /* 发送数据 */
+    canfd0_write_data(g_can_tx_frame);
+
+//    err = g_canfd_on_canfd.write(&g_canfd0_ctrl, CANFD_TX_MB_0, &g_can_tx_frame);
+//    assert(FSP_SUCCESS == err);
+    /* 等待 发送/接收 回调事件 */
+}
+
+void can0_operation(void)
 {
     /* Update transmit frame parameters */
     canfd0_tx_frame.id = CAN_ID;
@@ -98,11 +119,18 @@ void canfd0_operation(void)
     /* Update transmit frame data with message */
     memcpy((uint8_t*)&canfd0_tx_frame.data[0], (uint8_t*)&tx_data[0], CAN_FD_DATA_LENGTH_CODE);
 
+    CANFD_PRINT("CANFD0 通过经典CAN帧传输数据\r\n");
 
+    /* Transmission of data over classic CAN frame */
+    canfd0_write_data(canfd0_tx_frame);
+}
 
-
-
+void canfd0_operation(void)
+{
     /* Updating FD frame parameters */
+    canfd0_tx_frame.id = CAN_ID;
+    canfd0_tx_frame.id_mode = CAN_ID_MODE_EXTENDED;
+    canfd0_tx_frame.type = CAN_FRAME_TYPE_DATA;
     canfd0_tx_frame.options = CANFD_FRAME_OPTION_FD | CANFD_FRAME_OPTION_BRS;
     canfd0_tx_frame.data_length_code = CAN_FD_DATA_LENGTH_CODE;
 
@@ -112,20 +140,11 @@ void canfd0_operation(void)
         canfd0_tx_frame.data[j] = (uint8_t) (j + 1);
     }
 
-    CANFD_PRINT("通过CAN-FD帧传输数据\r\n");
+    CANFD_PRINT("CANFD0 通过CAN-FD帧传输数据\r\n");
 
     /* Transmission of data as over FD frame */
     canfd0_write_data(canfd0_tx_frame);
 
-
-
-
-
-
-//    CANFD_PRINT("通过经典CAN帧传输数据\r\n");
-//
-//    /* Transmission of data over classic CAN frame */
-//    canfd0_write_data(canfd0_tx_frame);
 }
 
 
@@ -133,102 +152,21 @@ void canfd0_operation(void)
 void canfd0_write_data(can_frame_t can_transmit_frame)
 {
     fsp_err_t err = FSP_SUCCESS;
-    volatile uint32_t g_time_out = 1000;
+    volatile uint32_t g_time_out = WAIT_TIME;
 
     /* Transmit the data from mail box #0 with tx_frame */
     err = g_canfd_on_canfd.write(&g_canfd0_ctrl, CAN_MAILBOX_NUMBER_0, &can_transmit_frame);
     assert(FSP_SUCCESS == err);
 
     /* 等待传输完成 */
-    while ((true != b_canfd0_tx_complete) && (g_time_out--));
+    while ((true != b_canfd0_tx_complete) && (--g_time_out));
+    b_canfd0_tx_complete = false;
     if (0 == g_time_out) {
         CANFD_PRINT("can传输超时！！can传输失败！！\r\n");
         return;
     }
     CANFD_PRINT("can传输完成\r\n");
-
-    /* 重置标志位 */
-    b_canfd0_tx_complete = false;
 }
-
-//
-//void canfd_check_data(void)
-//{
-//    /*Update data to be compared with data transmitted/received over FD frame */
-//    can_fd_data_update();
-//
-//    if(0 == strncmp((char*)&g_canfd_rx_frame.data[0], (char*)&tx_data[0], CAN_CLASSIC_FRAME_DATA_BYTES))
-//    {
-//        CANFD_PRINT("\nReceived 'TX__MESG' on classic frame, responding with 'RX__MESG' using classic CAN frame\n");
-//        /* 更新接收帧参数 */
-//        g_canfd_rx_frame.id = CAN_ID;
-//        g_canfd_rx_frame.type = CAN_FRAME_TYPE_DATA;
-//        g_canfd_rx_frame.data_length_code = CAN_CLASSIC_FRAME_DATA_BYTES;
-//        g_canfd_rx_frame.options = 0;
-//
-//        /* Update receive frame data with message */
-//        memcpy(&g_canfd_rx_frame.data, &rx_data, CAN_CLASSIC_FRAME_DATA_BYTES);
-//
-//        /* Transmission of data as acknowledgement */
-//        canfd_write_data(g_canfd_rx_frame);
-//
-//        CANFD_PRINT("\r\n接收成功后进行CAN传输。使用经典CAN帧发回ACK\r\n");
-//
-//
-//    }
-//    else if(0 == strncmp((char*)&g_canfd_rx_frame.data[0], (char*)&rx_data[0], CAN_CLASSIC_FRAME_DATA_BYTES))
-//    {
-//        CANFD_PRINT("\r\n收到经典CAN帧传输的确认。\r\nCAN操作成功长度 = %d\r\n", g_canfd_rx_frame.data_length_code);
-//        CANFD_PRINT("\r\nFD帧上的数据传输\r\n");
-//        /* Updating FD frame parameters */
-//        g_canfd_rx_frame.options = CANFD_FRAME_OPTION_FD | CANFD_FRAME_OPTION_BRS;
-//        g_canfd_rx_frame.data_length_code = CAN_FD_DATA_LENGTH_CODE;
-//
-//        /* 填充数据到 can fd */
-//        for( uint16_t j = 0; j < 64; j++)
-//        {
-//            g_canfd_rx_frame.data[j] = (uint8_t) (j + 1);
-//        }
-//
-//        /* canfd 发送 */
-//        canfd_write_data(g_canfd_rx_frame);
-//
-//        CANFD_PRINT("\r\n成功接收经典帧ACK后，在FD帧上进行CAN传输\r\n");
-//
-//    }
-//    else if(0 == strncmp((char*)&g_canfd_rx_frame.data[0], (char*)&tx_fd_data[0], CAN_FD_DATA_LENGTH_CODE)) // acknowledging for second transmission
-//    {
-//        CANFD_PRINT("\r\n通过FD帧接收数据。\r\nCAN操作成功，数据长度 = %d\r\n", g_canfd_rx_frame.data_length_code);
-//
-//        CANFD_PRINT("\r\n现在通过FD帧发送修改后的数据，作为对接收到的FD数据的确认。\r\n");
-//
-//        g_canfd_rx_frame.data_length_code = CAN_FD_DATA_LENGTH_CODE;
-//        g_canfd_rx_frame.options = CANFD_FRAME_OPTION_FD | CANFD_FRAME_OPTION_BRS;
-//
-//        /* Fill frame data that is to be sent in FD frame */
-//        for( uint16_t j = 0; j < 64; j++)
-//        {
-//            g_canfd_rx_frame.data[j] = (uint8_t) (j + 5);
-//        }
-//
-//        /* Transmission of data as acknowledgement */
-//        canfd_write_data(g_canfd_rx_frame);
-//
-//        CANFD_PRINT("\r\n当确认成功时，在FD帧上进行CAN传输\r\n");
-//
-//    }
-//    else if(0 == strncmp((char*)&g_canfd_rx_frame.data[0], (char*)&rx_fd_data[0], CAN_FD_DATA_LENGTH_CODE)) // acknowledgement for second transmission
-//    {
-//        CANFD_PRINT("\r\n接收到FD帧的确认。\r\nCAN操作成功，数据长度 =  %d\r\n", g_canfd_rx_frame.data_length_code);
-//
-//        CANFD_PRINT("\nPlease enter any key on RTT Viewer to initiate CAN transmission.\n");
-//    }
-//    else /* Wrong MSG Received */
-//    {
-//        CANFD_PRINT("\r\nCAN数据不匹配！！\r\nCAN操作失败！！\r\n");
-//    }
-//}
-//
 
 
 
