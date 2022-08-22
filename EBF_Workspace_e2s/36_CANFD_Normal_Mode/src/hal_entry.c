@@ -45,7 +45,6 @@ volatile bool canfd1_trigger_transmission = false;
 void hal_entry(void)
 {
     /* TODO: add your own code here */
-    __IO uint16_t temp = 0;
     fsp_err_t err = FSP_SUCCESS;
 
     /* 开启外部中断 */
@@ -114,49 +113,6 @@ void hal_entry(void)
                 CANFD_PRINT("canfd1接收到数据，但数据不正确！！\r\n");
             }
         }
-    }
-
-
-    while(1)
-    {
-//        canfd1_operation();
-//        R_BSP_SoftwareDelay(1, BSP_DELAY_UNITS_SECONDS);
-//        if (b_canfd0_rx_complete == true) {
-//            b_canfd0_rx_complete = false;
-//            CANFD_PRINT("canfd0接收到数据\r\n");
-//        }
-
-
-        canfd0_operation();
-        R_BSP_SoftwareDelay(200, BSP_DELAY_UNITS_MILLISECONDS);
-//        if (b_canfd1_rx_complete == true) {
-//            b_canfd1_rx_complete = false;
-//            CANFD_PRINT("canfd1接收到数据\r\n");
-//        }
-
-        for( uint16_t j = 0; j < 64; j++)
-        {
-            tx_fd_data[j] = (uint8_t) (j + 1);
-        }
-
-        while(b_canfd1_rx_complete == false);
-        b_canfd1_rx_complete = false;
-
-        if(0 == strncmp((char*)&canfd1_rx_frame.data[0], (char*)&tx_fd_data[0], CAN_FD_DATA_LENGTH_CODE))
-        {
-            CANFD_PRINT("canfd1接收到数据，且数据正常\r\n");
-        }
-
-
-
-        CANFD_PRINT("\r\n\r\n\r\n");
-
-        if (temp % 2 == 0) {
-            LED_BLUE_ON();
-        } else {
-            LED_BLUE_OFF();
-        }
-        temp++;
     }
 
 #if BSP_TZ_SECURE_BUILD
