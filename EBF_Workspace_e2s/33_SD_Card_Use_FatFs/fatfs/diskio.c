@@ -48,16 +48,9 @@ DSTATUS disk_status (
 )
 {
 	DSTATUS stat = 0;
-	fsp_err_t err;
 
 	switch (pdrv) {
 	case ATA :  /* SD CARD */
-
-        /* 设备应在检测到VDD最小值后1ms内准备好接受第一个命令。参考SD物理层简化规范6.00版第6.4.1.1节“卡的通电时间”。 */
-        R_BSP_SoftwareDelay(1U, BSP_DELAY_UNITS_MILLISECONDS);
-        /* Initialize the SD card.  This should not be done until the card is plugged in for SD devices. */
-        err = g_sdmmc_on_sdhi.mediaInit(&g_sdmmc0_ctrl, &my_sdmmc_device);
-        assert(FSP_SUCCESS == err);
 
 	    stat = RES_OK;
 		return stat;
@@ -86,6 +79,12 @@ DSTATUS disk_initialize (
 
         /* Open the SDHI driver. */
         err = g_sdmmc_on_sdhi.open(&g_sdmmc0_ctrl, &g_sdmmc0_cfg);
+        assert(FSP_SUCCESS == err);
+
+        /* 设备应在检测到VDD最小值后1ms内准备好接受第一个命令。参考SD物理层简化规范6.00版第6.4.1.1节“卡的通电时间”。 */
+        R_BSP_SoftwareDelay(1U, BSP_DELAY_UNITS_MILLISECONDS);
+        /* Initialize the SD card.  This should not be done until the card is plugged in for SD devices. */
+        err = g_sdmmc_on_sdhi.mediaInit(&g_sdmmc0_ctrl, &my_sdmmc_device);
         assert(FSP_SUCCESS == err);
 
         stat = RES_OK;

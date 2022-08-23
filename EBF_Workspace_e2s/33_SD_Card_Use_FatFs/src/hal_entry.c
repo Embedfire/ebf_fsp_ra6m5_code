@@ -132,7 +132,7 @@ void hal_entry(void)
     {
         printf("》打开/创建FatFs读写测试文件.txt文件成功，向文件写入数据。\r\n");
         /* 将指定存储区内容写入到文件内 */
-        res_sd = f_write(&fnew, WriteBuffer, sizeof(WriteBuffer), &fnum);
+        res_sd = f_write(&fnew, WriteBuffer, sizeof(WriteBuffer) - 1, &fnum);  //"\0" 也会被计算进去
         if(res_sd == FR_OK)
         {
             LED_GREEN_ON();  //绿灯亮
