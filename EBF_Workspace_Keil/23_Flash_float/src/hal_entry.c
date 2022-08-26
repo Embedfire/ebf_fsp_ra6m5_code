@@ -68,7 +68,7 @@ void hal_entry(void)
 
 
     /* 获取 Flash Device ID */
-    FlashDeviceID = SPI_FLASH_ReadDeviceID();
+    FlashDeviceID = QSPI_FLASH_ReadDeviceID();
     Delay(200);
 
     /* 获取 SPI Flash ID */
@@ -79,20 +79,20 @@ void hal_entry(void)
     if (FlashID == sFLASH_ID)
     {
 
-        printf("\r\n检测到SPI FLASH AT25SF321B !\r\n");
+        printf("\r\n检测到SPI FLASH W25Q64 !\r\n");
 
         /*读取数据标志位*/
-        SPI_FLASH_BufferRead(&cal_flag, SPI_FLASH_PageSize * 0, 1);
+        QSPI_FLASH_BufferRead(&cal_flag, SPI_FLASH_PageSize * 0, 1);
 
         if (cal_flag == 0xCD)    /*若标志等于0xcd，表示之前已有写入数据*/
         {
             printf("\r\n检测到数据标志\r\n");
 
             /*读取小数数据*/
-            SPI_FLASH_BufferRead((void *)double_buffer, SPI_FLASH_PageSize * 1, sizeof(double_buffer));
+            QSPI_FLASH_BufferRead((void *)double_buffer, SPI_FLASH_PageSize * 1, sizeof(double_buffer));
 
             /*读取整数数据*/
-            SPI_FLASH_BufferRead((void *)int_bufffer, SPI_FLASH_PageSize * 2, sizeof(int_bufffer));
+            QSPI_FLASH_BufferRead((void *)int_bufffer, SPI_FLASH_PageSize * 2, sizeof(int_bufffer));
 
 
             printf("\r\n从芯片读到数据：\r\n");
@@ -101,30 +101,29 @@ void hal_entry(void)
                 printf("小数 rx = %LF \r\n", double_buffer[k]);
                 printf("整数 rx = %d \r\n", int_bufffer[k]);
             }
-
-            SPI_FLASH_SectorErase(0);
+						QSPI_FLASH_SectorErase(0);
         }
         else
         {
             printf("\r\n没有检测到数据标志，FLASH没有存储数据，即将进行小数写入实验\r\n");
             cal_flag = 0xCD;
             /*擦除扇区*/
-            SPI_FLASH_SectorErase(0);
+            QSPI_FLASH_SectorErase(0);
 
             /*写入标志到第0页*/
-            SPI_FLASH_BufferWrite(&cal_flag, SPI_FLASH_PageSize * 0, 1);
+            QSPI_FLASH_BufferWrite(&cal_flag, SPI_FLASH_PageSize * 0, 1);
 
             /*生成要写入的数据*/
             for (k = 0; k < 7; k++)
             {
-                double_buffer[k] = k + 0.12;
+                double_buffer[k] = k + 0.1;
                 int_bufffer[k] = k * 500 + 1 ;
             }
 
             /*写入小数数据到第一页*/
-            SPI_FLASH_BufferWrite((void *)double_buffer, SPI_FLASH_PageSize * 1, sizeof(double_buffer));
+            QSPI_FLASH_BufferWrite((void *)double_buffer, SPI_FLASH_PageSize * 1, sizeof(double_buffer));
             /*写入整数数据到第二页*/
-            SPI_FLASH_BufferWrite((void *)int_bufffer, SPI_FLASH_PageSize * 2, sizeof(int_bufffer));
+            QSPI_FLASH_BufferWrite((void *)int_bufffer, SPI_FLASH_PageSize * 2, sizeof(int_bufffer));
 
             printf("向芯片写入数据：");
             /*打印到串口*/
