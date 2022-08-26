@@ -18,9 +18,6 @@
             <slot name="P511" secure="false"/>
             <slot name="P512" secure="false"/>
         </peripheral>
-        <peripheral name="PORT6" group="PORT">
-            <slot name="P601" secure="false"/>
-        </peripheral>
         <peripheral name="QSPI" security=""/>
         <peripheral name="SCI4" group="SCI" security=""/>
         <peripheral name="ICU">

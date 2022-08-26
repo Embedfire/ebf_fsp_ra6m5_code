@@ -389,19 +389,9 @@
               <FilePath>.\user\debug_uart.c</FilePath>
             </File>
             <File>
-              <FileName>debug_uart.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\user\debug_uart.h</FilePath>
-            </File>
-            <File>
-              <FileName>Flash.c</FileName>
+              <FileName>bsp_qspi_flash.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\user\Flash.c</FilePath>
-            </File>
-            <File>
-              <FileName>Flash.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\user\Flash.h</FilePath>
+              <FilePath>.\user\bsp_qspi_flash.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -441,5 +431,14 @@
     </components>
     <files/>
   </RTE>
+
+  <LayerInfo>
+    <Layers>
+      <Layer>
+        <LayName>FSP_Project</LayName>
+        <LayPrjMark>1</LayPrjMark>
+      </Layer>
+    </Layers>
+  </LayerInfo>
 
 </Project>

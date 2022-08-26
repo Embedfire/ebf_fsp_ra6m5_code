@@ -61,7 +61,6 @@
     <pincfg active="true" name="" symbol="">
       <configSetting altId="debug0.swclk.p300" configurationId="debug0.swclk" isUsedByDriver="true"/>
       <configSetting altId="debug0.swdio.p108" configurationId="debug0.swdio" isUsedByDriver="true"/>
-      <configSetting altId="p601.output.high" configurationId="p601"/>
       <configSetting altId="qspi0.qio0.p307" configurationId="qspi0.qio0" isUsedByDriver="true"/>
       <configSetting altId="qspi0.qio1.p308" configurationId="qspi0.qio1" isUsedByDriver="true"/>
       <configSetting altId="qspi0.qio2.p309" configurationId="qspi0.qio2" isUsedByDriver="true"/>
