@@ -19,15 +19,7 @@
 can_frame_t canfd0_tx_frame; //CAN transmit frame
 can_frame_t canfd0_rx_frame;
 /* Variable to store rx frame status info*/
-can_info_t canfd0_rx_info =
-{
-    .error_code  = 0,
-    .error_count_receive = 0,
-    .error_count_transmit = 0,
-    .rx_fifo_status = 0,
-    .rx_mb_status = 0,
-    .status = 0,
-};
+//can_info_t canfd0_rx_info = {0};
 
 
 
@@ -96,14 +88,14 @@ void canfd_test_mode_switch(can_test_mode_t test_mode)
 void canfd_fd_loopback_example(void)
 {
     can_frame_t g_can_tx_frame;
-    fsp_err_t err;
+    //fsp_err_t err;
 
     /* 切换到测试模式 */
-//    err = g_canfd_on_canfd.modeTransition(  //内部回环
-//            &g_canfd0_ctrl, CAN_OPERATION_MODE_NORMAL, CAN_TEST_MODE_LOOPBACK_INTERNAL);
-    err = g_canfd_on_canfd.modeTransition(  //外部回环
-            &g_canfd0_ctrl, CAN_OPERATION_MODE_NORMAL, CAN_TEST_MODE_LOOPBACK_EXTERNAL);
-    assert(FSP_SUCCESS == err);
+////    err = g_canfd_on_canfd.modeTransition(  //内部回环
+////            &g_canfd0_ctrl, CAN_OPERATION_MODE_NORMAL, CAN_TEST_MODE_LOOPBACK_INTERNAL);
+//    err = g_canfd_on_canfd.modeTransition(  //外部回环
+//            &g_canfd0_ctrl, CAN_OPERATION_MODE_NORMAL, CAN_TEST_MODE_LOOPBACK_EXTERNAL);
+//    assert(FSP_SUCCESS == err);
 
     /* 将帧配置为在启用比特率切换（BRS）的情况下写入64字节 */
     g_can_tx_frame.id               = CAN_ID;
@@ -148,29 +140,29 @@ void canfd0_write_data(can_frame_t can_transmit_frame)
 
 
 
-void canfd0_read_data(void)
-{
-    fsp_err_t err = FSP_SUCCESS;
-
-    /* 获取CAN传输的状态信息 */
-    err = g_canfd_on_canfd.infoGet(&g_canfd0_ctrl, &canfd0_rx_info);
-    assert(FSP_SUCCESS == err);
-
-    /* 检查FIFO中是否接收到数据 */
-    if(canfd0_rx_info.rx_mb_status)
-    {
-        /* Read the input frame received */
-        err = g_canfd_on_canfd.read(&g_canfd0_ctrl, 0, &canfd0_rx_frame);
-        assert(FSP_SUCCESS == err);
-
-        /*Check if the transmitted and received data are same and send ACK accordingly */
-        //canfd_check_data();
-    }
-    else
-    {
-        /* Do Nothing */
-    }
-}
+//void canfd0_read_data(void)
+//{
+//    fsp_err_t err = FSP_SUCCESS;
+//
+//    /* 获取CAN传输的状态信息 */
+//    err = g_canfd_on_canfd.infoGet(&g_canfd0_ctrl, &canfd0_rx_info);
+//    assert(FSP_SUCCESS == err);
+//
+//    /* 检查FIFO中是否接收到数据 */
+//    if(canfd0_rx_info.rx_mb_status)
+//    {
+//        /* Read the input frame received */
+//        err = g_canfd_on_canfd.read(&g_canfd0_ctrl, 0, &canfd0_rx_frame);
+//        assert(FSP_SUCCESS == err);
+//
+//        /*Check if the transmitted and received data are same and send ACK accordingly */
+//        //canfd_check_data();
+//    }
+//    else
+//    {
+//        /* Do Nothing */
+//    }
+//}
 
 
 
