@@ -209,7 +209,7 @@
       <property id="module.driver.spi.txi_ipl" value="board.icu.common.irq.priority12"/>
       <property id="module.driver.spi.tei_ipl" value="board.icu.common.irq.priority12"/>
       <property id="module.driver.spi.eri_ipl" value="board.icu.common.irq.priority12"/>
-      <property id="module.driver.spi.bitrate" value="5000000"/>
+      <property id="module.driver.spi.bitrate" value="200000"/>
       <property id="module.driver.spi.bitrate_modulation" value="module.driver.spi.bitrate_modulation.enabled"/>
     </module>
     <module id="module.driver.transfer_on_dtc.1511513783">
