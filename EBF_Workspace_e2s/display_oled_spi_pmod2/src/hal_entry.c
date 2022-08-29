@@ -2,19 +2,16 @@
 #include "oled.h"
 #include "oledfont.h"
 
-
 FSP_CPP_HEADER
 void R_BSP_WarmStart(bsp_warm_start_event_t event);
 FSP_CPP_FOOTER
 
 
 /* Callback function */
-void spi_callback(spi_callback_args_t *p_args)
+void sci_spi_callback(spi_callback_args_t *p_args)
 {
     /* TODO: add your own code here */
 }
-
-//#define
 
 
 
@@ -24,32 +21,28 @@ void spi_callback(spi_callback_args_t *p_args)
  **********************************************************************************************************************/
 void hal_entry(void)
 {
-    //R_SPI_Open(&g_spi0_ctrl, &g_spi0_cfg);
+
+    R_SCI_SPI_Open(&g_spi1_ctrl, &g_spi1_cfg);
 
     OLED_Init();
 
     OLED_Fill(0x00);
     while(1)
     {
+        OLED_CLS();
+        for(unsigned int i=0; i<4; i++)//通过点阵显示汉字 -- i表示子表中汉字的位置
+        {
+            OLED_16x16CN(i*16+32,0,i);
+        }
+        OLED_WrCmd(0xaf);
 
         R_BSP_SoftwareDelay(1000,BSP_DELAY_UNITS_MILLISECONDS);
-        OLED_CS(0);
-        for(unsigned int i=0; i<6; i++)//通过点阵显示汉字 -- i表示子表中汉字的位置
-        {
-            OLED_16x16CN(i*16,0,i);
-            //OLED_16x16CN(i*16,6,i+24);
-        }
-
+        OLED_CLS();
+        OLED_BMP(0,0,128,8,(unsigned char *)BMP1);
         OLED_WrCmd(0xaf);
-        OLED_CS(1);
-        while(1);
+
         R_BSP_SoftwareDelay(1000,BSP_DELAY_UNITS_MILLISECONDS);
     }
-    R_BSP_SoftwareDelay(2000,BSP_DELAY_UNITS_MILLISECONDS);
-
-
-    /* TODO: add your own code here */
-
 #if BSP_TZ_SECURE_BUILD
     /* Enter non-secure code */
     R_BSP_NonSecureEnter();

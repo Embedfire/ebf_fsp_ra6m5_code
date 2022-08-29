@@ -17,12 +17,12 @@
 #define OLED_MOSI(a)  R_IOPORT_PinWrite(&g_ioport_ctrl, MOSI, a)
 
 
-void OLED_WrDat(unsigned char dat);//д����
-void OLED_WrCmd(unsigned char cmd);//д����
-void OLED_SetPos(unsigned char x, unsigned char y);//������ʼ������
-void OLED_Fill(unsigned char bmp_dat);//ȫ�����
-void OLED_CLS(void);//����
-void OLED_Init(void);//��ʼ��
+void OLED_WrDat(unsigned char dat);
+void OLED_WrCmd(unsigned char cmd);
+void OLED_SetPos(unsigned char x, unsigned char y);
+void OLED_Fill(unsigned char bmp_dat);
+void OLED_CLS(void);
+void OLED_Init(void);
 void OLED_6x8Str(unsigned char x, unsigned char y, unsigned char ch[]);
 void OLED_8x16Str(unsigned char x, unsigned char y, unsigned char ch[]);
 void OLED_16x16CN(unsigned char x, unsigned char y, unsigned char N);
