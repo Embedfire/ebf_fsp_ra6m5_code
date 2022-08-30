@@ -27,7 +27,6 @@ FSP_CPP_FOOTER
  **********************************************************************************************************************/
 void hal_entry(void)
 {
-
     fsp_err_t err = FSP_SUCCESS;
 
     /* 开启外部中断 */
@@ -40,14 +39,17 @@ void hal_entry(void)
     err = g_external_irq_on_icu.enable(&g_external_irq2_ctrl);
     assert(FSP_SUCCESS == err);
 
+    /* 串口4初始化 */
     bsp_uart4_init();
+
+    /* canfd0初始化 */
+    bsp_canfd0_init();
+    canfd_test_mode_switch(CAN_TEST_MODE_LOOPBACK_INTERNAL);
     CANFD_PRINT("\r\n****** 这是一个canfd 测试模式实验 ******\r\n");
 
     CANFD_PRINT("》当前模式为：内部回环模式\r\n");
     CANFD_PRINT("\t按下SW2可切换测试模式\r\n");
     CANFD_PRINT("\t按下SW3可进行数据传输\r\n");
-    bsp_canfd0_init();
-    canfd_test_mode_switch(CAN_TEST_MODE_LOOPBACK_INTERNAL);
 
 
     while(1) {
