@@ -199,8 +199,8 @@ DRESULT disk_write (
     case QSPI_FLASH :  /* QSPI FLASH */
 
         write_addr = sector<<12;
-        SPI_FLASH_SectorErase(write_addr);
-        SPI_FLASH_BufferWrite((uint8_t *)buff,write_addr,count<<12);
+        QSPI_FLASH_SectorErase(write_addr);
+        QSPI_FLASH_BufferWrite((uint8_t *)buff,write_addr,count<<12);
 
         res = RES_OK;
         return res;

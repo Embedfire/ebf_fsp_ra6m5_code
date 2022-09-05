@@ -1,8 +1,8 @@
 #include "bsp_qspi_flash.h"
 
-static void qspi_d0_byte_write_standard (uint8_t byte)
+static void qspi_d0_byte_write_standard(uint8_t byte)
 {
-   R_QSPI->SFMCOM = byte;
+    R_QSPI->SFMCOM = byte;
 }
 
 void QSPI_FLASH_Init(void)
@@ -10,57 +10,47 @@ void QSPI_FLASH_Init(void)
     R_QSPI_Open(Flash.p_ctrl, Flash.p_cfg);
 }
 
-
+/**
+* @brief  读取FLASH ID
+* @param  无
+* @retval FLASH ID
+*/
 uint32_t QSPI_FLASH_ReadID(void)
 {
     unsigned char data[6] = {};
     uint32_t back;
     data[0] = JedecDeviceID;
-    //R_QSPI_DirectWrite(Flash.p_ctrl, &data[0], 1 , false);    //false: close the spi  true: go go go
-    R_QSPI->SFMCMD = 1U;
-    R_QSPI->SFMPMD = 0x4;
-    R_QSPI->SFMCOM = data[0];
 
-    data[0] = (uint8_t) R_QSPI->SFMCOM;
-    data[1] = (uint8_t) R_QSPI->SFMCOM;
-    data[2] = (uint8_t) R_QSPI->SFMCOM;
-
-    R_QSPI->SFMCMD = 1U;
-    R_QSPI->SFMCMD = 0U;
-    R_QSPI->SFMPMD = 0x0;
-//    printf("%d\r\n", data[0]);  //测试
-//    printf("%d\r\n", data[1]);
-//    printf("%d\r\n", data[2]);
+    R_QSPI_DirectWrite(Flash.p_ctrl, &data[0], 1, true);     //false: close the spi  true: go go go
+    R_QSPI_DirectRead(Flash.p_ctrl, &data[0], 3);
 
     /*把数据组合起来，作为函数的返回值*/
     back = (data[0] << 16) | (data[1] << 8) | (data[2]);
 
     return back;
-
 }
 
-void SPI_FLASH_SectorErase(uint32_t adress)
+uint32_t QSPI_FLASH_ReadDeviceID(void)
 {
     unsigned char data[6] = {};
+    uint32_t back;
+    data[0] = DeviceID;
+    data[1] = 0xff;
+    data[2] = 0xff;
+    data[3] = 0xff;
+    R_QSPI_DirectWrite(Flash.p_ctrl, &data[0], 4, true);     //false: close the spi  true: go go go
+    R_QSPI_DirectRead(Flash.p_ctrl, &data[0], 3);
 
-    data[0] = 0x06;     //write_enable_command
-    data[1] = 0x20;     //erase_command
-    R_QSPI->SFMCMD = 1U;
-    R_QSPI->SFMCOM = data[0];
-    R_QSPI->SFMCMD = 1U;
-    R_QSPI->SFMCOM = data[1];
-    R_QSPI->SFMCOM = (uint8_t)(adress >> 16);
-    R_QSPI->SFMCOM = (uint8_t)(adress >> 8);
-    R_QSPI->SFMCOM = (uint8_t)(adress);
-    R_QSPI->SFMCMD = 1U;
-    R_QSPI->SFMCMD = 0U;
+    /*把数据组合起来，作为函数的返回值*/
+    back = (data[0] << 16) | (data[1] << 8) | (data[2]);
 
-    R_BSP_SoftwareDelay(1, BSP_DELAY_UNITS_SECONDS);
+    return back;
 }
+
 
 
 //进入掉电模式
-void SPI_Flash_PowerDown(void)
+void QSPI_Flash_PowerDown(void)
 {
     unsigned char data[6] = {};
     data[0] = PowerDown;
@@ -68,7 +58,7 @@ void SPI_Flash_PowerDown(void)
 }
 
 //唤醒
-void SPI_Flash_WAKEUP(void)
+void QSPI_Flash_WAKEUP(void)
 {
     unsigned char data[6] = {};
     data[0] = ReleasePowerDown;
@@ -80,24 +70,25 @@ void SPI_Flash_WAKEUP(void)
  * @param  none
  * @retval none
  */
-void SPI_FLASH_WriteEnable(void)
+void QSPI_FLASH_WriteEnable(void)
 {
     unsigned char data[6] = {};
     data[0] = WriteEnable;
     R_QSPI_DirectWrite(Flash.p_ctrl, &data[0], 1, false);
 }
 
-void SPI_FLASH_WaitForWriteEnd(void)
+void get_flash_status(void)
 {
-    spi_flash_status_t  status;
-    while (status.write_in_progress)
-    {
-        R_QSPI_StatusGet(Flash.p_ctrl, &status);
-    }
+    QSPI_FLASH_WaitForWriteEnd();
+//      spi_flash_status_t  status;
+//    while (false != status.write_in_progress)
+//    {
+//        R_QSPI_StatusGet(Flash.p_ctrl, &status);
+//    }
 }
 
 
-fsp_err_t get_flash_status(void)
+fsp_err_t QSPI_FLASH_WaitForWriteEnd(void)
 {
     spi_flash_status_t status = {.write_in_progress = true};
     int32_t time_out          = (INT32_MAX);
@@ -130,12 +121,12 @@ fsp_err_t get_flash_status(void)
 
 
 
-fsp_err_t R_QSPI_Read (spi_flash_ctrl_t    * p_ctrl,
-                        uint8_t *             p_src,
-                        uint8_t * const       p_dest,
-                        uint32_t              byte_count)
+fsp_err_t R_QSPI_Read(spi_flash_ctrl_t     *p_ctrl,
+                      uint8_t              *p_src,
+                      uint8_t *const       p_dest,
+                      uint32_t              byte_count)
 {
-    qspi_instance_ctrl_t * p_instance_ctrl = (qspi_instance_ctrl_t *) p_ctrl;
+    qspi_instance_ctrl_t *p_instance_ctrl = (qspi_instance_ctrl_t *) p_ctrl;
 
 
     uint32_t chip_address = (uint32_t) p_dest - (uint32_t) QSPI_DEVICE_START_ADDRESS + R_QSPI->SFMCNT1;
@@ -150,7 +141,7 @@ fsp_err_t R_QSPI_Read (spi_flash_ctrl_t    * p_ctrl,
      * multiple data lines, and a unique command is provided for the required mode, update the SPI protocol to send
      * data on multiple lines. */
     if ((SPI_FLASH_DATA_LINES_1 != p_instance_ctrl->data_lines) &&
-        (SPI_FLASH_PROTOCOL_EXTENDED_SPI == R_QSPI->SFMSPC_b.SFMSPI))
+            (SPI_FLASH_PROTOCOL_EXTENDED_SPI == R_QSPI->SFMSPC_b.SFMSPI))
     {
         R_QSPI->SFMSPC_b.SFMSPI = p_instance_ctrl->data_lines;
 
@@ -177,20 +168,20 @@ fsp_err_t R_QSPI_Read (spi_flash_ctrl_t    * p_ctrl,
     if ((p_instance_ctrl->p_cfg->address_bytes & R_QSPI_SFMSAC_SFMAS_Msk) == SPI_FLASH_ADDRESS_BYTES_4)
     {
         /* Send the most significant byte of the address */
-        write_address((uint8_t) (chip_address >> 24));
+        write_address((uint8_t)(chip_address >> 24));
     }
 
     /* Send the remaining bytes of the address */
-    write_address((uint8_t) (chip_address >> 16));
-    write_address((uint8_t) (chip_address >> 8));
-    write_address((uint8_t) (chip_address));
+    write_address((uint8_t)(chip_address >> 16));
+    write_address((uint8_t)(chip_address >> 8));
+    write_address((uint8_t)(chip_address));
 
     /* Write the data. */
     uint32_t index = 0;
     while (index < byte_count)
     {
         /* Read the device memory into the passed in buffer */
-        *(p_src+index) = (uint8_t) R_QSPI->SFMCOM;
+        *(p_src + index) = (uint8_t) R_QSPI->SFMCOM;
         index++;
     }
 
@@ -213,7 +204,7 @@ fsp_err_t R_QSPI_Read (spi_flash_ctrl_t    * p_ctrl,
  * @param  NumByteToWrite，写入数据长度
  * @retval 无
  */
-void SPI_FLASH_BufferWrite(uint8_t *pBuffer, uint32_t WriteAddr, uint16_t NumByteToWrite)
+void QSPI_FLASH_BufferWrite(uint8_t *pBuffer, uint32_t WriteAddr, uint16_t NumByteToWrite)
 {
     uint8_t NumOfPage = 0, NumOfSingle = 0, Addr = 0, count = 0, temp = 0;
 
@@ -315,4 +306,52 @@ void SPI_FLASH_BufferWrite(uint8_t *pBuffer, uint32_t WriteAddr, uint16_t NumByt
             }
         }
     }
+}
+
+
+/**
+* @brief  擦除FLASH扇区
+* @param  SectorAddr：要擦除的扇区地址
+* @retval 无
+*/
+void QSPI_FLASH_SectorErase(uint32_t adress)
+{
+    unsigned char data[6] = {};
+
+    data[0] = 0x06;     //write_enable_command
+    data[1] = 0x20;     //erase_command
+    data[2] = (uint8_t)(adress >> 16);
+    data[3] = (uint8_t)(adress >> 8);
+    data[4] = (uint8_t)(adress);
+    R_QSPI->SFMCMD = 1U;
+    R_QSPI->SFMCOM = data[0];
+    R_QSPI_DirectWrite(Flash.p_ctrl, &data[1], 4, false);
+
+    QSPI_FLASH_WaitForWriteEnd();
+}
+
+
+/**
+* @brief  对FLASH按页写入数据，调用本函数写入数据前需要先擦除扇区
+* @param  pBuffer，要写入数据的指针
+* @param WriteAddr，写入地址
+* @param  NumByteToWrite，写入数据长度，必须小于等于页大小
+* @retval 无
+*/
+void QSPI_FLASH_PageWrite(uint8_t *pBuffer, uint32_t WriteAddr, uint16_t NumByteToWrite)
+{
+    R_QSPI_Write(&Flash_ctrl, pBuffer, WriteAddr, NumByteToWrite);
+    get_flash_status();
+}
+
+/**
+* @brief  读取FLASH数据
+* @param  pBuffer，存储读出数据的指针
+* @param   ReadAddr，读取地址
+* @param   NumByteToRead，读取数据长度
+* @retval 无
+*/
+void QSPI_FLASH_BufferRead(uint8_t *pBuffer, uint32_t ReadAddr, uint16_t NumByteToRead)
+{
+    R_QSPI_Read(&Flash_ctrl, pBuffer, ReadAddr, NumByteToRead);
 }

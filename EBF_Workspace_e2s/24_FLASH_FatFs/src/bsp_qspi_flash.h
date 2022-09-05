@@ -9,7 +9,8 @@
 //#define  sFLASH_ID              0xEF4015   //W25Q16
 //#define  sFLASH_ID              0XEF4018   //W25Q128
 //#define  sFLASH_ID              0XEF4017   //W25Q64
-#define  sFLASH_ID                          0x1F8701     // AT25SF321B
+//#define  sFLASH_ID              0xEF4016
+#define  sFLASH_ID              0x1F8701     // AT25SF321B
 
 
 #define SPI_FLASH_PageSize              256
@@ -44,18 +45,21 @@
 
 //static void qspi_d0_byte_write_standard (uint8_t byte);
 void QSPI_FLASH_Init(void);
+void QSPI_FLASH_SectorErase(uint32_t adress);
+void QSPI_FLASH_PageWrite(uint8_t *pBuffer, uint32_t WriteAddr, uint16_t NumByteToWrite); //页写入
+void QSPI_FLASH_BufferWrite(uint8_t *pBuffer, uint32_t WriteAddr, uint16_t NumByteToWrite);
+void QSPI_FLASH_BufferRead(uint8_t *pBuffer, uint32_t ReadAddr, uint16_t NumByteToRead);
 uint32_t QSPI_FLASH_ReadID(void);
-void SPI_FLASH_SectorErase(uint32_t adress);
-void SPI_Flash_PowerDown(void);
-void SPI_Flash_WAKEUP(void);
-void SPI_FLASH_WriteEnable(void);
-void SPI_FLASH_WaitForWriteEnd(void);
-fsp_err_t get_flash_status(void);
-fsp_err_t R_QSPI_Read (spi_flash_ctrl_t    * p_ctrl,
-                        uint8_t *             p_src,
-                        uint8_t * const       p_dest,
-                        uint32_t              byte_count);
-void SPI_FLASH_BufferWrite(uint8_t *pBuffer, uint32_t WriteAddr, uint16_t NumByteToWrite);
+uint32_t SPI_FLASH_ReadDeviceID(void);
+void QSPI_Flash_PowerDown(void);
+void QSPI_Flash_WAKEUP(void);
+
+
+void QSPI_FLASH_WriteEnable(void);
+void get_flash_status(void);
+fsp_err_t R_QSPI_Read(spi_flash_ctrl_t    *p_ctrl, uint8_t    *p_src, uint8_t *const  p_dest, uint32_t  byte_count);
+fsp_err_t QSPI_FLASH_WaitForWriteEnd(void);
+
 
 
 #endif
