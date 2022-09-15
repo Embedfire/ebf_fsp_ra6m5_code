@@ -30,13 +30,13 @@ void hal_entry(void)
     fsp_err_t err = FSP_SUCCESS;
 
     /* 开启外部中断 */
-    err = g_external_irq_on_icu.open(&g_external_irq1_ctrl, &g_external_irq1_cfg);
+    err = g_external_irq_on_icu.open(&g_external_irq10_ctrl, &g_external_irq10_cfg);
     assert(FSP_SUCCESS == err);
-    err = g_external_irq_on_icu.enable(&g_external_irq1_ctrl);
+    err = g_external_irq_on_icu.enable(&g_external_irq10_ctrl);
     assert(FSP_SUCCESS == err);
-    err = g_external_irq_on_icu.open(&g_external_irq2_ctrl, &g_external_irq2_cfg);
+    err = g_external_irq_on_icu.open(&g_external_irq9_ctrl, &g_external_irq9_cfg);
     assert(FSP_SUCCESS == err);
-    err = g_external_irq_on_icu.enable(&g_external_irq2_ctrl);
+    err = g_external_irq_on_icu.enable(&g_external_irq9_ctrl);
     assert(FSP_SUCCESS == err);
 
     /* 串口4初始化 */
@@ -69,7 +69,7 @@ void hal_entry(void)
 }
 
 /* SW3 */
-void external_irq1_callback(external_irq_callback_args_t *p_args)
+void external_irq10_callback(external_irq_callback_args_t *p_args)
 {
     (void)(p_args);  //FSP_PARAMETER_NOT_USED
 
@@ -77,7 +77,7 @@ void external_irq1_callback(external_irq_callback_args_t *p_args)
 }
 
 /* SW2 */
-void external_irq2_callback(external_irq_callback_args_t *p_args)
+void external_irq9_callback(external_irq_callback_args_t *p_args)
 {
     (void)(p_args);  //FSP_PARAMETER_NOT_USED
     static uint8_t _mode = 0;

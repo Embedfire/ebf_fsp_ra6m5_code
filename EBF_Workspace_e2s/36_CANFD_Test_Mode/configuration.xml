@@ -267,21 +267,21 @@
       <property id="module.driver.transfer.activation_source" value="_disabled"/>
     </module>
     <module id="module.driver.external_irq_on_icu.745507155">
-      <property id="module.driver.external_irq.name" value="g_external_irq1"/>
-      <property id="module.driver.external_irq.channel" value="1"/>
+      <property id="module.driver.external_irq.name" value="g_external_irq10"/>
+      <property id="module.driver.external_irq.channel" value="10"/>
       <property id="module.driver.external_irq.trigger" value="module.driver.external_irq.trigger.trig_falling"/>
       <property id="module.driver.external_irq.filter_enable" value="module.driver.external_irq.filter_enable.true"/>
       <property id="module.driver.external_irq.pclk_div" value="module.driver.external_irq.pclk_div.pclk_div_by_64"/>
-      <property id="module.driver.external_irq.p_callback" value="external_irq1_callback"/>
+      <property id="module.driver.external_irq.p_callback" value="external_irq10_callback"/>
       <property id="module.driver.external_irq.ipl" value="board.icu.common.irq.priority10"/>
     </module>
     <module id="module.driver.external_irq_on_icu.1046281293">
-      <property id="module.driver.external_irq.name" value="g_external_irq2"/>
-      <property id="module.driver.external_irq.channel" value="2"/>
+      <property id="module.driver.external_irq.name" value="g_external_irq9"/>
+      <property id="module.driver.external_irq.channel" value="9"/>
       <property id="module.driver.external_irq.trigger" value="module.driver.external_irq.trigger.trig_falling"/>
       <property id="module.driver.external_irq.filter_enable" value="module.driver.external_irq.filter_enable.true"/>
       <property id="module.driver.external_irq.pclk_div" value="module.driver.external_irq.pclk_div.pclk_div_by_64"/>
-      <property id="module.driver.external_irq.p_callback" value="external_irq2_callback"/>
+      <property id="module.driver.external_irq.p_callback" value="external_irq9_callback"/>
       <property id="module.driver.external_irq.ipl" value="board.icu.common.irq.priority10"/>
     </module>
     <context id="_hal.0">
@@ -375,9 +375,15 @@
       <configSetting altId="debug0.mode.swd" configurationId="debug0.mode"/>
       <configSetting altId="debug0.swclk.p300" configurationId="debug0.swclk"/>
       <configSetting altId="debug0.swdio.p108" configurationId="debug0.swdio"/>
-      <configSetting altId="irq0.irq01.p804" configurationId="irq0.irq01"/>
-      <configSetting altId="irq0.irq02.p803" configurationId="irq0.irq02"/>
+      <configSetting altId="irq0.irq09.p004" configurationId="irq0.irq09"/>
+      <configSetting altId="irq0.irq10.p005" configurationId="irq0.irq10"/>
       <configSetting altId="irq0.mode.enabled" configurationId="irq0.mode"/>
+      <configSetting altId="p004.irq0.irq09" configurationId="p004"/>
+      <configSetting altId="p004.gpio_irq.gpio_irq_enabled" configurationId="p004.gpio_irq"/>
+      <configSetting altId="p004.gpio_mode.gpio_mode_irq" configurationId="p004.gpio_mode"/>
+      <configSetting altId="p005.irq0.irq10" configurationId="p005"/>
+      <configSetting altId="p005.gpio_irq.gpio_irq_enabled" configurationId="p005.gpio_irq"/>
+      <configSetting altId="p005.gpio_mode.gpio_mode_irq" configurationId="p005.gpio_mode"/>
       <configSetting altId="p108.debug0.swdio" configurationId="p108"/>
       <configSetting altId="p108.gpio_mode.gpio_mode_peripheral" configurationId="p108.gpio_mode"/>
       <configSetting altId="p300.debug0.swclk" configurationId="p300"/>
@@ -396,12 +402,6 @@
       <configSetting altId="p602.gpio_mode.gpio_mode_out.high" configurationId="p602.gpio_mode"/>
       <configSetting altId="p604.output.high" configurationId="p604"/>
       <configSetting altId="p604.gpio_mode.gpio_mode_out.high" configurationId="p604.gpio_mode"/>
-      <configSetting altId="p803.irq0.irq02" configurationId="p803"/>
-      <configSetting altId="p803.gpio_irq.gpio_irq_enabled" configurationId="p803.gpio_irq"/>
-      <configSetting altId="p803.gpio_mode.gpio_mode_irq" configurationId="p803.gpio_mode"/>
-      <configSetting altId="p804.irq0.irq01" configurationId="p804"/>
-      <configSetting altId="p804.gpio_irq.gpio_irq_enabled" configurationId="p804.gpio_irq"/>
-      <configSetting altId="p804.gpio_mode.gpio_mode_irq" configurationId="p804.gpio_mode"/>
       <configSetting altId="sci4.mode.asynchronous.free" configurationId="sci4.mode"/>
       <configSetting altId="sci4.rxd.p511" configurationId="sci4.rxd"/>
       <configSetting altId="sci4.txd.p512" configurationId="sci4.txd"/>

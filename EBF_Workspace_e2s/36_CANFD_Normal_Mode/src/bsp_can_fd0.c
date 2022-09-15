@@ -48,21 +48,21 @@ const canfd_afl_entry_t p_canfd0_afl[CANFD_CFG_AFL_CH0_RULE_NUM] =
      {
          /* These values mask which ID/mode bits to compare when filtering messages. */
          .mask_id         = MASK_ID,
-         .mask_frame_type = 0,
-         .mask_id_mode    = MASK_ID_MODE
+         .mask_frame_type = 0,            //仅接受具有配置的帧类型的帧 (frame_type)
+         .mask_id_mode    = MASK_ID_MODE  //仅接受配置ID模式的帧 (id_mode)
      },
 
      .destination =
      {
          /* If DLC checking is enabled any messages shorter than the below setting will be rejected. */
-         .minimum_dlc = CANFD_MINIMUM_DLC_0,
+         .minimum_dlc = CANFD_MINIMUM_DLC_0, //要接受的最小DLC值（启用DLC检查时有效）
 
          /* Optionally specify a Receive Message Buffer (RX MB) to store accepted frames. RX MBs do not have an
           * interrupt or overwrite protection and must be checked with R_CANFD_InfoGet and R_CANFD_Read. */
-         .rx_buffer   = CANFD_RX_MB_0,
+         .rx_buffer   = CANFD_RX_MB_0,  //接收此规则接受的消息的RX消息缓冲区
 
          /* Specify which FIFO(s) to send filtered messages to. Multiple FIFOs can be OR'd together. */
-         .fifo_select_flags = CANFD_RX_FIFO_0
+         .fifo_select_flags = CANFD_RX_FIFO_0  //接收此规则接受的消息的RX FIFO
      }
  },
 };
@@ -162,10 +162,10 @@ void canfd0_write_data(can_frame_t can_transmit_frame)
     while ((true != b_canfd0_tx_complete) && (--g_time_out));
     b_canfd0_tx_complete = false;
     if (0 == g_time_out) {
-        CANFD_PRINT("can传输超时！！can传输失败！！\r\n");
+        CANFD_PRINT("CANFD传输超时！！CANFD传输失败！！\r\n");
         return;
     }
-    CANFD_PRINT("can传输完成\r\n");
+    CANFD_PRINT("CANFD传输完成\r\n");
 }
 
 

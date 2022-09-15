@@ -126,10 +126,10 @@ void canfd1_write_data(can_frame_t can_transmit_frame)
     while ((true != b_canfd1_tx_complete) && (--g_time_out));
     b_canfd1_tx_complete = false;
     if (0 == g_time_out) {
-        CANFD_PRINT("can传输超时！！can传输失败！！\r\n");
+        CANFD_PRINT("CANFD传输超时！！CANFD传输失败！！\r\n");
         return;
     }
-    CANFD_PRINT("can传输完成\r\n");
+    CANFD_PRINT("CANFD传输完成\r\n");
 }
 
 

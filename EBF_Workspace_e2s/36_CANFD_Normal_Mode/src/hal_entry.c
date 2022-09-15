@@ -48,13 +48,13 @@ void hal_entry(void)
     fsp_err_t err = FSP_SUCCESS;
 
     /* 开启外部中断 */
-    err = g_external_irq_on_icu.open(&g_external_irq1_ctrl, &g_external_irq1_cfg);
+    err = g_external_irq_on_icu.open(&g_external_irq10_ctrl, &g_external_irq10_cfg);
     assert(FSP_SUCCESS == err);
-    err = g_external_irq_on_icu.enable(&g_external_irq1_ctrl);
+    err = g_external_irq_on_icu.enable(&g_external_irq10_ctrl);
     assert(FSP_SUCCESS == err);
-    err = g_external_irq_on_icu.open(&g_external_irq2_ctrl, &g_external_irq2_cfg);
+    err = g_external_irq_on_icu.open(&g_external_irq9_ctrl, &g_external_irq9_cfg);
     assert(FSP_SUCCESS == err);
-    err = g_external_irq_on_icu.enable(&g_external_irq2_ctrl);
+    err = g_external_irq_on_icu.enable(&g_external_irq9_ctrl);
     assert(FSP_SUCCESS == err);
 
     bsp_uart4_init();
@@ -71,11 +71,11 @@ void hal_entry(void)
         tx_fd1_data[j] = (uint8_t) (64 - j);
     }
 
-    CANFD_PRINT("\r\n****** 这是一个 canfd 外部通讯使用实验 ******\r\n");
+    CANFD_PRINT("\r\n****** 这是一个 CANFD 外部通讯使用实验 ******\r\n");
 
     CANFD_PRINT("》当前模式为：正常模式\r\n");
-    CANFD_PRINT("\t按下SW2会触发canfd1传输数据\r\n");
-    CANFD_PRINT("\t按下SW3会触发canfd0传输数据\r\n");
+    CANFD_PRINT("\t按下SW2会触发CANFD1传输数据\r\n");
+    CANFD_PRINT("\t按下SW3会触发CANFD0传输数据\r\n");
 
     //canfd0_operation();
 
@@ -83,34 +83,42 @@ void hal_entry(void)
         /* 触发canfd0传输数据 - canfd1接收 */
         if (canfd0_trigger_transmission == true)
         {
+            volatile uint32_t g_time_out = 0xFFFF;
             canfd0_trigger_transmission = false;
 
             /* 等待canfd1接收中断 */
-            while (false == b_canfd1_rx_complete);
+            while ((false == b_canfd1_rx_complete) && (--g_time_out));
             b_canfd1_rx_complete = false;
-
-            /* 检查发送和接收的数据是否相同 */
-            if(0 == strncmp((char*)&canfd1_rx_frame.data[0], (char*)&tx_fd0_data[0], CAN_FD_DATA_LENGTH_CODE)) {
-                CANFD_PRINT("canfd1接收到数据，且数据正确\r\n");
+            if (0 == g_time_out) {
+                CANFD_PRINT("等待CANFD1接收中断超时！！CANFD接收失败！！\r\n");
             } else {
-                CANFD_PRINT("canfd1接收到数据，但数据不正确！！\r\n");
+                /* 检查发送和接收的数据是否相同 */
+                if(0 == strncmp((char*)&canfd1_rx_frame.data[0], (char*)&tx_fd0_data[0], CAN_FD_DATA_LENGTH_CODE)) {
+                    CANFD_PRINT("CANFD1接收到数据，且数据正确\r\n");
+                } else {
+                    CANFD_PRINT("CANFD1接收到数据，但数据不正确！！\r\n");
+                }
             }
         }
 
         /* 触发canfd1传输数据 - canfd0接收 */
         if (canfd1_trigger_transmission == true)
         {
+            volatile uint32_t g_time_out = 0xFFFF;
             canfd1_trigger_transmission = false;
 
             /* 等待canfd0接收中断 */
-            while (false == b_canfd0_rx_complete);
+            while ((false == b_canfd0_rx_complete) && (--g_time_out));
             b_canfd0_rx_complete = false;
-
-            /* 检查发送和接收的数据是否相同 */
-            if(0 == strncmp((char*)&canfd0_rx_frame.data[0], (char*)&tx_fd1_data[0], CAN_FD_DATA_LENGTH_CODE)) {
-                CANFD_PRINT("canfd0接收到数据，且数据正确\r\n");
+            if (0 == g_time_out) {
+                CANFD_PRINT("等待CANFD0接收中断超时！！CANFD接收失败！！\r\n");
             } else {
-                CANFD_PRINT("canfd1接收到数据，但数据不正确！！\r\n");
+                /* 检查发送和接收的数据是否相同 */
+                if(0 == strncmp((char*)&canfd0_rx_frame.data[0], (char*)&tx_fd1_data[0], CAN_FD_DATA_LENGTH_CODE)) {
+                    CANFD_PRINT("CANFD0接收到数据，且数据正确\r\n");
+                } else {
+                    CANFD_PRINT("CANFD0接收到数据，但数据不正确！！\r\n");
+                }
             }
         }
     }
@@ -122,22 +130,22 @@ void hal_entry(void)
 }
 
 /* SW3 */
-void external_irq1_callback(external_irq_callback_args_t *p_args)
+void external_irq10_callback(external_irq_callback_args_t *p_args)
 {
     (void)(p_args);  //FSP_PARAMETER_NOT_USED
 
     canfd0_trigger_transmission = true;
-    CANFD_PRINT("》SW3按键按下，触发canfd0传输数据\r\n");
+    CANFD_PRINT("\r\n》SW3按键按下，触发CANFD0传输数据\r\n");
     canfd0_operation();
 }
 
 /* SW2 */
-void external_irq2_callback(external_irq_callback_args_t *p_args)
+void external_irq9_callback(external_irq_callback_args_t *p_args)
 {
     (void)(p_args);  //FSP_PARAMETER_NOT_USED
 
     canfd1_trigger_transmission = true;
-    CANFD_PRINT("》SW2按键按下，触发canfd1传输数据\r\n");
+    CANFD_PRINT("\r\n》SW2按键按下，触发CANFD1传输数据\r\n");
     canfd1_operation();
 }
 

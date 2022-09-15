@@ -8,15 +8,11 @@
 #define CAN_ID                          (0x1100)           //要在传输帧中更新的ID
 
 /* 接收过滤器数组参数 */
-#define CANFD_FILTER_ID                 (0x00001000)
-#define MASK_ID                         (0x1FFFF000)
+#define CANFD_FILTER_ID                 (0x00001000)     //
+#define MASK_ID                         (0x1FFFF000)     //
 #define MASK_ID_MODE                    (1)
 
 #define WAIT_TIME                       (0xFFFF)             //Wait time value
-
-#define USE_CLASSIC_CAN   0
-#define USE_CAN_FD        1
-#define USE_CAN           USE_CAN_FD
 
 /*信息输出*/
 #define CANFD_DEBUG_ON            1   //DEBUG开关
