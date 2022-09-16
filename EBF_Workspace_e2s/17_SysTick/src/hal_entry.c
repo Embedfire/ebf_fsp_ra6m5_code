@@ -11,7 +11,7 @@ FSP_CPP_FOOTER
 void hal_entry(void)
 {
     /* TODO: add your own code here */
-    R_BSP_PinAccessEnable ();  //启用对PFS寄存器的访问
+    R_BSP_PinAccessEnable ();  //启用对PFS寄存器的访问,因为后面写IO口都用BSP内联函数
     SysTick_Init (1000);   //初始化系统时钟
     while (1)
     {

@@ -17,7 +17,7 @@ void hal_entry(void)
     /* TODO: add your own code here */
     Debug_UART_Init (); //初始化debug串口
     Key_Init (); //初始化按键
-    R_BSP_PinAccessEnable (); //启用对PFS寄存器的访问
+    R_BSP_PinAccessEnable (); //启用对PFS寄存器的访问,因为后面写IO口都用BSP内联函数
     /*若是在深度软件待机模式下被唤醒*/
     if (R_SYSTEM->RSTSR0_b.DPSRSTF == 1)
     {

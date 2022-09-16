@@ -17,7 +17,7 @@ void hal_entry(void)
     /* TODO: add your own code here */
     Debug_UART_Init(); //初始化debug串口
     Key_Init(); //初始化按键
-    R_BSP_PinAccessEnable(); //启用对PFS寄存器的访问
+    R_BSP_PinAccessEnable(); //启用对PFS寄存器的访问,因为后面写IO口都用BSP内联函数
     R_LPM_Open(Sleep.p_ctrl, Sleep.p_cfg); //打开LPM
     while(1)
     {

@@ -21,7 +21,7 @@ void hal_entry(void)
 		Debug_UART_Init();
 		/*初始化GPT*/
 		GPT_Init();
-		/*启用对PSF寄存器的访问*/
+		/*启用对PFS寄存器的访问,因为后面写IO口都用BSP内联函数*/
 		R_BSP_PinAccessEnable();
 		while(1);
 #if BSP_TZ_SECURE_BUILD
