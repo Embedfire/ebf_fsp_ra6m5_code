@@ -105,7 +105,7 @@
     <node id="board.clock.loco.freq" option="board.clock.loco.freq.32768"/>
     <node id="board.clock.moco.freq" option="board.clock.moco.freq.8m"/>
     <node id="board.clock.subclk.freq" option="board.clock.subclk.freq.32768"/>
-    <node id="board.clock.pll.source" option="board.clock.pll.source.xtal"/>
+    <node id="board.clock.pll.source" option="board.clock.pll.source.hoco"/>
     <node id="board.clock.pll.div" option="board.clock.pll.div.3"/>
     <node id="board.clock.pll.mul" option="board.clock.pll.mul.250"/>
     <node id="board.clock.pll.display" option="board.clock.pll.display.value"/>
@@ -196,24 +196,32 @@
     </config>
   </raModuleConfiguration>
   <raPinConfiguration>
+    <symbolicName propertyId="p004.symbolic_name" value="Key_1"/>
+    <symbolicName propertyId="p005.symbolic_name" value="Key_2"/>
+    <symbolicName propertyId="p400.symbolic_name" value="LED_1"/>
+    <symbolicName propertyId="p403.symbolic_name" value="LED_2"/>
+    <symbolicName propertyId="p404.symbolic_name" value="LED_3"/>
+    <symbolicName propertyId="p605.symbolic_name" value="bee"/>
     <pincfg active="true" name="R7FA6M5BH3CFC.pincfg" selected="true" symbol="g_bsp_pin_cfg">
       <configSetting altId="debug0.mode.swd" configurationId="debug0.mode"/>
       <configSetting altId="debug0.swclk.p300" configurationId="debug0.swclk"/>
       <configSetting altId="debug0.swdio.p108" configurationId="debug0.swdio"/>
+      <configSetting altId="p004.input" configurationId="p004"/>
+      <configSetting altId="p004.gpio_mode.gpio_mode_in" configurationId="p004.gpio_mode"/>
+      <configSetting altId="p005.input" configurationId="p005"/>
+      <configSetting altId="p005.gpio_mode.gpio_mode_in" configurationId="p005.gpio_mode"/>
       <configSetting altId="p108.debug0.swdio" configurationId="p108"/>
       <configSetting altId="p108.gpio_mode.gpio_mode_peripheral" configurationId="p108.gpio_mode"/>
       <configSetting altId="p300.debug0.swclk" configurationId="p300"/>
       <configSetting altId="p300.gpio_mode.gpio_mode_peripheral" configurationId="p300.gpio_mode"/>
-      <configSetting altId="p601.output.high" configurationId="p601"/>
-      <configSetting altId="p601.gpio_mode.gpio_mode_out.high" configurationId="p601.gpio_mode"/>
-      <configSetting altId="p602.output.high" configurationId="p602"/>
-      <configSetting altId="p602.gpio_mode.gpio_mode_out.high" configurationId="p602.gpio_mode"/>
-      <configSetting altId="p604.output.high" configurationId="p604"/>
-      <configSetting altId="p604.gpio_mode.gpio_mode_out.high" configurationId="p604.gpio_mode"/>
-      <configSetting altId="p803.input" configurationId="p803"/>
-      <configSetting altId="p803.gpio_mode.gpio_mode_in" configurationId="p803.gpio_mode"/>
-      <configSetting altId="p804.input" configurationId="p804"/>
-      <configSetting altId="p804.gpio_mode.gpio_mode_in" configurationId="p804.gpio_mode"/>
+      <configSetting altId="p400.output.high" configurationId="p400"/>
+      <configSetting altId="p400.gpio_mode.gpio_mode_out.high" configurationId="p400.gpio_mode"/>
+      <configSetting altId="p403.output.high" configurationId="p403"/>
+      <configSetting altId="p403.gpio_mode.gpio_mode_out.high" configurationId="p403.gpio_mode"/>
+      <configSetting altId="p404.output.high" configurationId="p404"/>
+      <configSetting altId="p404.gpio_mode.gpio_mode_out.high" configurationId="p404.gpio_mode"/>
+      <configSetting altId="p605.output.low" configurationId="p605"/>
+      <configSetting altId="p605.gpio_mode.gpio_mode_out.low" configurationId="p605.gpio_mode"/>
     </pincfg>
   </raPinConfiguration>
 </raConfiguration>
