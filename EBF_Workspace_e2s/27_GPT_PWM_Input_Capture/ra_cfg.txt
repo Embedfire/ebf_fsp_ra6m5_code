@@ -162,11 +162,11 @@ FSP Configuration
       P313 55 - - - - Disabled - - "BUS_ASYNCH0: A20; ETHERC_MII0: ET0_ERXD3; SDHI0: SD0DAT7" - None - - 
       P314 56 - - - - Disabled - - "ADC0: ADTRG0; BUS_ASYNCH0: A21" - None - - 
       P315 57 - - - - Disabled - - "BUS_ASYNCH0: A22; SCI4: RXD4; SCI4: SCL4" - None - - 
-      P400 1 GPT6_GTIOC6A - Low None "Peripheral mode" CMOS None "ADC1: ADTRG1; AGT1: AGTIO1; ETHERC_MII0: ET0_WOL; ETHERC_RMII0: ET0_WOL; GPT6: GTIOC6A; ICU0: IRQ00; IIC0: SCL0; SCI4: SCK4; SCI7: SCK7; SSI_COMMON0: AUDIO_CLK" - IO - - 
+      P400 1 GPIO LED_R Low None "Output mode (Initial High)" CMOS - "ADC1: ADTRG1; AGT1: AGTIO1; ETHERC_MII0: ET0_WOL; ETHERC_RMII0: ET0_WOL; GPT6: GTIOC6A; ICU0: IRQ00; IIC0: SCL0; SCI4: SCK4; SCI7: SCK7; SSI_COMMON0: AUDIO_CLK" - IO - - 
       P401 2 - - - - Disabled - - "CAN0: CTX0; ETHERC_MII0: ET0_MDC; ETHERC_RMII0: ET0_MDC; GPT_POEG0: GTETRGA; GPT6: GTIOC6B; ICU0: IRQ05; IIC0: SDA0; SCI4: CTSRTS4; SCI7: SDA7; SCI7: TXD7" - None - - 
       P402 3 - - - - Disabled - - "AGT0: AGTIO0; AGT1: AGTIO1; AGT2: AGTIO2; AGT3: AGTIO3; CAC0: CACREF; CAN0: CRX0; ETHERC_MII0: ET0_MDIO; ETHERC_RMII0: ET0_MDIO; ICU0: IRQ04; RTC0: RTCIC0; SCI4: CTS4; SCI7: RXD7; SCI7: SCL7; SSI_COMMON0: AUDIO_CLK" - None - - 
-      P403 4 GPT3_GTIOC3A - Low None "Peripheral mode" CMOS "input pull-up" "AGT0: AGTIO0; AGT1: AGTIO1; AGT2: AGTIO2; AGT3: AGTIO3; ETHERC_MII0: ET0_LINKSTA; ETHERC_RMII0: ET0_LINKSTA; GPT3: GTIOC3A; ICU0: IRQ14; RTC0: RTCIC1; SCI7: CTSRTS7; SSI0: SSIBCK0" - IO - - 
-      P404 5 GPIO SIGNAL Low None "Output mode (Initial High)" CMOS - "AGT0: AGTIO0; AGT1: AGTIO1; AGT2: AGTIO2; AGT3: AGTIO3; ETHERC_MII0: ET0_EXOUT; ETHERC_RMII0: ET0_EXOUT; GPT3: GTIOC3B; ICU0: IRQ15; RTC0: RTCIC2; SCI7: CTS7; SSI0: SSILRCK0" - IO - - 
+      P403 4 GPIO LED_B Low None "Output mode (Initial High)" CMOS - "AGT0: AGTIO0; AGT1: AGTIO1; AGT2: AGTIO2; AGT3: AGTIO3; ETHERC_MII0: ET0_LINKSTA; ETHERC_RMII0: ET0_LINKSTA; GPT3: GTIOC3A; ICU0: IRQ14; RTC0: RTCIC1; SCI7: CTSRTS7; SSI0: SSIBCK0" - IO - - 
+      P404 5 GPIO LED_G Low None "Output mode (Initial High)" CMOS - "AGT0: AGTIO0; AGT1: AGTIO1; AGT2: AGTIO2; AGT3: AGTIO3; ETHERC_MII0: ET0_EXOUT; ETHERC_RMII0: ET0_EXOUT; GPT3: GTIOC3B; ICU0: IRQ15; RTC0: RTCIC2; SCI7: CTS7; SSI0: SSILRCK0" - IO - - 
       P405 6 - - - - Disabled - - "ETHERC_MII0: ET0_TX_EN; ETHERC_RMII0: RMII_TXD_EN; GPT1: GTIOC1A; SSI0: SSITXD0" - None - - 
       P406 7 - - - - Disabled - - "AGT5: AGTO5; ETHERC_MII0: ET0_RX_ER; ETHERC_RMII0: RMII_TXD1; GPT1: GTIOC1B; SPI0: SSLA3; SSI0: SSIRXD0" - None - - 
       P407 44 - - - - Disabled - - "ADC0: ADTRG0; AGT0: AGTIO0; CTSU0: TS03; ETHERC_MII0: ET0_EXOUT; ETHERC_RMII0: ET0_EXOUT; GPT6: GTIOC6A; IIC0: SDA0; RTC0: RTCOUT; SCI4: CTSRTS4; SPI0: SSLA3; USB_FS0: USB_VBUS" - None - - 
@@ -190,11 +190,11 @@ FSP Configuration
       P511 176 SCI4_RXD4 - Low None "Peripheral mode" CMOS None "CAN1: CRX1; GPT0: GTIOC0B; ICU0: IRQ15; IIC1: SDA1; SCI4: RXD4; SCI4: SCL4" - IO - - 
       P512 175 SCI4_TXD4 - Low None "Peripheral mode" CMOS None "CAN1: CTX1; GPT0: GTIOC0A; ICU0: IRQ14; IIC1: SCL1; SCI4: SDA4; SCI4: TXD4" - IO - - 
       P513 174 - - - - Disabled - - "SCI5: RXD5; SCI5: SCL5" - None - - 
-      P600 122 - - - - Disabled - - "AGT3: AGTIO3; BUS_ASYNCH0: RD; CAC0: CACREF; CGC0: CLKOUT; GPT6: GTIOC6B; OSPI0: OMSIO4; SCI9: SCK9" - None - - 
-      P601 121 GPIO LED_R Low - "Output mode (Initial High)" CMOS - "AGT3: AGTEE3; BUS_ASYNCH0: WR; GPT6: GTIOC6A; OSPI0: OMSIO2; SCI9: RXD9; SCI9: SCL9" - IO - - 
-      P602 120 GPIO LED_B Low - "Output mode (Initial High)" CMOS - "AGT3: AGTO3; BUS_ASYNCH0: EBCLK; GPT7: GTIOC7B; OSPI0: OMCS1; SCI9: SDA9; SCI9: TXD9" - IO - - 
-      P603 119 - - - - Disabled - - "AGT4: AGTIO4; BUS_ASYNCH0: D13; GPT7: GTIOC7A; SCI9: CTSRTS9" - None - - 
-      P604 118 GPIO LED_G Low - "Output mode (Initial High)" CMOS - "AGT4: AGTEE4; BUS_ASYNCH0: D12; GPT8: GTIOC8B; SCI9: CTS9" - IO - - 
+      P600 122 GPT6_GTIOC6B - Low - "Peripheral mode" CMOS None "AGT3: AGTIO3; BUS_ASYNCH0: RD; CAC0: CACREF; CGC0: CLKOUT; GPT6: GTIOC6B; OSPI0: OMSIO4; SCI9: SCK9" - IO - - 
+      P601 121 - - - - Disabled - - "AGT3: AGTEE3; BUS_ASYNCH0: WR; GPT6: GTIOC6A; OSPI0: OMSIO2; SCI9: RXD9; SCI9: SCL9" - None - - 
+      P602 120 - - - - Disabled - - "AGT3: AGTO3; BUS_ASYNCH0: EBCLK; GPT7: GTIOC7B; OSPI0: OMCS1; SCI9: SDA9; SCI9: TXD9" - None - - 
+      P603 119 GPT7_GTIOC7A - Low - "Peripheral mode" CMOS None "AGT4: AGTIO4; BUS_ASYNCH0: D13; GPT7: GTIOC7A; SCI9: CTSRTS9" - IO - - 
+      P604 118 - - - - Disabled - - "AGT4: AGTEE4; BUS_ASYNCH0: D12; GPT8: GTIOC8B; SCI9: CTS9" - None - - 
       P605 117 - - - - Disabled - - "AGT4: AGTO4; BUS_ASYNCH0: D11; GPT8: GTIOC8A; SCI8: CTS8" - None - - 
       P606 116 - - - - Disabled - - "RTC0: RTCOUT; SCI8: CTSRTS8" - None - - 
       P607 115 - - - - Disabled - - "SCI8: RXD8; SCI8: SCL8" - None - - 
@@ -336,7 +336,7 @@ FSP Configuration
       
     Instance "GPT_Input_Capture Timer, General PWM (r_gpt)"
       General: Name: GPT_Input_Capture
-      General: Channel: 3
+      General: Channel: 6
       General: Mode: Periodic
       General: Period: 1000
       General: Period Unit: Milliseconds
@@ -359,8 +359,8 @@ FSP Configuration
       Input: Start Source: 
       Input: Stop Source: 
       Input: Clear Source: 
-      Input: Capture A Source: GTIOCA Falling Edge While GTIOCB Low, GTIOCA Falling Edge While GTIOCB High
-      Input: Capture B Source: GTIOCA Rising Edge While GTIOCB Low, GTIOCA Rising Edge While GTIOCB High
+      Input: Capture A Source: GTIOCB Falling Edge While GTIOCA Low, GTIOCB Falling Edge While GTIOCA High
+      Input: Capture B Source: GTIOCB Rising Edge While GTIOCA Low, GTIOCB Rising Edge While GTIOCA High
       Input: Noise Filter A Sampling Clock Select: No Filter
       Input: Noise Filter B Sampling Clock Select: No Filter
       Interrupts: Callback: GPT_Input_Capture_Callback
@@ -384,7 +384,7 @@ FSP Configuration
       
     Instance "GPT_PWM Timer, General PWM (r_gpt)"
       General: Name: GPT_PWM
-      General: Channel: 6
+      General: Channel: 7
       General: Mode: PWM
       General: Period: 100
       General: Period Unit: Hertz

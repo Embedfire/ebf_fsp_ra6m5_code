@@ -21,7 +21,7 @@
 
 #include <bsp_RTC.h>
 #include "bsp_debug_uart.h"
-
+#include "bsp_pin.h"
 
 
 /**
@@ -55,18 +55,6 @@ void RTC_Init(void)
     R_RTC->RCR1_b.RTCOS = 0U;
 }
 
-/**
- * @brief 反转LED电平
- * @retval 无
- * @param 无
- */
-static void LED_Toggle(void)
-{
-    static bool LED_Level = true;
-    R_BSP_PinWrite (LED_G, LED_Level);
-    LED_Level = !LED_Level;
-}
-
 
 /**
  * @brief RTC中断回调函数
@@ -80,7 +68,7 @@ void RTC_Callback(rtc_callback_args_t *p_args)
     {
         /*若是周期中断，则发送日期给串口并切换LED电平*/
         case RTC_EVENT_PERIODIC_IRQ:
-            LED_Toggle (); //反转LED
+            PIN_TOGGLE (LED_R); //反转LED
             /*获取当前时间*/
             R_RTC_CalendarTimeGet (RTC.p_ctrl, &get_time);
             /*打印当前时间*/

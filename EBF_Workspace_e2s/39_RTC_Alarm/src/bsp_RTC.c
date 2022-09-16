@@ -21,7 +21,7 @@
 
 #include <bsp_RTC.h>
 #include "bsp_debug_uart.h"
-
+#include "bsp_pin.h"
 
 /**
  * @brief 初始化RTC闹钟
@@ -81,17 +81,7 @@ void RTC_Init(void)
     RTC_Alarm_Init(); //初始化闹钟中断
 }
 
-/**
- * @brief 反转LED电平
- * @retval 无
- * @param 无
- */
-static void LED_Toggle(void)
-{
-    static bool LED_Level = false;
-    R_BSP_PinWrite (LED_G, LED_Level);
-    LED_Level = !LED_Level;
-}
+
 
 /**
  * @brief 让蜂鸣器叫一声
@@ -124,7 +114,7 @@ void RTC_Callback(rtc_callback_args_t *p_args)
             /*打印当前时间*/
             printf ("\r\n%d-%d-%d-%d:%d:%d\r\n", get_time.tm_year + 1900, get_time.tm_mon, get_time.tm_mday,
                                 get_time.tm_hour, get_time.tm_min, get_time.tm_sec);
-            LED_Toggle (); //反转LED
+            PIN_TOGGLE (LED_R); //反转LED
             Buzzer_sout(); //蜂鸣器叫一声
             break;
         default:

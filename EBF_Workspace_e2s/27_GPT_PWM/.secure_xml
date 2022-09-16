@@ -62,7 +62,7 @@
     <pincfg active="true" name="" symbol="">
       <configSetting altId="debug0.swclk.p300" configurationId="debug0.swclk" isUsedByDriver="true"/>
       <configSetting altId="debug0.swdio.p108" configurationId="debug0.swdio" isUsedByDriver="true"/>
-      <configSetting altId="gpt6.gtioca.p601" configurationId="gpt6.gtioca" isUsedByDriver="true"/>
+      <configSetting altId="gpt6.gtioca.p400" configurationId="gpt6.gtioca" isUsedByDriver="true"/>
       <configSetting altId="p602.output.high" configurationId="p602"/>
       <configSetting altId="p604.output.high" configurationId="p604"/>
       <configSetting altId="sci4.rxd.p511" configurationId="sci4.rxd" isUsedByDriver="true"/>

@@ -1,7 +1,7 @@
 #include "hal_data.h"
 #include "bsp_debug_uart.h"
 #include "bsp_key_irq.h"
-
+#include "bsp_pin.h"
 
 FSP_CPP_HEADER
 void R_BSP_WarmStart(bsp_warm_start_event_t event);
@@ -67,11 +67,9 @@ void hal_entry(void)
  */
 void LED_Flicker(int num)
 {
-    for (int i = 0; i < num; i++)
+    for (int i = 0; i < num*2; i++)
     {
-        R_BSP_PinWrite (LED_R, BSP_IO_LEVEL_LOW);
-        R_BSP_SoftwareDelay (50, BSP_DELAY_UNITS_MILLISECONDS);
-        R_BSP_PinWrite (LED_R, BSP_IO_LEVEL_HIGH);
+        PIN_TOGGLE(LED_R);
         R_BSP_SoftwareDelay (50, BSP_DELAY_UNITS_MILLISECONDS);
     }
 }
