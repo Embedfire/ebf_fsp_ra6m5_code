@@ -10,7 +10,8 @@
 //#define  sFLASH_ID              0XEF4018   //W25Q128
 //#define  sFLASH_ID              0XEF4017   //W25Q64
 //#define  sFLASH_ID              0xEF4016
-#define  sFLASH_ID              0x1F8701     // AT25SF321B
+#define  sFLASH_ID              0xEF6016
+//#define  sFLASH_ID              0x1F8701     // AT25SF321B
 
 
 #define SPI_FLASH_PageSize              256
