@@ -11,11 +11,6 @@ FSP_CPP_FOOTER
 
 
 
-
-#define LED_RED_IO_PIN    BSP_IO_PORT_06_PIN_01
-#define LED_GREEN_IO_PIN  BSP_IO_PORT_06_PIN_04
-#define LED_BLUE_IO_PIN   BSP_IO_PORT_06_PIN_02
-
 #define LED_RED_ON()      R_IOPORT_PinWrite(&g_ioport_ctrl, LED_RED_IO_PIN, BSP_IO_LEVEL_LOW)
 #define LED_GREEN_ON()    R_IOPORT_PinWrite(&g_ioport_ctrl, LED_GREEN_IO_PIN, BSP_IO_LEVEL_LOW)
 #define LED_BLUE_ON()     R_IOPORT_PinWrite(&g_ioport_ctrl, LED_BLUE_IO_PIN, BSP_IO_LEVEL_LOW)
