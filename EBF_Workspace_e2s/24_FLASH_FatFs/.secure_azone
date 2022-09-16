@@ -20,6 +20,9 @@
             <slot name="P310" secure="false"/>
         </peripheral>
         <peripheral name="PORT4" group="PORT">
+            <slot name="P400" secure="false"/>
+            <slot name="P403" secure="false"/>
+            <slot name="P404" secure="false"/>
             <slot name="P410" secure="false"/>
             <slot name="P411" secure="false"/>
             <slot name="P412" secure="false"/>
@@ -28,11 +31,6 @@
         <peripheral name="PORT5" group="PORT">
             <slot name="P511" secure="false"/>
             <slot name="P512" secure="false"/>
-        </peripheral>
-        <peripheral name="PORT6" group="PORT">
-            <slot name="P601" secure="false"/>
-            <slot name="P602" secure="false"/>
-            <slot name="P604" secure="false"/>
         </peripheral>
         <peripheral name="SDHI0" group="SDHI" security=""/>
         <peripheral name="DMA_DMAC0" group="DMA_DMAC" security=""/>

@@ -343,6 +343,9 @@
     </config>
   </raModuleConfiguration>
   <raPinConfiguration>
+    <symbolicName propertyId="p400.symbolic_name" value="LED_RED_IO_PIN"/>
+    <symbolicName propertyId="p403.symbolic_name" value="LED_BLUE_IO_PIN"/>
+    <symbolicName propertyId="p404.symbolic_name" value="LED_GREEN_IO_PIN"/>
     <pincfg active="true" name="R7FA6M5BH3CFC.pincfg" selected="true" symbol="g_bsp_pin_cfg">
       <configSetting altId="debug0.mode.swd" configurationId="debug0.mode"/>
       <configSetting altId="debug0.swclk.p300" configurationId="debug0.swclk"/>
@@ -369,6 +372,12 @@
       <configSetting altId="p309.gpio_mode.gpio_mode_peripheral" configurationId="p309.gpio_mode"/>
       <configSetting altId="p310.qspi0.qio3" configurationId="p310"/>
       <configSetting altId="p310.gpio_mode.gpio_mode_peripheral" configurationId="p310.gpio_mode"/>
+      <configSetting altId="p400.output.high" configurationId="p400"/>
+      <configSetting altId="p400.gpio_mode.gpio_mode_out.high" configurationId="p400.gpio_mode"/>
+      <configSetting altId="p403.output.high" configurationId="p403"/>
+      <configSetting altId="p403.gpio_mode.gpio_mode_out.high" configurationId="p403.gpio_mode"/>
+      <configSetting altId="p404.output.high" configurationId="p404"/>
+      <configSetting altId="p404.gpio_mode.gpio_mode_out.high" configurationId="p404.gpio_mode"/>
       <configSetting altId="p410.sdhi0.dat1" configurationId="p410"/>
       <configSetting altId="p410.gpio_mode.gpio_mode_peripheral" configurationId="p410.gpio_mode"/>
       <configSetting altId="p411.sdhi0.dat0" configurationId="p411"/>
@@ -381,12 +390,6 @@
       <configSetting altId="p511.gpio_mode.gpio_mode_peripheral" configurationId="p511.gpio_mode"/>
       <configSetting altId="p512.sci4.txd" configurationId="p512"/>
       <configSetting altId="p512.gpio_mode.gpio_mode_peripheral" configurationId="p512.gpio_mode"/>
-      <configSetting altId="p601.output.high" configurationId="p601"/>
-      <configSetting altId="p601.gpio_mode.gpio_mode_out.high" configurationId="p601.gpio_mode"/>
-      <configSetting altId="p602.output.high" configurationId="p602"/>
-      <configSetting altId="p602.gpio_mode.gpio_mode_out.high" configurationId="p602.gpio_mode"/>
-      <configSetting altId="p604.output.high" configurationId="p604"/>
-      <configSetting altId="p604.gpio_mode.gpio_mode_out.high" configurationId="p604.gpio_mode"/>
       <configSetting altId="qspi0.mode.quad.b" configurationId="qspi0.mode"/>
       <configSetting altId="qspi0.pairing.b" configurationId="qspi0.pairing"/>
       <configSetting altId="qspi0.qio0.p307" configurationId="qspi0.qio0"/>
