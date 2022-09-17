@@ -64,6 +64,8 @@
       <configSetting altId="debug0.swdio.p108" configurationId="debug0.swdio" isUsedByDriver="true"/>
       <configSetting altId="iic2.scl.p415" configurationId="iic2.scl" isUsedByDriver="true"/>
       <configSetting altId="iic2.sda.p414" configurationId="iic2.sda" isUsedByDriver="true"/>
+      <configSetting altId="p400.output.high" configurationId="p400"/>
+      <configSetting altId="p404.output.high" configurationId="p404"/>
       <configSetting altId="sci4.rxd.p511" configurationId="sci4.rxd" isUsedByDriver="true"/>
       <configSetting altId="sci4.txd.p512" configurationId="sci4.txd" isUsedByDriver="true"/>
     </pincfg>

@@ -240,7 +240,7 @@
       <property id="module.driver.uart.tei_ipl" value="board.icu.common.irq.priority12"/>
       <property id="module.driver.uart.eri_ipl" value="board.icu.common.irq.priority12"/>
     </module>
-    <module id="module.driver.transfer_on_dtc.1993002552">
+    <module id="module.driver.transfer_on_dtc.532455047">
       <property id="module.driver.transfer.name" value="g_transfer0"/>
       <property id="module.driver.transfer.mode" value="module.driver.transfer.mode.mode_normal"/>
       <property id="module.driver.transfer.size" value="module.driver.transfer.size.size_2_byte"/>
@@ -254,7 +254,7 @@
       <property id="module.driver.transfer.num_blocks" value="0"/>
       <property id="module.driver.transfer.activation_source" value="_disabled"/>
     </module>
-    <module id="module.driver.transfer_on_dtc.1406480447">
+    <module id="module.driver.transfer_on_dtc.1823017565">
       <property id="module.driver.transfer.name" value="g_transfer1"/>
       <property id="module.driver.transfer.mode" value="module.driver.transfer.mode.mode_normal"/>
       <property id="module.driver.transfer.size" value="module.driver.transfer.size.size_2_byte"/>
@@ -271,8 +271,8 @@
     <context id="_hal.0">
       <stack module="module.driver.ioport_on_ioport.0"/>
       <stack module="module.driver.i2c_on_iic_master.2074361421">
-        <stack module="module.driver.transfer_on_dtc.1993002552" requires="module.driver.i2c_on_iic_master.requires.transfer_tx"/>
-        <stack module="module.driver.transfer_on_dtc.1406480447" requires="module.driver.i2c_on_iic_master.requires.transfer_rx"/>
+        <stack module="module.driver.transfer_on_dtc.532455047" requires="module.driver.i2c_on_iic_master.requires.transfer_tx"/>
+        <stack module="module.driver.transfer_on_dtc.1823017565" requires="module.driver.i2c_on_iic_master.requires.transfer_rx"/>
       </stack>
       <stack module="module.driver.uart_on_sci_uart.1725658275"/>
     </context>
@@ -285,7 +285,7 @@
     </config>
     <config id="config.driver.iic_master">
       <property id="config.driver.iic_master.param_checking_enable" value="config.driver.iic_master.param_checking_enable.bsp"/>
-      <property id="config.driver.iic_master.dtc_enable" value="config.driver.iic_master.dtc_enable.disabled"/>
+      <property id="config.driver.iic_master.dtc_enable" value="config.driver.iic_master.dtc_enable.enabled"/>
       <property id="config.driver.iic_master.addr_mode_10_bit_enable" value="config.driver.iic_master.addr_mode_10_bit_enable.disabled"/>
     </config>
     <config id="config.driver.sci_uart">
@@ -297,6 +297,8 @@
     </config>
   </raModuleConfiguration>
   <raPinConfiguration>
+    <symbolicName propertyId="p400.symbolic_name" value="led_red"/>
+    <symbolicName propertyId="p404.symbolic_name" value="led_green"/>
     <pincfg active="true" name="R7FA6M5BH3CFC.pincfg" selected="true" symbol="g_bsp_pin_cfg">
       <configSetting altId="debug0.mode.swd" configurationId="debug0.mode"/>
       <configSetting altId="debug0.swclk.p300" configurationId="debug0.swclk"/>
@@ -310,6 +312,10 @@
       <configSetting altId="p108.gpio_mode.gpio_mode_peripheral" configurationId="p108.gpio_mode"/>
       <configSetting altId="p300.debug0.swclk" configurationId="p300"/>
       <configSetting altId="p300.gpio_mode.gpio_mode_peripheral" configurationId="p300.gpio_mode"/>
+      <configSetting altId="p400.output.high" configurationId="p400"/>
+      <configSetting altId="p400.gpio_mode.gpio_mode_out.high" configurationId="p400.gpio_mode"/>
+      <configSetting altId="p404.output.high" configurationId="p404"/>
+      <configSetting altId="p404.gpio_mode.gpio_mode_out.high" configurationId="p404.gpio_mode"/>
       <configSetting altId="p414.iic2.sda" configurationId="p414"/>
       <configSetting altId="p414.gpio_speed.gpio_speed_medium" configurationId="p414.gpio_drivecapacity"/>
       <configSetting altId="p414.gpio_mode.gpio_mode_peripheral" configurationId="p414.gpio_mode"/>

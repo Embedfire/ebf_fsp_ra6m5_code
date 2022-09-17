@@ -6,40 +6,32 @@ FSP_CPP_HEADER
 void R_BSP_WarmStart(bsp_warm_start_event_t event);
 FSP_CPP_FOOTER
 
+#define LED_GREEN R_IOPORT_PinWrite(&g_ioport_ctrl, led_green, BSP_IO_LEVEL_LOW)
+#define LED_RED R_IOPORT_PinWrite(&g_ioport_ctrl, led_red, BSP_IO_LEVEL_LOW)
 
 
-
-
-
-
-void continuity(unsigned char* ptr_write,unsigned char byte)
-{
-    for(unsigned char i = 0;i<byte;i++)
-    {
-        *(ptr_write+i) = i;
-    }
-}
-
-
-
-unsigned char write_buffer[30] = {0,1,2,3,4,5,6,7,8,9,0,1,2,3,4,5,6,7,8,9,0,1,2,3,4,5,6,7,8,9};
-unsigned char read_buffer[10] = {};
 
 void hal_entry(void)
 {
-    fsp_err_t err;
-    err = R_IIC_MASTER_Open(&g_i2c_master0_ctrl, &g_i2c_master0_cfg);
+
+    I2C_EE_Init();
     Debug_UART_Init();
 
-    write_drase();
-    while (true)
+    printf("欢迎使用野火  RA6M5 开发板。\r\n");
+    printf("这是一个I2C外设(AT24C02)读写测试例程 \r\n");
+    R_BSP_SoftwareDelay(1, BSP_DELAY_UNITS_SECONDS);
+
+    while (1)
     {
-        BufferWrite(&write_buffer[0],20,4);
-        read_continuity(&read_buffer[0],20,30);    //数据 地址 长度
-        R_BSP_SoftwareDelay(2000,BSP_DELAY_UNITS_MILLISECONDS);
+        I2C_EE_Writedrase();
+        if (I2C_Test() ==1) {
+            LED_GREEN;
+        } else {
+            LED_RED;
+        }
+
+        while(1);
     }
-
-
 
 #if BSP_TZ_SECURE_BUILD
     /* Enter non-secure code */
