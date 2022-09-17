@@ -107,7 +107,7 @@ FSP Configuration
       P002 167 - - - - Disabled - - "ADC0: AN002; ADC1: AN102; ICU0: IRQ08" - None - - 
       P003 166 - - - - Disabled - - "ADC0: AN003" - None - - 
       P004 165 - - - - Disabled - - "ADC0: AN004; ICU0: IRQ09" - None - - 
-      P005 164 - - - - Disabled - - "ADC0: AN005; ICU0: IRQ10" - None - - 
+      P005 164 ICU0_IRQ10 - - IRQ10 "IRQ mode" - None "ADC0: AN005; ICU0: IRQ10" - IO - - 
       P006 163 - - - - Disabled - - "ADC0: AN006; ICU0: IRQ11" - None - - 
       P007 162 - - - - Disabled - - "ADC0: AN007" - None - - 
       P008 161 - - - - Disabled - - "ADC0: AN008; ICU0: IRQ12" - None - - 
@@ -219,7 +219,7 @@ FSP Configuration
       P801 134 - - - - Disabled - - "ADC1: AN126; AGT4: AGTOB4; BUS_ASYNCH0: D15; SCI8: CTS8" - None - - 
       P802 135 - - - - Disabled - - "ADC1: AN127; ICU0: IRQ03" - None - - 
       P803 136 - - - - Disabled - - "ADC1: AN128; ICU0: IRQ02" - None - - 
-      P804 137 ICU0_IRQ01 - - IRQ01 "IRQ mode" - None "ICU0: IRQ01" - IO - - 
+      P804 137 - - - - Disabled - - "ICU0: IRQ01" - None - - 
       P805 173 - - - - Disabled - - "SCI5: SDA5; SCI5: TXD5" - None - - 
       P806 172 - - - - Disabled - - "ICU0: IRQ00" - None - - 
       P900 58 - - - - Disabled - - "BUS_ASYNCH0: A23; SCI4: SDA4; SCI4: TXD4" - None - - 
@@ -302,16 +302,16 @@ FSP Configuration
       Port E ELC Trigger Source: Disabled
       Pin Configuration Name: g_bsp_pin_cfg
       
-    Instance "g_external_irq01 External IRQ (r_icu)"
-      Name: g_external_irq01
-      Channel: 1
+    Instance "g_external_irq10 External IRQ (r_icu)"
+      Name: g_external_irq10
+      Channel: 10
       Trigger: Falling
       Digital Filtering: Disabled
       Digital Filtering Sample Clock (Only valid when Digital Filtering is Enabled): PCLK / 64
-      Callback: external_irq01_callback
+      Callback: external_irq10_callback
       Pin Interrupt Priority: Priority 2
       
-    Instance "g_transfer_dtc Transfer (r_dtc) ICU IRQ1 (External pin interrupt 1)"
+    Instance "g_transfer_dtc Transfer (r_dtc) ICU IRQ10 (External pin interrupt 10)"
       Name: g_transfer_dtc
       Mode: Block
       Transfer Size: 4 Bytes
@@ -323,5 +323,5 @@ FSP Configuration
       Interrupt Frequency: After all transfers have completed
       Number of Transfers: 32
       Number of Blocks (Valid only in Block Mode): 1
-      Activation Source: ICU IRQ1 (External pin interrupt 1)
+      Activation Source: ICU IRQ10 (External pin interrupt 10)
       
