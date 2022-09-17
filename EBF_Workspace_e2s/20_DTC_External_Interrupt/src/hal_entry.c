@@ -37,9 +37,9 @@ void hal_entry(void)
     fsp_err_t err = FSP_SUCCESS;
 
     /* 开启外部中断 */
-    err = g_external_irq_on_icu.open(&g_external_irq01_ctrl, &g_external_irq01_cfg);
+    err = g_external_irq_on_icu.open(&g_external_irq10_ctrl, &g_external_irq10_cfg);
     assert(FSP_SUCCESS == err);
-    err = g_external_irq_on_icu.enable(&g_external_irq01_ctrl);
+    err = g_external_irq_on_icu.enable(&g_external_irq10_ctrl);
     assert(FSP_SUCCESS == err);
 
     /* 初始化DTC模块 */
@@ -50,6 +50,7 @@ void hal_entry(void)
     assert(FSP_SUCCESS == err);
 
     while (dtc_complete_transmission_sign == false);
+    dtc_complete_transmission_sign == false;
     //R_BSP_SoftwareDelay(1, BSP_DELAY_UNITS_SECONDS);
 
     /* 比较源数据与传输后数据 */
@@ -77,7 +78,7 @@ void hal_entry(void)
 #endif
 }
 
-void external_irq01_callback(external_irq_callback_args_t *p_args)
+void external_irq10_callback(external_irq_callback_args_t *p_args)
 {
     (void)(p_args);  //FSP_PARAMETER_NOT_USED
 

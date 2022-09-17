@@ -197,12 +197,12 @@
       <property id="module.driver.ioport.pincfg" value="g_bsp_pin_cfg"/>
     </module>
     <module id="module.driver.external_irq_on_icu.933115672">
-      <property id="module.driver.external_irq.name" value="g_external_irq01"/>
-      <property id="module.driver.external_irq.channel" value="1"/>
+      <property id="module.driver.external_irq.name" value="g_external_irq10"/>
+      <property id="module.driver.external_irq.channel" value="10"/>
       <property id="module.driver.external_irq.trigger" value="module.driver.external_irq.trigger.trig_falling"/>
       <property id="module.driver.external_irq.filter_enable" value="module.driver.external_irq.filter_enable.false"/>
       <property id="module.driver.external_irq.pclk_div" value="module.driver.external_irq.pclk_div.pclk_div_by_64"/>
-      <property id="module.driver.external_irq.p_callback" value="external_irq01_callback"/>
+      <property id="module.driver.external_irq.p_callback" value="external_irq10_callback"/>
       <property id="module.driver.external_irq.ipl" value="board.icu.common.irq.priority2"/>
     </module>
     <module id="module.driver.transfer_on_dtc.1184151331">
@@ -217,7 +217,7 @@
       <property id="module.driver.transfer.interrupt" value="module.driver.transfer.interrupt.interrupt_end"/>
       <property id="module.driver.transfer.length" value="32"/>
       <property id="module.driver.transfer.num_blocks" value="1"/>
-      <property id="module.driver.transfer.activation_source" value="_interrupt.event.icu.irq1"/>
+      <property id="module.driver.transfer.activation_source" value="_interrupt.event.icu.irq10"/>
     </module>
     <context id="_hal.0">
       <stack module="module.driver.ioport_on_ioport.0"/>
@@ -240,8 +240,11 @@
       <configSetting altId="debug0.mode.swd" configurationId="debug0.mode"/>
       <configSetting altId="debug0.swclk.p300" configurationId="debug0.swclk"/>
       <configSetting altId="debug0.swdio.p108" configurationId="debug0.swdio"/>
-      <configSetting altId="irq0.irq01.p804" configurationId="irq0.irq01"/>
+      <configSetting altId="irq0.irq10.p005" configurationId="irq0.irq10"/>
       <configSetting altId="irq0.mode.enabled" configurationId="irq0.mode"/>
+      <configSetting altId="p005.irq0.irq10" configurationId="p005"/>
+      <configSetting altId="p005.gpio_irq.gpio_irq_enabled" configurationId="p005.gpio_irq"/>
+      <configSetting altId="p005.gpio_mode.gpio_mode_irq" configurationId="p005.gpio_mode"/>
       <configSetting altId="p108.debug0.swdio" configurationId="p108"/>
       <configSetting altId="p108.gpio_mode.gpio_mode_peripheral" configurationId="p108.gpio_mode"/>
       <configSetting altId="p300.debug0.swclk" configurationId="p300"/>
@@ -252,9 +255,6 @@
       <configSetting altId="p602.gpio_mode.gpio_mode_out.high" configurationId="p602.gpio_mode"/>
       <configSetting altId="p604.output.high" configurationId="p604"/>
       <configSetting altId="p604.gpio_mode.gpio_mode_out.high" configurationId="p604.gpio_mode"/>
-      <configSetting altId="p804.irq0.irq01" configurationId="p804"/>
-      <configSetting altId="p804.gpio_irq.gpio_irq_enabled" configurationId="p804.gpio_irq"/>
-      <configSetting altId="p804.gpio_mode.gpio_mode_irq" configurationId="p804.gpio_mode"/>
     </pincfg>
   </raPinConfiguration>
 </raConfiguration>
