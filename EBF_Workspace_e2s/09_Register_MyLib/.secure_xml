@@ -57,11 +57,4 @@
     <node id="board.clock.octaspiclk.display" option="board.clock.octaspiclk.display.value"/>
     <node id="board.clock.canfdclk.display" option="board.clock.canfdclk.display.value"/>
   </raClockConfiguration>
-  <raModuleConfiguration/>
-  <raPinConfiguration>
-    <pincfg active="true" name="" symbol="">
-      <configSetting altId="debug0.swclk.p300" configurationId="debug0.swclk" isUsedByDriver="true"/>
-      <configSetting altId="debug0.swdio.p108" configurationId="debug0.swdio" isUsedByDriver="true"/>
-    </pincfg>
-  </raPinConfiguration>
 </raConfiguration>
