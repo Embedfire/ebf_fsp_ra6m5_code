@@ -12,6 +12,8 @@
       <project_files>
         <file category="include" name="src/"/>
         <file category="source" name="src/hal_entry.c"/>
+        <file category="source" name="src/led/bsp_led.c"/>
+        <file category="header" name="src/led/bsp_led.h" path=""/>
       </project_files>
     </generator>
   </generators>

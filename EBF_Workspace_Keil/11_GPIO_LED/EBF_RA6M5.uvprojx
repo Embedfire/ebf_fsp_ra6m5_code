@@ -392,14 +392,14 @@
               <FilePath>.\src\hal_entry.c</FilePath>
             </File>
             <File>
-              <FileName>ra6m5_ioport.c</FileName>
+              <FileName>bsp_led.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\src\ioport\ra6m5_ioport.c</FilePath>
+              <FilePath>.\src\led\bsp_led.c</FilePath>
             </File>
             <File>
-              <FileName>ra6m5_ioport.h</FileName>
+              <FileName>bsp_led.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\src\ioport\ra6m5_ioport.h</FilePath>
+              <FilePath>.\src\led\bsp_led.h</FilePath>
             </File>
           </Files>
         </Group>

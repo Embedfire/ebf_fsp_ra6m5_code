@@ -202,8 +202,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\src\ioport\ra6m5_ioport.c</PathWithFileName>
-      <FilenameWithoutPath>ra6m5_ioport.c</FilenameWithoutPath>
+      <PathWithFileName>.\src\led\bsp_led.c</PathWithFileName>
+      <FilenameWithoutPath>bsp_led.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -214,8 +214,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\src\ioport\ra6m5_ioport.h</PathWithFileName>
-      <FilenameWithoutPath>ra6m5_ioport.h</FilenameWithoutPath>
+      <PathWithFileName>.\src\led\bsp_led.h</PathWithFileName>
+      <FilenameWithoutPath>bsp_led.h</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
