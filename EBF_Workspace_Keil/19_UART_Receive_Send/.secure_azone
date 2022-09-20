@@ -13,5 +13,16 @@
             <slot name="P403" secure="false"/>
             <slot name="P404" secure="false"/>
         </peripheral>
+        <peripheral name="PORT5" group="PORT">
+            <slot name="P511" secure="false"/>
+            <slot name="P512" secure="false"/>
+        </peripheral>
+        <peripheral name="SCI4" group="SCI" security=""/>
+        <peripheral name="ICU">
+            <slot name="IRQ0" secure="false"/>
+            <slot name="IRQ1" secure="false"/>
+            <slot name="IRQ2" secure="false"/>
+            <slot name="IRQ3" secure="false"/>
+        </peripheral>
     </partition>
 </azone>

@@ -54,7 +54,7 @@ FSP Configuration
     
   RA Common
     Main stack size (bytes): 0x400
-    Heap size (bytes): 0
+    Heap size (bytes): 0x1000
     MCU Vcc (mV): 3300
     Parameter checking: Disabled
     Assert Failures: Return FSP_ERR_ASSERTION
@@ -187,8 +187,8 @@ FSP Configuration
       P506 146 - - - - Disabled - - "ADC1: AN122; ICU0: IRQ15; SCI6: SDA6; SCI6: TXD6" - None - - 
       P507 147 - - - - Disabled - - "ADC1: AN123; SCI5: SCK5; SCI6: SCK6" - None - - 
       P508 148 - - - - Disabled - - "ADC1: AN124; SCI5: CTSRTS5" - None - - 
-      P511 176 - - - - Disabled - - "CAN1: CRX1; GPT0: GTIOC0B; ICU0: IRQ15; IIC1: SDA1; SCI4: RXD4; SCI4: SCL4" - None - - 
-      P512 175 - - - - Disabled - - "CAN1: CTX1; GPT0: GTIOC0A; ICU0: IRQ14; IIC1: SCL1; SCI4: SDA4; SCI4: TXD4" - None - - 
+      P511 176 SCI4_RXD4 - Low None "Peripheral mode" CMOS None "CAN1: CRX1; GPT0: GTIOC0B; ICU0: IRQ15; IIC1: SDA1; SCI4: RXD4; SCI4: SCL4" - IO - - 
+      P512 175 SCI4_TXD4 - Low None "Peripheral mode" CMOS None "CAN1: CTX1; GPT0: GTIOC0A; ICU0: IRQ14; IIC1: SCL1; SCI4: SDA4; SCI4: TXD4" - IO - - 
       P513 174 - - - - Disabled - - "SCI5: RXD5; SCI5: SCL5" - None - - 
       P600 122 - - - - Disabled - - "AGT3: AGTIO3; BUS_ASYNCH0: RD; CAC0: CACREF; CGC0: CLKOUT; GPT6: GTIOC6B; OSPI0: OMSIO4; SCI9: SCK9" - None - - 
       P601 121 - - - - Disabled - - "AGT3: AGTEE3; BUS_ASYNCH0: WR; GPT6: GTIOC6A; OSPI0: OMSIO2; SCI9: RXD9; SCI9: SCL9" - None - - 
@@ -282,6 +282,13 @@ FSP Configuration
   Module "I/O Port (r_ioport)"
     Parameter Checking: Default (BSP)
     
+  Module "UART (r_sci_uart)"
+    Parameter Checking: Default (BSP)
+    FIFO Support: Disable
+    DTC Support: Disable
+    Flow Control Support: Disable
+    RS-485 Support: Disable
+    
   HAL
     Instance "g_ioport I/O Port (r_ioport)"
       Name: g_ioport
@@ -294,4 +301,30 @@ FSP Configuration
       Port D ELC Trigger Source: Disabled
       Port E ELC Trigger Source: Disabled
       Pin Configuration Name: g_bsp_pin_cfg
+      
+    Instance "g_uart4 UART (r_sci_uart)"
+      General: Name: g_uart4
+      General: Channel: 4
+      General: Data Bits: 8bits
+      General: Parity: None
+      General: Stop Bits: 1bit
+      Baud: Baud Rate: 115200
+      Baud: Baud Rate Modulation: Disabled
+      Baud: Max Error (%): 5
+      Flow Control: CTS/RTS Selection: Hardware RTS
+      Flow Control: Software RTS Port: Disabled
+      Flow Control: Software RTS Pin: Disabled
+      Extra: Clock Source: Internal Clock
+      Extra: Start bit detection: Falling Edge
+      Extra: Noise Filter: Disable
+      Extra: Receive FIFO Trigger Level: Max
+      Extra: RS-485: DE Pin: Disable
+      Extra: RS-485: DE Pin Polarity: Active High
+      Extra: RS-485: DE Port Number: Disabled
+      Extra: RS-485: DE Pin Number: Disabled
+      Interrupts: Callback: debug_uart4_callback
+      Interrupts: Receive Interrupt Priority: Priority 12
+      Interrupts: Transmit Data Empty Interrupt Priority: Priority 12
+      Interrupts: Transmit End Interrupt Priority: Priority 12
+      Interrupts: Error Interrupt Priority: Priority 12
       

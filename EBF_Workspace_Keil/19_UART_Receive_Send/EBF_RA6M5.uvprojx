@@ -401,6 +401,16 @@
               <FileType>5</FileType>
               <FilePath>.\src\led\bsp_led.h</FilePath>
             </File>
+            <File>
+              <FileName>bsp_debug_uart.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\debug_uart\bsp_debug_uart.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_debug_uart.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\debug_uart\bsp_debug_uart.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

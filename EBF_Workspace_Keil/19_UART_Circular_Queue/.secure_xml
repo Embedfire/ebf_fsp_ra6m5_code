@@ -64,6 +64,8 @@
       <configSetting altId="p400.output.low" configurationId="p400"/>
       <configSetting altId="p403.output.low" configurationId="p403"/>
       <configSetting altId="p404.output.low" configurationId="p404"/>
+      <configSetting altId="sci4.rxd.p511" configurationId="sci4.rxd" isUsedByDriver="true"/>
+      <configSetting altId="sci4.txd.p512" configurationId="sci4.txd" isUsedByDriver="true"/>
     </pincfg>
   </raPinConfiguration>
 </raConfiguration>
