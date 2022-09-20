@@ -1,38 +1,33 @@
 #include "hal_data.h"
+#include "led/bsp_led.h"
 
 FSP_CPP_HEADER
 void R_BSP_WarmStart(bsp_warm_start_event_t event);
 FSP_CPP_FOOTER
 
+bsp_io_level_t button2_status = BSP_IO_LEVEL_LOW;                                           //状态结构体
+bsp_io_level_t button3_status = BSP_IO_LEVEL_LOW;
 
-
-
-bsp_io_level_t Pin_status = BSP_IO_LEVEL_LOW;                                           //状态结构体
-
-void exit_back(external_irq_callback_args_t *p_args)                                    //当产生中断时会访问中断服务函数
+void button1_callback(external_irq_callback_args_t *p_args)                                    //当产生中断时会访问中断服务函数
 {
     (void) p_args;
-    if(Pin_status)
-        R_IOPORT_PinWrite(&g_ioport_ctrl, BSP_IO_PORT_00_PIN_06, BSP_IO_LEVEL_HIGH);    //点亮LED
-    else
-        R_IOPORT_PinWrite(&g_ioport_ctrl, BSP_IO_PORT_00_PIN_06, BSP_IO_LEVEL_LOW);     //关闭LED
-    Pin_status=~ Pin_status;                                                            //状态反转
+    R_IOPORT_PinWrite(&g_ioport_ctrl, LED_Red, button2_status);    //点亮LED
+    button2_status=~ button2_status;                                                            //状态反转
 }
 
+void button2_callback(external_irq_callback_args_t *p_args)                                    //当产生中断时会访问中断服务函数
+{
+    (void) p_args;
+    R_IOPORT_PinWrite(&g_ioport_ctrl, LED_Bule, button3_status);    //点亮LED
+    button3_status=~ button3_status;                                                            //状态反转
+}
 
 void hal_entry(void)
 {
-    fsp_err_t err;
-    err = R_IOPORT_Open(&g_ioport_ctrl, &g_bsp_pin_cfg);
-    assert(FSP_SUCCESS == err);
-    err = R_ICU_ExternalIrqOpen(&g_external_irq10_ctrl, &g_external_irq10_cfg);
-    assert(FSP_SUCCESS == err);
-    err = R_ICU_ExternalIrqEnable(&g_external_irq10_ctrl);
-    assert(FSP_SUCCESS == err);
-    err = R_ICU_ExternalIrqOpen(&g_external_irq9_ctrl, &g_external_irq9_cfg);
-    assert(FSP_SUCCESS == err);
-    err = R_ICU_ExternalIrqEnable(&g_external_irq9_ctrl);
-    assert(FSP_SUCCESS == err);
+    R_ICU_ExternalIrqOpen(button1.p_ctrl, button1.p_cfg);
+    R_ICU_ExternalIrqEnable(button1.p_ctrl);
+    R_ICU_ExternalIrqOpen(button2.p_ctrl, button2.p_cfg);
+    R_ICU_ExternalIrqEnable(button2.p_ctrl);
 
     while(1)
     {

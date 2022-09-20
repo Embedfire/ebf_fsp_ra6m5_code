@@ -2,23 +2,22 @@
 <azone>
     <rzone name="R7FA6M5BH3CFC.rzone"/>
     <partition>
+        <peripheral name="PORT0" group="PORT">
+            <slot name="P004" secure="false"/>
+            <slot name="P005" secure="false"/>
+        </peripheral>
         <peripheral name="PORT1" group="PORT">
             <slot name="P108" secure="false"/>
         </peripheral>
         <peripheral name="PORT3" group="PORT">
             <slot name="P300" secure="false"/>
         </peripheral>
-        <peripheral name="PORT6" group="PORT">
-            <slot name="P601" secure="false"/>
-            <slot name="P602" secure="false"/>
-            <slot name="P604" secure="false"/>
-        </peripheral>
-        <peripheral name="PORT8" group="PORT">
-            <slot name="P803" secure="false"/>
-            <slot name="P804" secure="false"/>
+        <peripheral name="PORT4" group="PORT">
+            <slot name="P400" secure="false"/>
+            <slot name="P403" secure="false"/>
         </peripheral>
         <peripheral name="ICU_EXT_IRQ">
-            <slot name="ICU_EXT_IRQ1" secure="false"/>
+            <slot name="ICU_EXT_IRQ9" secure="false"/>
         </peripheral>
         <peripheral name="ICU">
             <slot name="IRQ0" secure="false"/>

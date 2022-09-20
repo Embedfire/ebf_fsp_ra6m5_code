@@ -9,7 +9,7 @@
     <option key="#DeviceCommand#" value="R7FA6M5BH"/>
     <option key="#RTOS#" value="_none"/>
     <option key="#pinconfiguration#" value="R7FA6M5BH3CFC.pincfg"/>
-    <option key="#FSPVersion#" value="4.0.0-beta.0"/>
+    <option key="#FSPVersion#" value="4.0.0"/>
     <option key="#SELECTED_TOOLCHAIN#" value="gcc-arm-embedded"/>
     <option key="#ToolchainVersion#" value="10.3.1.20210824"/>
   </generalSettings>
@@ -62,11 +62,10 @@
     <pincfg active="true" name="" symbol="">
       <configSetting altId="debug0.swclk.p300" configurationId="debug0.swclk" isUsedByDriver="true"/>
       <configSetting altId="debug0.swdio.p108" configurationId="debug0.swdio" isUsedByDriver="true"/>
-      <configSetting altId="irq0.irq01.p804" configurationId="irq0.irq01" isUsedByDriver="true"/>
-      <configSetting altId="irq0.irq02.p803" configurationId="irq0.irq02" isUsedByDriver="true"/>
-      <configSetting altId="p601.output.high" configurationId="p601"/>
-      <configSetting altId="p602.output.high" configurationId="p602"/>
-      <configSetting altId="p604.output.high" configurationId="p604"/>
+      <configSetting altId="irq0.irq09.p004" configurationId="irq0.irq09" isUsedByDriver="true"/>
+      <configSetting altId="irq0.irq10.p005" configurationId="irq0.irq10" isUsedByDriver="true"/>
+      <configSetting altId="p400.output.high" configurationId="p400"/>
+      <configSetting altId="p403.output.high" configurationId="p403"/>
     </pincfg>
   </raPinConfiguration>
 </raConfiguration>
