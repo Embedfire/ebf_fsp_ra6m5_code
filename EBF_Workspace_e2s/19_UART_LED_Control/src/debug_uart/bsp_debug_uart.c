@@ -61,14 +61,18 @@ void debug_uart4_callback (uart_callback_args_t * p_args)
             uart_send_complete_flag = true;
             break;
         }
+        default:
+            break;
     }
 }
 
 
 /* 重定向 printf 输出 */
 #if defined __GNUC__ && !defined __clang__
+int _write(int fd, char *pBuffer, int size); //防止编译警告
 int _write(int fd, char *pBuffer, int size)
 {
+    (void)fd;
     R_SCI_UART_Write(&g_uart4_ctrl, (uint8_t *)pBuffer, (uint32_t)size);
     while(uart_send_complete_flag == false);
     uart_send_complete_flag = false;
@@ -78,6 +82,7 @@ int _write(int fd, char *pBuffer, int size)
 #else
 int fputc(int ch, FILE *f)
 {
+    (void)f;
     R_SCI_UART_Write(&g_uart4_ctrl, (uint8_t *)&ch, 1);
     while(uart_send_complete_flag == false);
     uart_send_complete_flag = false;
