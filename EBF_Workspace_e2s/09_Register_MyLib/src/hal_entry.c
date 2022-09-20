@@ -1,5 +1,4 @@
 #include "hal_data.h"
-#include "ra6m5_ioport.h"
 
 FSP_CPP_HEADER
 void R_BSP_WarmStart(bsp_warm_start_event_t event);
@@ -7,7 +6,7 @@ FSP_CPP_FOOTER
 
 
 /* IOPORT模块头文件 （自己写库——构建库函数雏形） */
-#include "ra6m5_ioport.h"
+#include "ioport/ra6m5_ioport.h"
 
 
 /*******************************************************************************************************************//**
@@ -54,7 +53,7 @@ void hal_entry(void)
     }
 
 
-
+    //这后面的代码无需理会
 #if BSP_TZ_SECURE_BUILD
     /* Enter non-secure code */
     R_BSP_NonSecureEnter();

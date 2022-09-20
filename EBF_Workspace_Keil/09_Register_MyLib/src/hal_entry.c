@@ -5,8 +5,8 @@ void R_BSP_WarmStart(bsp_warm_start_event_t event);
 FSP_CPP_FOOTER
 
 
-/* 9.自己写库——构建库函数雏形  包含IOPORT模块头文件 */
-#include "ra6m5_ioport.h"
+/* IOPORT模块头文件 （自己写库——构建库函数雏形） */
+#include "ioport/ra6m5_ioport.h"
 
 
 /*******************************************************************************************************************//**
@@ -23,8 +23,8 @@ void hal_entry(void)
 
     /* 使用 IOPORT 初始化结构体和调用初始化函数来配置PFS寄存器 */
     IOPORT_Init_t led_io_init;
-    led_io_init.Port = IO_PORT_06;
-    led_io_init.Pin = IO_PIN_01;
+    led_io_init.Port = IO_PORT_04;
+    led_io_init.Pin = IO_PIN_00;
     led_io_init.Mode = IO_MODE_GPIO;  //普通GPIO模式，而不是复用功能模式或其他的
     led_io_init.Dir = IO_DIR_OUTPUT;
     led_io_init.OType = IO_OTYPE_PP;
@@ -33,7 +33,7 @@ void hal_entry(void)
     led_io_init.Level = IO_LEVEL_LOW; //输出低电平
     IOPORT_Init(&led_io_init); //调用初始化函数，进行 LED1 引脚初始化
 
-    led_io_init.Pin = IO_PIN_02; //更换引脚号
+    led_io_init.Pin = IO_PIN_03; //更换引脚号
     IOPORT_Init(&led_io_init); //结构体其他属性不变，再次调用初始化函数，进行 LED2 引脚初始化
 
     led_io_init.Pin = IO_PIN_04; //更换引脚号
@@ -48,7 +48,7 @@ void hal_entry(void)
     while(1)
     {
         /* 使用库函数 IOPORT_PinToggle 翻转 LED1 引脚电平 */
-        IOPORT_PinToggle(IO_PORT_06, IO_PIN_01);
+        IOPORT_PinToggle(IO_PORT_04, IO_PIN_00);
         /* 使用延时函数进行延时：此处延时 1000 毫秒 */
         R_BSP_SoftwareDelay(1000, BSP_DELAY_UNITS_MILLISECONDS);
     }
