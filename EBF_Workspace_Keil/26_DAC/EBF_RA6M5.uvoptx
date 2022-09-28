@@ -270,8 +270,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\src\adc\bsp_adc.c</PathWithFileName>
-      <FilenameWithoutPath>bsp_adc.c</FilenameWithoutPath>
+      <PathWithFileName>.\src\dac\bsp_dac.c</PathWithFileName>
+      <FilenameWithoutPath>bsp_dac.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -282,8 +282,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\src\adc\bsp_adc.h</PathWithFileName>
-      <FilenameWithoutPath>bsp_adc.h</FilenameWithoutPath>
+      <PathWithFileName>.\src\dac\bsp_dac.h</PathWithFileName>
+      <FilenameWithoutPath>bsp_dac.h</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>

@@ -175,8 +175,8 @@
       <description>SCI UART</description>
       <originalPack>Renesas.RA.4.0.0.pack</originalPack>
     </component>
-    <component apiversion="" class="HAL Drivers" condition="" group="all" subgroup="r_adc" variant="" vendor="Renesas" version="4.0.0">
-      <description>A/D Converter</description>
+    <component apiversion="" class="HAL Drivers" condition="" group="all" subgroup="r_dac" variant="" vendor="Renesas" version="4.0.0">
+      <description>12-bit D/A Converter</description>
       <originalPack>Renesas.RA.4.0.0.pack</originalPack>
     </component>
   </raComponentSelection>
@@ -221,53 +221,26 @@
       <property id="module.driver.uart.tei_ipl" value="board.icu.common.irq.priority12"/>
       <property id="module.driver.uart.eri_ipl" value="board.icu.common.irq.priority12"/>
     </module>
-    <module id="module.driver.adc_on_adc.132184441">
-      <property id="module.driver.adc.name" value="g_adc0"/>
-      <property id="module.driver.adc.unit" value="0"/>
-      <property id="module.driver.adc.resolution" value="module.driver.adc.resolution.resolution_12_bit"/>
-      <property id="module.driver.adc.alignment" value="module.driver.adc.alignment.alignment_right"/>
-      <property id="module.driver.adc.clearing" value="module.driver.adc.clearing.clear_after_read_on"/>
-      <property id="module.driver.adc.mode" value="module.driver.adc.mode.mode_single_scan"/>
-      <property id="module.driver.adc.mode.dt" value="module.driver.adc.mode.dt.disabled"/>
-      <property id="module.driver.adc.scan_mask" value="module.driver.adc.scan_mask.channel_0"/>
-      <property id="module.driver.adc.scan_mask_group_b" value=""/>
-      <property id="module.driver.adc.trigger" value="enum.driver.adc.trigger.trigger_software"/>
-      <property id="module.driver.adc.trigger_group_b" value="_disabled"/>
-      <property id="module.driver.adc.priority_group_a" value="module.driver.adc.priority_group_a.group_a_priority_off"/>
-      <property id="module.driver.adc.add_average_count" value="module.driver.adc.add_average_count.add_off"/>
-      <property id="module.driver.adc.adc_vref_control" value="module.driver.adc.adc_vref_control.vrefh"/>
-      <property id="module.driver.adc.add_mask" value=""/>
-      <property id="module.driver.adc.sample_hold_mask" value=""/>
-      <property id="module.driver.adc.sample_hold_states" value="24"/>
-      <property id="module.driver.adc.compare.window_mode" value="module.driver.adc.compare.window_mode.disabled"/>
-      <property id="module.driver.adc.compare.event_mode" value="module.driver.adc.compare.event_mode.or"/>
-      <property id="module.driver.adc.compare.window_a.enable" value="module.driver.adc.compare.window_a.enable.disabled"/>
-      <property id="module.driver.adc.compare.window_a.channels" value=""/>
-      <property id="module.driver.adc.compare.window_a.channel_mode" value=""/>
-      <property id="module.driver.adc.compare.window_a.ref_lower" value="0"/>
-      <property id="module.driver.adc.compare.window_a.ref_upper" value="0"/>
-      <property id="module.driver.adc.compare.window_b.enable" value="module.driver.adc.compare.window_b.enable.disabled"/>
-      <property id="module.driver.adc.compare.window_b.channel" value="module.driver.adc.compare.window_b.channel.channel_0"/>
-      <property id="module.driver.adc.compare.window_b.mode" value="module.driver.adc.compare.window_b.mode"/>
-      <property id="module.driver.adc.compare.window_b.ref_lower" value="0"/>
-      <property id="module.driver.adc.compare.window_b.ref_upper" value="0"/>
-      <property id="module.driver.adc.p_callback" value="adc_callback"/>
-      <property id="module.driver.adc.scan_end_ipl" value="board.icu.common.irq.priority2"/>
-      <property id="module.driver.adc.scan_end_b_ipl" value="_disabled"/>
-      <property id="module.driver.adc.window_a_ipl" value="_disabled"/>
-      <property id="module.driver.adc.window_b_ipl" value="_disabled"/>
-      <property id="module.driver.adc.adbuf" value="module.driver.adc.adbuf.disabled"/>
+    <module id="module.driver.dac_on_dac.1326893966">
+      <property id="module.driver.dac.name" value="DAC"/>
+      <property id="module.driver.dac.channel_id" value="0"/>
+      <property id="module.driver.dac.ad_da_synchronized" value="module.driver.dac.ad_da_synchronized.disabled"/>
+      <property id="module.driver.dac.data_format" value="module.driver.dac.data_format.data_format_flush_right"/>
+      <property id="module.driver.dac.output_amplifier_enabled" value="module.driver.dac.output_amplifier.disabled"/>
+      <property id="module.driver.dac.charge_pump_enabled" value="enum.mcu.dac.charge_pump.disabled"/>
+      <property id="module.driver.dac.internal_output" value="enum.mcu.dac.internal_output.disabled"/>
+      <property id="module.driver.dac.elc_trigger" value="_disabled"/>
     </module>
     <context id="_hal.0">
       <stack module="module.driver.ioport_on_ioport.0"/>
       <stack module="module.driver.uart_on_sci_uart.735256851"/>
-      <stack module="module.driver.adc_on_adc.132184441"/>
+      <stack module="module.driver.dac_on_dac.1326893966"/>
     </context>
     <config id="config.driver.ioport">
       <property id="config.driver.ioport.checking" value="config.driver.ioport.checking.system"/>
     </config>
-    <config id="config.driver.adc">
-      <property id="config.driver.adc.param_checking_enable" value="config.driver.adc.param_checking_enable.bsp"/>
+    <config id="config.driver.dac">
+      <property id="config.driver.dac.param_checking_enable" value="config.driver.dac.param_checking_enable.bsp"/>
     </config>
     <config id="config.driver.sci_uart">
       <property id="config.driver.sci_uart.param_checking_enable" value="config.driver.sci_uart.param_checking_enable.bsp"/>
@@ -281,6 +254,8 @@
     <pincfg active="true" name="R7FA6M5BH3CFC.pincfg" selected="true" symbol="g_bsp_pin_cfg">
       <configSetting altId="adc0.an00.p000" configurationId="adc0.an00"/>
       <configSetting altId="adc0.mode.custom" configurationId="adc0.mode"/>
+      <configSetting altId="dac0.da.p014" configurationId="dac0.da"/>
+      <configSetting altId="dac0.mode.enabled" configurationId="dac0.mode"/>
       <configSetting altId="debug0.mode.swd" configurationId="debug0.mode"/>
       <configSetting altId="debug0.swclk.p300" configurationId="debug0.swclk"/>
       <configSetting altId="debug0.swdio.p108" configurationId="debug0.swdio"/>
@@ -290,6 +265,8 @@
       <configSetting altId="iic2.sda.p414" configurationId="iic2.sda"/>
       <configSetting altId="p000.asel" configurationId="p000"/>
       <configSetting altId="p000.gpio_mode.gpio_mode_an" configurationId="p000.gpio_mode"/>
+      <configSetting altId="p014.dac0.da" configurationId="p014"/>
+      <configSetting altId="p014.gpio_mode.gpio_mode_an" configurationId="p014.gpio_mode"/>
       <configSetting altId="p108.debug0.swdio" configurationId="p108"/>
       <configSetting altId="p108.gpio_mode.gpio_mode_peripheral" configurationId="p108.gpio_mode"/>
       <configSetting altId="p300.debug0.swclk" configurationId="p300"/>

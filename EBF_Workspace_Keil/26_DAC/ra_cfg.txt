@@ -113,7 +113,7 @@ FSP Configuration
       P008 161 - - - - Disabled - - "ADC0: AN008; ICU0: IRQ12" - None - - 
       P009 160 - - - - Disabled - - "ADC0: AN009; ICU0: IRQ13" - None - - 
       P010 159 - - - - Disabled - - "ADC0: AN010; ICU0: IRQ14" - None - - 
-      P014 152 - - - - Disabled - - "ADC0: AN012; DAC0: DA0" - None - - 
+      P014 152 DAC0_DA0 - - - "Analog mode" - None "ADC0: AN012; DAC0: DA0" - IO - - 
       P015 151 - - - - Disabled - - "ADC0: AN013; DAC1: DA1; ICU0: IRQ13" - None - - 
       P100 132 - - - - Disabled - - "AGT0: AGTIO0; BUS_ASYNCH0: D00; GPT_POEG0: GTETRGA; GPT5: GTIOC5B; ICU0: IRQ02; OSPI0: OMSCLK; QSPI0: QSPCLK; SCI0: RXD0; SCI0: SCL0; SCI1: SCK1; SPI1: MISOB" - None - - 
       P101 131 - - - - Disabled - - "AGT0: AGTEE0; BUS_ASYNCH0: D01; GPT_POEG1: GTETRGB; GPT5: GTIOC5A; ICU0: IRQ01; OSPI0: OMSIO7; QSPI0: QIO1; SCI0: SDA0; SCI0: TXD0; SCI1: CTSRTS1; SPI1: MOSIB" - None - - 
@@ -289,7 +289,7 @@ FSP Configuration
     Flow Control Support: Disable
     RS-485 Support: Disable
     
-  Module "ADC (r_adc)"
+  Module "DAC (r_dac)"
     Parameter Checking: Default (BSP)
     
   HAL
@@ -331,40 +331,13 @@ FSP Configuration
       Interrupts: Transmit End Interrupt Priority: Priority 12
       Interrupts: Error Interrupt Priority: Priority 12
       
-    Instance "g_adc0 ADC (r_adc)"
-      General: Name: g_adc0
-      General: Unit: 0
-      General: Resolution: 12-Bit
-      General: Alignment: Right
-      General: Clear after read: On
-      General: Mode: Single Scan
-      General: Double-trigger: Disabled
-      Input: Channel Scan Mask (channel availability varies by MCU): Channel 0
-      Input: Group B Scan Mask (channel availability varies by MCU): 
-      Interrupts: Normal/Group A Trigger: Software
-      Interrupts: Group B Trigger: Disabled
-      Interrupts: Group Priority (Valid only in Group Scan Mode): Group A cannot interrupt Group B
-      Input: Add/Average Count: Disabled
-      Input: Reference Voltage control: VREFH0/VREFH
-      Input: Addition/Averaging Mask (channel availability varies by MCU and unit): 
-      Input: Sample and Hold: Sample and Hold Channels (Available only on selected MCUs): 
-      Input: Sample and Hold: Sample Hold States (Applies only to channels 0, 1, 2): 24
-      Input: Window Compare: Window Mode: Disabled
-      Input: Window Compare: Event Output: OR
-      Input: Window Compare: Window A: Enable: Disabled
-      Input: Window Compare: Window A: Channels to compare (channel availability varies by MCU and unit): 
-      Input: Window Compare: Window A: Channel comparison mode (channel availability varies by MCU and unit): 
-      Input: Window Compare: Window A: Lower Reference: 0
-      Input: Window Compare: Window A: Upper Reference: 0
-      Input: Window Compare: Window B: Enable: Disabled
-      Input: Window Compare: Window B: Channel to compare (channel availability varies by MCU and unit): Channel 0
-      Input: Window Compare: Window B: Comparison mode: Less Than or Outside Window
-      Input: Window Compare: Window B: Lower Reference: 0
-      Input: Window Compare: Window B: Upper Reference: 0
-      Interrupts: Callback: adc_callback
-      Interrupts: Scan End Interrupt Priority: Priority 2
-      Interrupts: Scan End Group B Interrupt Priority: Disabled
-      Interrupts: Window Compare A Interrupt Priority: Disabled
-      Interrupts: Window Compare B Interrupt Priority: Disabled
-      Extra: ADC Ring Buffer: Disabled
+    Instance "DAC DAC (r_dac)"
+      Name: DAC
+      Channel: 0
+      Synchronize with ADC: Disabled
+      Data Format: Right Justified
+      Output Amplifier: Disabled
+      Charge Pump (Requires MOCO active): Disabled
+      Internal Output: Enabled by default
+      ELC Trigger Source: Disabled
       

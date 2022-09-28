@@ -412,14 +412,14 @@
               <FilePath>.\src\debug_uart\bsp_debug_uart.h</FilePath>
             </File>
             <File>
-              <FileName>bsp_adc.c</FileName>
+              <FileName>bsp_dac.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\src\adc\bsp_adc.c</FilePath>
+              <FilePath>.\src\dac\bsp_dac.c</FilePath>
             </File>
             <File>
-              <FileName>bsp_adc.h</FileName>
+              <FileName>bsp_dac.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\src\adc\bsp_adc.h</FilePath>
+              <FilePath>.\src\dac\bsp_dac.h</FilePath>
             </File>
           </Files>
         </Group>
