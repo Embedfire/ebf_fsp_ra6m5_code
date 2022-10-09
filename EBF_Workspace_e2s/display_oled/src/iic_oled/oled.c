@@ -1,34 +1,44 @@
 #include "hal_data.h"
 #include "oled.h"
+#include "stdio.h"
 #include "oledpic.h"
 
+
+i2c_master_event_t OLED_Transant_flag;
 
 /* Callback function */
 void sci_i2c_master_callback(i2c_master_callback_args_t *p_args)
 {
-    /* TODO: add your own code here */
+    OLED_Transant_flag = p_args->event;
 }
 
 //写命令
 void WriteCmd(unsigned char cmd)
 {
     uint8_t send_buffer[2] = {};
+    OLED_Transant_flag = I2C_MASTER_EVENT_ABORTED;
 
     send_buffer[0] = 0x00;
     send_buffer[1] = cmd;
     R_SCI_I2C_Write(&I2C6_ctrl, &send_buffer[0], 2, false); //每当写完数据 false 总线拉高
-    R_BSP_SoftwareDelay(300,BSP_DELAY_UNITS_MICROSECONDS);
+    while(OLED_Transant_flag != I2C_MASTER_EVENT_TX_COMPLETE){
+        R_BSP_SoftwareDelay(2,BSP_DELAY_UNITS_MICROSECONDS);
+    }
 }
 
 //写数据
 void WriteDat(unsigned char data)
 {
     uint8_t send_buffer[2] = {};
+    OLED_Transant_flag = I2C_MASTER_EVENT_ABORTED;
 
     send_buffer[0] = 0x40;//0x04
     send_buffer[1] = data;
     R_SCI_I2C_Write(&I2C6_ctrl, &send_buffer[0], 2, false); //每当写完数据 false 总线拉高
-    R_BSP_SoftwareDelay(300,BSP_DELAY_UNITS_MICROSECONDS);
+
+    while(OLED_Transant_flag != I2C_MASTER_EVENT_TX_COMPLETE){
+        R_BSP_SoftwareDelay(2,BSP_DELAY_UNITS_MICROSECONDS);
+    }
 }
 
 
