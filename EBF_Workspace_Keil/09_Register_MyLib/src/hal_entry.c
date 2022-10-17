@@ -25,12 +25,12 @@ void hal_entry(void)
     IOPORT_Init_t led_io_init;
     led_io_init.Port = IO_PORT_04;
     led_io_init.Pin = IO_PIN_00;
-    led_io_init.Mode = IO_MODE_GPIO;  //普通GPIO模式，而不是复用功能模式或其他的
+    led_io_init.Mode = IO_MODE_GPIO;    //普通GPIO模式，而不是复用功能模式或其他的
     led_io_init.Dir = IO_DIR_OUTPUT;
     led_io_init.OType = IO_OTYPE_PP;
     led_io_init.Drive = IO_DRIVE_LOW;
-    //LED_IO_Init.Pull = IO_NO_PULL; //引脚处于GPIO输出模式下是没有上拉的，所以这个属性没意义
-    led_io_init.Level = IO_LEVEL_LOW; //输出低电平
+    led_io_init.Level = IO_LEVEL_HIGH;  //输出高电平（LED熄灭）
+    //LED_IO_Init.Pull = IO_NO_PULL; //端口方向处于输出模式下是用不了上拉的，所以这个属性没意义
     IOPORT_Init(&led_io_init); //调用初始化函数，进行 LED1 引脚初始化
 
     led_io_init.Pin = IO_PIN_03; //更换引脚号
@@ -40,10 +40,12 @@ void hal_entry(void)
     IOPORT_Init(&led_io_init); //结构体其他属性不变，再次调用初始化函数，进行 LED3 引脚初始化
 
 
-    /** 此时3个LED灯的引脚默认输出的是低电平
-     *  所以3个LED灯都会默认亮起来
-     *  我们在 while 循环里让 LED1 闪烁：每秒钟翻转一次状态
+    /** 此时3个LED灯的引脚默认输出的是高电平，所以3个LED灯都会默认不亮
+     *  我们先打开所有LED灯，然后在 while 循环里让 LED1 闪烁：每秒钟翻转一次状态
      */
+    IOPORT_PinWrite(IO_PORT_04, IO_PIN_00, IO_LEVEL_LOW); //点亮LED1
+    IOPORT_PinWrite(IO_PORT_04, IO_PIN_03, IO_LEVEL_LOW); //点亮LED2
+    IOPORT_PinWrite(IO_PORT_04, IO_PIN_04, IO_LEVEL_LOW); //点亮LED3
 
     while(1)
     {

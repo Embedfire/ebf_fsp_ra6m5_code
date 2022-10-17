@@ -5,7 +5,7 @@ void R_BSP_WarmStart(bsp_warm_start_event_t event);
 FSP_CPP_FOOTER
 
 
-/* ç”¨æˆ·å¤´æ–‡ä»¶åŒ…å« */
+/* ÓÃ»§Í·ÎÄ¼ş°üº¬ */
 #include "led/bsp_led.h"
 #include "debug_uart/bsp_debug_uart.h"
 
@@ -18,23 +18,22 @@ void hal_entry(void)
 {
     /* TODO: add your own code here */
 
-    LED_Init();         // LED åˆå§‹åŒ–
-    Debug_UART4_Init(); // SCI4 UART è°ƒè¯•ä¸²å£åˆå§‹åŒ–
+    LED_Init();         // LED ³õÊ¼»¯
+    Debug_UART4_Init(); // SCI4 UART µ÷ÊÔ´®¿Ú³õÊ¼»¯
 
-    printf("è¿™æ˜¯ä¸€ä¸ªä¸²å£æ§åˆ¶ LED ä¾‹ç¨‹\r\n");
-    printf("æ‰“å¼€ä¸²å£åŠ©æ‰‹å‘é€ä»¥ä¸‹æŒ‡ä»¤ï¼Œæ§åˆ¶ LED çš„çŠ¶æ€\r\n");
-    printf ("\tæŒ‡ä»¤   ------  çŠ¶æ€\r\n ");
+    printf("ÕâÊÇÒ»¸ö´®¿Ú¿ØÖÆ LED Àı³Ì\r\n");
+    printf("´ò¿ª´®¿ÚÖúÊÖ·¢ËÍÒÔÏÂÖ¸Áî£¬¿ØÖÆ LED µÄ×´Ì¬\r\n");
+    printf ("\tÖ¸Áî   ------  ×´Ì¬\r\n ");
     printf ("\t 1   ------  LED1_ON\r\n ");
     printf ("\t 2   ------  LED2_ON\r\n ");
     printf ("\t 3   ------  LED3_ON\r\n ");
     printf ("\t 4   ------  LED1_OFF\r\n ");
     printf ("\t 5   ------  LED2_OFF\r\n ");
     printf ("\t 6   ------  LED3_OFF\r\n ");
-    printf ("\t 7   ------  LED å…¨äº®\r\n ");
-    printf ("\t 8   ------  LED å…¨ç­\r\n ");
+    printf ("\t 7   ------  LED È«ÁÁ\r\n ");
+    printf ("\t 8   ------  LED È«Ãğ\r\n ");
 
-    R_BSP_SoftwareDelay(500, BSP_DELAY_UNITS_MILLISECONDS);
-    LED1_OFF; LED2_OFF; LED3_OFF;   //é»˜è®¤å…³é—­æ‰€æœ‰ LED ç¯
+    LED1_OFF; LED2_OFF; LED3_OFF;   //Ä¬ÈÏ¹Ø±ÕËùÓĞ LED µÆ
 
     while(1)
     {

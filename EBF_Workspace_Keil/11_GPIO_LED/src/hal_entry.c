@@ -21,14 +21,14 @@ void hal_entry(void)
 
     while(1)
     {
-        LED1_OFF;
-        LED2_OFF;
-        LED3_OFF;
-        R_BSP_SoftwareDelay(1, BSP_DELAY_UNITS_SECONDS);
-        LED1_ON;
-        LED2_ON;
-        LED3_ON;
-        R_BSP_SoftwareDelay(1, BSP_DELAY_UNITS_SECONDS);
+        LED1_ON; // LED1¡¡
+        LED2_ON; // LED2¡¡
+        LED3_ON; // LED3¡¡
+        R_BSP_SoftwareDelay(1, BSP_DELAY_UNITS_SECONDS); //—” ±1√Î
+        LED1_OFF; // LED1√
+        LED2_OFF; // LED2√
+        LED3_OFF; // LED3√
+        R_BSP_SoftwareDelay(1, BSP_DELAY_UNITS_SECONDS); //—” ±1√Î
     }
 
 
