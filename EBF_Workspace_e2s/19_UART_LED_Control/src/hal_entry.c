@@ -33,7 +33,6 @@ void hal_entry(void)
     printf ("\t 7   ------  LED 全亮\r\n ");
     printf ("\t 8   ------  LED 全灭\r\n ");
 
-    R_BSP_SoftwareDelay(500, BSP_DELAY_UNITS_MILLISECONDS);
     LED1_OFF; LED2_OFF; LED3_OFF;   //默认关闭所有 LED 灯
 
     while(1)

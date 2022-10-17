@@ -192,7 +192,7 @@
       <property id="module.driver.ioport.elc_trigger_ioporte" value="_disabled"/>
       <property id="module.driver.ioport.pincfg" value="g_bsp_pin_cfg"/>
     </module>
-    <module id="module.driver.uart_on_sci_uart.1192940428">
+    <module id="module.driver.uart_on_sci_uart.1963891634">
       <property id="module.driver.uart.name" value="g_uart4"/>
       <property id="module.driver.uart.channel" value="4"/>
       <property id="module.driver.uart.data_bits" value="module.driver.uart.data_bits.data_bits_8"/>
@@ -220,7 +220,7 @@
     </module>
     <context id="_hal.0">
       <stack module="module.driver.ioport_on_ioport.0"/>
-      <stack module="module.driver.uart_on_sci_uart.1192940428"/>
+      <stack module="module.driver.uart_on_sci_uart.1963891634"/>
     </context>
     <config id="config.driver.ioport">
       <property id="config.driver.ioport.checking" value="config.driver.ioport.checking.system"/>
@@ -242,12 +242,12 @@
       <configSetting altId="p108.gpio_mode.gpio_mode_peripheral" configurationId="p108.gpio_mode"/>
       <configSetting altId="p300.debug0.swclk" configurationId="p300"/>
       <configSetting altId="p300.gpio_mode.gpio_mode_peripheral" configurationId="p300.gpio_mode"/>
-      <configSetting altId="p400.output.low" configurationId="p400"/>
-      <configSetting altId="p400.gpio_mode.gpio_mode_out.low" configurationId="p400.gpio_mode"/>
-      <configSetting altId="p403.output.low" configurationId="p403"/>
-      <configSetting altId="p403.gpio_mode.gpio_mode_out.low" configurationId="p403.gpio_mode"/>
-      <configSetting altId="p404.output.low" configurationId="p404"/>
-      <configSetting altId="p404.gpio_mode.gpio_mode_out.low" configurationId="p404.gpio_mode"/>
+      <configSetting altId="p400.output.high" configurationId="p400"/>
+      <configSetting altId="p400.gpio_mode.gpio_mode_out.high" configurationId="p400.gpio_mode"/>
+      <configSetting altId="p403.output.high" configurationId="p403"/>
+      <configSetting altId="p403.gpio_mode.gpio_mode_out.high" configurationId="p403.gpio_mode"/>
+      <configSetting altId="p404.output.high" configurationId="p404"/>
+      <configSetting altId="p404.gpio_mode.gpio_mode_out.high" configurationId="p404.gpio_mode"/>
       <configSetting altId="p511.sci4.rxd" configurationId="p511"/>
       <configSetting altId="p511.gpio_mode.gpio_mode_peripheral" configurationId="p511.gpio_mode"/>
       <configSetting altId="p512.sci4.txd" configurationId="p512"/>

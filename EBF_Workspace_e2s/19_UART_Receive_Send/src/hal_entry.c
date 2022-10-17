@@ -26,9 +26,9 @@ void hal_entry(void)
 
     while(1)
     {
-        LED1_OFF;
-        R_BSP_SoftwareDelay(1, BSP_DELAY_UNITS_SECONDS);
         LED1_ON;
+        R_BSP_SoftwareDelay(1, BSP_DELAY_UNITS_SECONDS);
+        LED1_OFF;
         R_BSP_SoftwareDelay(1, BSP_DELAY_UNITS_SECONDS);
     }
 

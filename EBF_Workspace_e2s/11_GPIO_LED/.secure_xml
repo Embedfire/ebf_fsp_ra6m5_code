@@ -62,9 +62,9 @@
     <pincfg active="true" name="" symbol="">
       <configSetting altId="debug0.swclk.p300" configurationId="debug0.swclk" isUsedByDriver="true"/>
       <configSetting altId="debug0.swdio.p108" configurationId="debug0.swdio" isUsedByDriver="true"/>
-      <configSetting altId="p400.output.low" configurationId="p400"/>
-      <configSetting altId="p403.output.low" configurationId="p403"/>
-      <configSetting altId="p404.output.low" configurationId="p404"/>
+      <configSetting altId="p400.output.high" configurationId="p400"/>
+      <configSetting altId="p403.output.high" configurationId="p403"/>
+      <configSetting altId="p404.output.high" configurationId="p404"/>
     </pincfg>
   </raPinConfiguration>
 </raConfiguration>
