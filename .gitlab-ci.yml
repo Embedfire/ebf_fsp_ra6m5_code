@@ -6,7 +6,7 @@ variables:
   #生成zip的名称
   ZIP_NAME: 启明RA6M5_FSP库_
   #NAS地址 数量不匹配需要删改PDF-files任务中的内容
-  NAS_URL1: /mnt/百度云对外发布资料/瑞萨产品线\野火【RA系列开发板】资料/1-程序源码_教程文档/1-书籍配套例程/启明RA6M5
+  NAS_URL1: /mnt/百度云对外发布资料/瑞萨产品线/野火【RA系列开发板】资料/1-程序源码_教程文档/1-书籍配套例程/启明RA6M5
   #NAS_URL2: 
   # NAS_URL3: 
 
