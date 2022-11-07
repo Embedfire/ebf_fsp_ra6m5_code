@@ -56,7 +56,7 @@ void debug_uart4_callback (uart_callback_args_t * p_args)
             }
             break;
         }
-        case UART_EVENT_TX_DATA_EMPTY:
+        case UART_EVENT_TX_COMPLETE:
         {
             uart_send_complete_flag = true;
             break;
