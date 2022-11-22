@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<ConfigurationInfoTable>
+  <Version>2.2</Version>
+  <McuName>R7FA6M5BH3CFC</McuName>
+  <McuGroup>RA6M5</McuGroup>
+  <TemplateInfoTable>
+    <Comment/>
+    <TouchIFSetting>
+      <ID>1</ID>
+      <HintID>0</HintID>
+      <Label>Button00</Label>
+      <Type>1</Type>
+      <Direction>1</Direction>
+      <Rectangle>
+        <X>405</X>
+        <Y>130</Y>
+        <Width>50</Width>
+        <Height>50</Height>
+      </Rectangle>
+      <TsInfo>
+        <Number>12</Number>
+        <Resistance>330</Resistance>
+        <TXRX>0</TXRX>
+      </TsInfo>
+      <CFC>0</CFC>
+    </TouchIFSetting>
+  </TemplateInfoTable>
+  <MethodInfoTable>
+    <MethodSetting>
+      <Name>config01</Name>
+      <TifInfo>
+        <TouchIFID>1</TouchIFID>
+      </TifInfo>
+      <EnableAutoSensing>false</EnableAutoSensing>
+      <EnableMultipleElectrodeConnection>false</EnableMultipleElectrodeConnection>
+    </MethodSetting>
+  </MethodInfoTable>
+</ConfigurationInfoTable>
