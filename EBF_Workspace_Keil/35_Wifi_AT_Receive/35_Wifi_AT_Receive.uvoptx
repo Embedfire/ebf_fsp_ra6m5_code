@@ -103,7 +103,7 @@
         <bEvRecOn>1</bEvRecOn>
         <bSchkAxf>0</bSchkAxf>
         <bTchkAxf>0</bTchkAxf>
-        <nTsel>14</nTsel>
+        <nTsel>4</nTsel>
         <sDll></sDll>
         <sDllPa></sDllPa>
         <sDlgDll></sDlgDll>
@@ -114,13 +114,18 @@
         <tDlgDll></tDlgDll>
         <tDlgPa></tDlgPa>
         <tIfile></tIfile>
-        <pMon>BIN\CMSIS_AGDI_V8M.DLL</pMon>
+        <pMon>Segger\JL2CM3.dll</pMon>
       </DebugOpt>
       <TargetDriverDllRegistry>
         <SetRegEntry>
           <Number>0</Number>
+          <Key>JL2CM3</Key>
+          <Name>-U260102451 -O111 -S2 -ZTIFSpeedSel5000 -A0 -C0 -JU1 -JI127.0.0.1 -JP0 -RST0 -TO18 -TC10000000 -TP21 -TDS8007 -TDT0 -TDC1F -TIEFFFFFFFF -TIP8 -TB1 -TFE0 -FO15 -FD0 -FC800 -FN1 -FF0RA6M5_2M -FS00 -FL0200000 -FP0($$Device:R7FA6M5BH$Flash\RA6M5_2M.FLM)</Name>
+        </SetRegEntry>
+        <SetRegEntry>
+          <Number>0</Number>
           <Key>UL2V8M</Key>
-          <Name>UL2V8M(-S0 -C0 -P0 -FD20000000 -FC2000 -FN3 -FF0RA6M5_2M -FS00 -FL0200000 -FF1RA6M5_DATA_C2M -FS18000000 -FL12000 -FF2RA6M5_CONF -FS2100A000 -FL2300 -FP0($$Device:R7FA6M5BH$Flash\RA6M5_2M.FLM) -FP1($$Device:R7FA6M5BH$Flash\RA6M5_DATA_C2M.FLM) -FP2($$Device:R7FA6M5BH$Flash\RA6M5_CONF.FLM))</Name>
+          <Name>UL2V8M(-S0 -C0 -P0 ) </Name>
         </SetRegEntry>
       </TargetDriverDllRegistry>
       <Breakpoint/>
@@ -171,7 +176,7 @@
 
   <Group>
     <GroupName>Source Group 1</GroupName>
-    <tvExp>0</tvExp>
+    <tvExp>1</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
@@ -202,8 +207,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\src\led\bsp_led.c</PathWithFileName>
-      <FilenameWithoutPath>bsp_led.c</FilenameWithoutPath>
+      <PathWithFileName>.\src\debug_uart\bsp_debug_uart.c</PathWithFileName>
+      <FilenameWithoutPath>bsp_debug_uart.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -214,8 +219,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\src\led\bsp_led.h</PathWithFileName>
-      <FilenameWithoutPath>bsp_led.h</FilenameWithoutPath>
+      <PathWithFileName>.\src\debug_uart\bsp_debug_uart.h</PathWithFileName>
+      <FilenameWithoutPath>bsp_debug_uart.h</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -226,8 +231,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\src\debug_uart\bsp_debug_uart.c</PathWithFileName>
-      <FilenameWithoutPath>bsp_debug_uart.c</FilenameWithoutPath>
+      <PathWithFileName>.\src\debug_wifi\bsp_debug_wifi.c</PathWithFileName>
+      <FilenameWithoutPath>bsp_debug_wifi.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -238,8 +243,32 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\src\debug_uart\bsp_debug_uart.h</PathWithFileName>
-      <FilenameWithoutPath>bsp_debug_uart.h</FilenameWithoutPath>
+      <PathWithFileName>.\src\debug_wifi\bsp_debug_wifi.h</PathWithFileName>
+      <FilenameWithoutPath>bsp_debug_wifi.h</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>2</GroupNumber>
+      <FileNumber>6</FileNumber>
+      <FileType>1</FileType>
+      <tvExp>0</tvExp>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>.\src\led\bsp_led.c</PathWithFileName>
+      <FilenameWithoutPath>bsp_led.c</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>2</GroupNumber>
+      <FileNumber>7</FileNumber>
+      <FileType>5</FileType>
+      <tvExp>0</tvExp>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>.\src\led\bsp_led.h</PathWithFileName>
+      <FilenameWithoutPath>bsp_led.h</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -247,7 +276,7 @@
 
   <Group>
     <GroupName>::Flex Software</GroupName>
-    <tvExp>0</tvExp>
+    <tvExp>1</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>1</RteFlg>
