@@ -341,7 +341,7 @@ FSP Configuration
       Trigger: Rising
       Digital Filtering: Disabled
       Digital Filtering Sample Clock (Only valid when Digital Filtering is Enabled): PCLK / 64
-      Callback: external_irq_callback
+      Callback: key1_irq_callback
       Pin Interrupt Priority: Priority 12
       
     Instance "Standby Low Power Modes (r_lpm)"

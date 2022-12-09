@@ -26,7 +26,7 @@ void RTC_Init(void)
    R_RTC_PeriodicIrqRateSet (RTC.p_ctrl, RTC_PERIODIC_IRQ_SELECT_1_SECOND);
 }
 
-void RTC_Callback(rtc_callback_args_t *p_args)
+void rtc_callback(rtc_callback_args_t *p_args)
 {
       static rtc_time_t get_time;
       switch (p_args->event)
@@ -34,8 +34,10 @@ void RTC_Callback(rtc_callback_args_t *p_args)
          /*若是周期中断，则发送日期给串口并切换LED电平*/
          case RTC_EVENT_PERIODIC_IRQ:
             LED1_TOGGLE; //反转LED
+
             /*获取当前时间*/
             R_RTC_CalendarTimeGet (RTC.p_ctrl, &get_time);
+
             /*打印当前时间*/
             printf("\r\n%d-%d-%d-%d:%d:%d\r\n", get_time.tm_year + 1900, get_time.tm_mon, get_time.tm_mday,
                      get_time.tm_hour, get_time.tm_min, get_time.tm_sec);

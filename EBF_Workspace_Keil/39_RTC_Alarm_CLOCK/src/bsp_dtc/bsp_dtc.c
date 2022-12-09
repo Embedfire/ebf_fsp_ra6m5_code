@@ -51,7 +51,7 @@ void RTC_Init(void)
 }
 
 
-void RTC_Callback(rtc_callback_args_t *p_args)
+void rtc_callback(rtc_callback_args_t *p_args)
 {
     static rtc_time_t get_time;
     switch (p_args->event)
@@ -65,8 +65,11 @@ void RTC_Callback(rtc_callback_args_t *p_args)
             /*打印当前时间*/
             printf ("\r\n%d-%d-%d-%d:%d:%d\r\n", get_time.tm_year + 1900, get_time.tm_mon, get_time.tm_mday,
                                 get_time.tm_hour, get_time.tm_min, get_time.tm_sec);
+        
             LED1_TOGGLE; //反转LED
+        
             Buzzer_sout(); //蜂鸣器叫一声
+        
             break;
         default:
             break;

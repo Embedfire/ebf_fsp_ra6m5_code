@@ -12,7 +12,7 @@ void IRQ_Init(void)
 }
 
 /*按键中断回调函数*/
-void external_irq_callback(external_irq_callback_args_t *p_args)
+void key1_irq_callback(external_irq_callback_args_t *p_args)
 {
     (void)(p_args);
 }

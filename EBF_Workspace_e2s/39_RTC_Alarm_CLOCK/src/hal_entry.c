@@ -20,7 +20,8 @@ void hal_entry(void)
     Debug_UART4_Init(); //初始化调试串口
     RTC_Init();  //初始化RTC
     RTC_Alarm_Init(); //闹钟初始化
-    while(1);
+
+    while(1){}
 	
 #if BSP_TZ_SECURE_BUILD
     /* Enter non-secure code */

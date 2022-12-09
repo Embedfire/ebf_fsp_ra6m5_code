@@ -21,6 +21,7 @@ void hal_entry(void)
    IRQ_Init(); //按键中断初始化
    R_BSP_PinAccessEnable(); //启用对PFS寄存器的访问,因为后面写IO口都用BSP内联函数
    R_LPM_Open(Standby.p_ctrl, Standby.p_cfg); //打开LPM
+    
    while(1)
    {
        LED_Task(); //流水灯任务

@@ -211,7 +211,7 @@
       <property id="module.driver.uart.rs485.de_polarity" value="module.driver.uart.rs485.de_polarity.high"/>
       <property id="module.driver.uart.rs485.de_port_number" value="module.driver.uart.rs485.de_port_number.PORT_DISABLE"/>
       <property id="module.driver.uart.rs485.de_pin_number" value="module.driver.uart.rs485.de_pin_number.PIN_DISABLE"/>
-      <property id="module.driver.uart.callback" value="Debug_UART4_Callback"/>
+      <property id="module.driver.uart.callback" value="debug_uart4_callback"/>
       <property id="module.driver.uart.rxi_ipl" value="board.icu.common.irq.priority10"/>
       <property id="module.driver.uart.txi_ipl" value="board.icu.common.irq.priority10"/>
       <property id="module.driver.uart.tei_ipl" value="board.icu.common.irq.priority10"/>
@@ -225,7 +225,7 @@
       <property id="module.driver.rtc.err_adjustment_period" value="module.driver.rtc.err_adjustment_period.p1"/>
       <property id="module.driver.rtc.err_adjustment_type" value="module.driver.rtc.err_adjustment_type.t1"/>
       <property id="module.driver.rtc.err_adjustment_value" value="0"/>
-      <property id="module.driver.rtc.p_callback" value="RTC_Callback"/>
+      <property id="module.driver.rtc.p_callback" value="rtc_callback"/>
       <property id="module.driver.rtc.alarm_ipl" value="board.icu.common.irq.priority14"/>
       <property id="module.driver.rtc.periodic_ipl" value="board.icu.common.irq.priority15"/>
       <property id="module.driver.rtc.carry_ipl" value="board.icu.common.irq.priority12"/>

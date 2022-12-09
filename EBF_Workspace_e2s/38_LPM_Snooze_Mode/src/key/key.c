@@ -10,20 +10,20 @@ void IRQ_Init(void)
     err = g_external_irq_on_icu.enable(&sw2_external_irq_ctrl);
     assert(FSP_SUCCESS == err);
 	
-	  err = g_external_irq_on_icu.open(&sw3_external_irq_ctrl, &sw3_external_irq_cfg);
+	err = g_external_irq_on_icu.open(&sw3_external_irq_ctrl, &sw3_external_irq_cfg);
     assert(FSP_SUCCESS == err);
     err = g_external_irq_on_icu.enable(&sw3_external_irq_ctrl);
     assert(FSP_SUCCESS == err);
 }
 
 /*按键中断回调函数，用于唤醒*/
-void external_irq_callback(external_irq_callback_args_t *p_args)
+void key1_irq_callback(external_irq_callback_args_t *p_args)
 {
     (void)(p_args);
 }
 
 /*按键中断回调函数，用于睡眠请求*/
-void external_irq2_callback(external_irq_callback_args_t *p_args)
+void key2_irq_callback(external_irq_callback_args_t *p_args)
 {
     (void)(p_args);
 }

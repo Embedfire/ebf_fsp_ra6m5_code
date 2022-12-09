@@ -322,7 +322,7 @@ FSP Configuration
       Extra: RS-485: DE Pin Polarity: Active High
       Extra: RS-485: DE Port Number: Disabled
       Extra: RS-485: DE Pin Number: Disabled
-      Interrupts: Callback: Debug_UART4_Callback
+      Interrupts: Callback: debug_uart4_callback
       Interrupts: Receive Interrupt Priority: Priority 10
       Interrupts: Transmit Data Empty Interrupt Priority: Priority 10
       Interrupts: Transmit End Interrupt Priority: Priority 10
@@ -336,7 +336,7 @@ FSP Configuration
       Automatic Adjustment Period: 10 Seconds
       Adjustment Type (Plus-Minus): NONE
       Error Adjustment Value: 0
-      Callback: RTC_Callback
+      Callback: rtc_callback
       Alarm Interrupt Priority: Priority 14
       Period Interrupt Priority: Priority 15
       Carry Interrupt Priority: Priority 12

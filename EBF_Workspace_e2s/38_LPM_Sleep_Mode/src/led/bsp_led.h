@@ -19,7 +19,7 @@
 
 
 /* LED初始化函数 */
-void IO_Init(void);
+void LED_Init(void);
 void LED_Task(void);
 
 #endif

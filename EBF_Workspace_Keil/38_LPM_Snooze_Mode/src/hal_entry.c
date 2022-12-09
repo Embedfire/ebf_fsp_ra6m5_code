@@ -17,17 +17,17 @@ void hal_entry(void)
 {
     /* TODO: add your own code here */
 	
-   Debug_UART4_Init(); //初始化debug串口
-   IRQ_Init(); //IRQ中断初始化
-   R_BSP_PinAccessEnable(); //启用对PFS寄存器的访问,因为后面写IO口都用BSP内联函数
-   R_LPM_Open(Snooze.p_ctrl, Snooze.p_cfg); //打开LPM
-	 R_GPT_Open(GPT_PWM.p_ctrl, GPT_PWM.p_cfg);  //打开GPT计时器
-	 R_GPT_Start(GPT_PWM.p_ctrl); //启动GPT计时器
+    Debug_UART4_Init(); //初始化debug串口
+    IRQ_Init(); //按键1中断初始化
+    R_BSP_PinAccessEnable(); //启用对PFS寄存器的访问,因为后面写IO口都用BSP内联函数
+    R_LPM_Open(Snooze.p_ctrl, Snooze.p_cfg); //打开LPM
+    R_GPT_Open(GPT_PWM.p_ctrl, GPT_PWM.p_cfg);  //打开GPT计时器
+    R_GPT_Start(GPT_PWM.p_ctrl); //启动GPT计时器
 
    while(1)
    {
 	   GPT_LED1_PWM_ON_Snooze_Mode();//LED1呼吸灯任务
-		 LED_Task(); //流水灯任务
+       LED_Task(); //流水灯任务
    }
 	
 #if BSP_TZ_SECURE_BUILD

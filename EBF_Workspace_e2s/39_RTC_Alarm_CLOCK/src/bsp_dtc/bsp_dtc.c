@@ -40,18 +40,22 @@ void RTC_Init(void)
    };
    /*打开RTC模块*/
    R_RTC_Open (RTC.p_ctrl, RTC.p_cfg);
+
    /*时钟源设置，如果在FSP Configuration设置"Set Source Clock in Open"为"enabled"，那这一步可以被跳过*/
    R_RTC_ClockSourceSet (RTC.p_ctrl);
+
    /*若RTC时钟已经使用纽扣电池工作了一段时间，则可以使用这个函数获取当前日历并设置当前时间*/
    //R_RTC_CalendarTimeGet(RTC.p_ctrl,&set_time);
+
    /*这个函数至少调用一次以启动RTC*/
    R_RTC_CalendarTimeSet (RTC.p_ctrl, &set_time); //设置当前时间
+
    /*设置周期中断的周期为1秒*/
    R_RTC_PeriodicIrqRateSet (RTC.p_ctrl, RTC_PERIODIC_IRQ_SELECT_1_SECOND);
 }
 
 
-void RTC_Callback(rtc_callback_args_t *p_args)
+void rtc_callback(rtc_callback_args_t *p_args)
 {
     static rtc_time_t get_time;
     switch (p_args->event)
@@ -62,11 +66,15 @@ void RTC_Callback(rtc_callback_args_t *p_args)
         case RTC_EVENT_ALARM_IRQ:
             /*获取当前时间*/
             R_RTC_CalendarTimeGet (RTC.p_ctrl, &get_time);
+
             /*打印当前时间*/
             printf ("\r\n%d-%d-%d-%d:%d:%d\r\n", get_time.tm_year + 1900, get_time.tm_mon, get_time.tm_mday,
                                 get_time.tm_hour, get_time.tm_min, get_time.tm_sec);
+
             LED1_TOGGLE; //反转LED
+
             Buzzer_sout(); //蜂鸣器叫一声
+
             break;
         default:
             break;

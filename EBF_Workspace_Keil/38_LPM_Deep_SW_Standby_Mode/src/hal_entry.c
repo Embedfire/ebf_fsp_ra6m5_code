@@ -22,37 +22,44 @@ void hal_entry(void)
    R_BSP_PinAccessEnable(); //启用对PFS寄存器的访问,因为后面写IO口都用BSP内联函数
 	 if (1U == R_SYSTEM->RSTSR0_b.DPSRSTF)
    {
-			/*从深度软件待机模式唤醒后清除IOkeep位*/
-			R_LPM_IoKeepClear (NULL);
-			/*清除唤醒标志位*/
-			R_SYSTEM->RSTSR0_b.DPSRSTF = 0;
-			/*判断唤醒源是IRQ-9还是IRQ-10，并将判断结果打印出来*/
-			if (R_SYSTEM->DPSIFR1 >> 1 & 0x01U)
-			{
-					printf("MCU is woke up by IRQ-9\r\n");
-			}
-			else if (R_SYSTEM->DPSIFR1 >> 2 & 0x01U)
-			{
-					printf("MCU is woke up by IRQ-10\r\n");
-			}
+        /*从深度软件待机模式唤醒后清除IOkeep位*/
+        R_LPM_IoKeepClear (NULL);
+       
+        /*清除唤醒标志位*/
+        R_SYSTEM->RSTSR0_b.DPSRSTF = 0;
+       
+        /*判断唤醒源是IRQ-9还是IRQ-10，并将判断结果打印出来*/
+        if (R_SYSTEM->DPSIFR1 >> 1 & 0x01U)
+        {
+                printf("MCU is woke up by IRQ-9\r\n");
+        }
+        else if (R_SYSTEM->DPSIFR1 >> 2 & 0x01U)
+        {
+                printf("MCU is woke up by IRQ-10\r\n");
+        }
    }
-	 LED_Flicker(10);//LED1闪烁10次
+   LED_Flicker(10);//LED1闪烁10次
+   
    while (1)
    {
-			if (key_flag == true)
-			{
-					/*标志位置0，防止程序不断进入if的代码块里面*/
-					key_flag = false;
-					LED_Flicker (2); //LED闪烁2次
-					/*进入低功耗模式前打印*/
-					printf("MCU enters Deep SW Standby mode\r\n");
-					R_LPM_Open (Deep_SW_Standby.p_ctrl, Deep_SW_Standby.p_cfg); //打开LPM
-					R_LPM_LowPowerModeEnter (Deep_SW_Standby.p_ctrl);
-					/*唤醒后打印，但是在进入深度软件待机模式后不能保存上下文，
-					故这里正常来说无法被执行,如果执行了则说明进入的是睡眠模式，
-					一般刚烧写程序会导致这个问题，重新上电即可恢复正常*/
-					printf("MCU has been woken up without reset\r\n");
-			}
+        if (key_flag == true)
+        {
+            /*标志位置0，防止程序不断进入if的代码块里面*/
+            key_flag = false;
+            /*LED闪烁2次*/
+            LED_Flicker (2); 
+            
+            /*进入低功耗模式前打印*/           
+            printf("MCU enters Deep SW Standby mode\r\n");
+            /*打开LPM，进入深度软件待机模式*/
+            R_LPM_Open (Deep_SW_Standby.p_ctrl, Deep_SW_Standby.p_cfg);
+            R_LPM_LowPowerModeEnter (Deep_SW_Standby.p_ctrl);
+            
+            /*唤醒后打印，但是在进入深度软件待机模式后不能保存上下文，
+            故这里正常来说无法被执行,如果执行了则说明进入的是睡眠模式，
+            一般刚烧写程序会导致这个问题，重新上电即可恢复正常*/
+            printf("MCU has been woken up without reset\r\n");
+        }
    }
 	
 #if BSP_TZ_SECURE_BUILD

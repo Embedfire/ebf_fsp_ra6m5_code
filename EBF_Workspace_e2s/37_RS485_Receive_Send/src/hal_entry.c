@@ -20,7 +20,7 @@ void hal_entry(void)
     /* TODO: add your own code here */
 
     IRQ_Init();         //开启按键中断
-    IO_Init();          // IO初始化
+    LED_Init();          // LED初始化
     RS485_1_Init();     //RS485-1初始化
     Debug_UART4_Init(); // SCI4 UART 调试串口初始化
 
@@ -28,6 +28,8 @@ void hal_entry(void)
     {
         /*按键没有按下的时候，使RS485处于接收状态*/
         RS485_1_RX;
+
+        /*LED灯指示状态*/
         LED1_OFF;
         LED3_ON;
     }

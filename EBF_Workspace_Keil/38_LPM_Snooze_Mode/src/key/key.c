@@ -17,13 +17,13 @@ void IRQ_Init(void)
 }
 
 /*按键中断回调函数，用于唤醒*/
-void external_irq_callback(external_irq_callback_args_t *p_args)
+void key1_irq_callback(external_irq_callback_args_t *p_args)
 {
     (void)(p_args);
 }
 
 /*按键中断回调函数，用于睡眠请求*/
-void external_irq2_callback(external_irq_callback_args_t *p_args)
+void key2_irq_callback(external_irq_callback_args_t *p_args)
 {
     (void)(p_args);
 }

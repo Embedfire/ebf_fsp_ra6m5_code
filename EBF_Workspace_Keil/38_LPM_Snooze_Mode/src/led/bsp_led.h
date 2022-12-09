@@ -19,7 +19,7 @@
 
 
 /* LED初始化函数 */
-void IO_Init(void);
+void LED_Init(void);
 void LED_Task(void);
 void GPT_Init(void);
 void GPT_LED1_PWM_ON_Snooze_Mode(void);

@@ -3,7 +3,7 @@
 
 
 /* IO初始化函数 */
-void IO_Init(void)
+void LED_Init(void)
 {
     R_IOPORT_Open (&g_ioport_ctrl, g_ioport.p_cfg);
 }
@@ -11,7 +11,7 @@ void IO_Init(void)
 void LED_Flicker(uint8_t num)
 {
    /*LED灯闪烁*/
-	for(int i = 0;i <= num*2;i++)
+	for(int i = 0; i <= num*2; i++)
 	{
 		LED1_TOGGLE;
 		R_BSP_SoftwareDelay(50, BSP_DELAY_UNITS_MILLISECONDS);

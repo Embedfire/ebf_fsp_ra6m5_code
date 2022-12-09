@@ -3,7 +3,7 @@
 
 
 /* LED初始化函数 */
-void IO_Init(void)
+void LED_Init(void)
 {
     R_IOPORT_Open (&g_ioport_ctrl, g_ioport.p_cfg);
 }
@@ -23,10 +23,13 @@ void LED_Task(void)
    LED2_OFF;
    R_BSP_SoftwareDelay(1, BSP_DELAY_UNITS_SECONDS);
    LED3_OFF;
+
    /*睡眠前打印*/
    printf("MCU enters sleep mode\r\n");
+
    /*执行完流水灯任务，进入睡眠模式*/
    R_LPM_LowPowerModeEnter(Sleep.p_ctrl);
+
    /*被唤醒后打印*/
    printf("MCU has been woken up\r\n");
 }

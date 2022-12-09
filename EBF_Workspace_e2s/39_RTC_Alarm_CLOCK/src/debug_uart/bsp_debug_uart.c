@@ -16,7 +16,7 @@ volatile bool uart_send_complete_flag = false;
 
 
 /* 串口中断回调 */
-void Debug_UART4_Callback (uart_callback_args_t * p_args)
+void debug_uart4_callback (uart_callback_args_t * p_args)
 {
     switch (p_args->event)
     {

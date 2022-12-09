@@ -7,7 +7,7 @@ void RS485_1_Init(void)
 
 }
 
-void rs485_send_example(void)
+void RS485_Send_Example(void)
 {
     /*定义要发送的变量*/
     uint8_t data = 0xff;

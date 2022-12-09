@@ -20,14 +20,14 @@ void IRQ_Init(void)
 }
 
 /*按键1中断回调函数，用于进入深度睡眠或唤醒*/
-void Key1_IRQ_Callback(external_irq_callback_args_t *p_args)
+void key1_irq_callback(external_irq_callback_args_t *p_args)
 {
     (void)(p_args);
 		key_flag = true;
 }
 
 /*按键2中断回调函数，用于唤醒*/
-void Key2_IRQ_Callback(external_irq_callback_args_t *p_args)
+void key2_irq_callback(external_irq_callback_args_t *p_args)
 {
     (void)(p_args);
 }

@@ -16,7 +16,6 @@ FSP_CPP_FOOTER
 void hal_entry(void)
 {
     /* TODO: add your own code here */
-	
    Debug_UART4_Init(); //初始化debug串口
    IRQ_Init(); //按键中断初始化
    R_BSP_PinAccessEnable(); //启用对PFS寄存器的访问,因为后面写IO口都用BSP内联函数

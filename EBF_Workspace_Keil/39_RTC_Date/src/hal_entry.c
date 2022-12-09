@@ -16,10 +16,11 @@ void hal_entry(void)
 {
     /* TODO: add your own code here */
 
-	 R_BSP_PinAccessEnable(); //启用对PFS寄存器的访问,因为后面写IO口都用BSP内联函数
+   R_BSP_PinAccessEnable(); //启用对PFS寄存器的访问,因为后面写IO口都用BSP内联函数
    Debug_UART4_Init(); //初始化调试串口
    RTC_Init();  //初始化RTC
-   while(1);
+    
+   while(1){}
 	
 #if BSP_TZ_SECURE_BUILD
     /* Enter non-secure code */

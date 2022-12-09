@@ -1,11 +1,11 @@
-#Tue Dec 06 16:50:31 CST 2022
+#Fri Dec 09 16:23:20 CST 2022
 com.renesas.cdt.ddsc.packs.componentfiles/Renesas\#\#BSP\#\#ra6m5\#\#fsp\#\#\#\#4.1.0/all=685401113,ra/fsp/src/bsp/mcu/ra6m5/bsp_elc.h|2691744783,ra/fsp/src/bsp/mcu/ra6m5/bsp_mcu_info.h|2802178605,ra/fsp/src/bsp/mcu/ra6m5/bsp_feature.h
 com.renesas.cdt.ddsc.content/com.renesas.cdt.ddsc.content.defaultlinkerscript=script/fsp.scat
 com.renesas.cdt.ddsc.packs.componentfiles/Renesas\#\#BSP\#\#Board\#\#custom\#\#\#\#4.1.0/all=
 com.renesas.cdt.ddsc.contentgen.options/options/suppresswarningspaths=ra/arm
 com.renesas.cdt.ddsc.packs.componentfiles/Renesas\#\#HAL\ Drivers\#\#all\#\#r_rtc\#\#\#\#4.1.0/all=3195700237,ra/fsp/inc/instances/r_rtc.h|4125939828,ra/fsp/src/r_rtc/r_rtc.c|1090805371,ra/fsp/inc/api/r_rtc_api.h|2273495028,ra/fsp/inc/api/r_cgc_api.h
 com.renesas.cdt.ddsc.packs.componentfiles/Renesas\#\#HAL\ Drivers\#\#all\#\#r_sci_uart\#\#\#\#4.1.0/all=2970687511,ra/fsp/inc/api/r_transfer_api.h|3958601320,ra/fsp/inc/instances/r_sci_uart.h|2640391634,ra/fsp/src/r_sci_uart/r_sci_uart.c|134969800,ra/fsp/inc/api/r_uart_api.h
-com.renesas.cdt.ddsc.settingseditor/com.renesas.cdt.ddsc.settingseditor.active_page=DeviceAndToolSelection
+com.renesas.cdt.ddsc.settingseditor/com.renesas.cdt.ddsc.settingseditor.active_page=SWPConfigurator
 com.renesas.cdt.ddsc.packs.componentfiles/Renesas\#\#BSP\#\#ra6m5\#\#device\#\#\#\#4.1.0/libraries=
 com.renesas.cdt.ddsc.packs.componentfiles/Renesas\#\#HAL\ Drivers\#\#all\#\#r_ioport\#\#\#\#4.1.0/all=500387124,ra/fsp/src/r_ioport/r_ioport.c|2490905981,ra/fsp/inc/instances/r_ioport.h|2537229576,ra/fsp/inc/api/r_ioport_api.h
 com.renesas.cdt.ddsc.project.standalone.projectgenerationoptions/isCpp=false
