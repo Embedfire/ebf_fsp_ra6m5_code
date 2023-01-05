@@ -43,7 +43,7 @@ void hal_entry(void)
         if (print_enble_flag)
         {
             // 打印PWM脉冲周期测量的计数
-            printf("High=%d, ", pulse_period_time);
+            printf("Period=%d, ", pulse_period_time);
             /* 计算PWM脉冲周期测量的时间 */
             pulse_period_time_us = (float)pulse_period_time / ((float)info.clock_frequency / (float)1000000);
             printf("Time=%f us\r\n", pulse_period_time_us);
