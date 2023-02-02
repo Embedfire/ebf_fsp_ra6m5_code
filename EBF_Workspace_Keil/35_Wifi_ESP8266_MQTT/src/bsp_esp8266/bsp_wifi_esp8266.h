@@ -40,7 +40,7 @@
                          Uart9_Num = 0; 
 
 
-void ESP8266_STA_Test(void);
+void ESP8266_MQTT_Test(void);
 void ESP8266_UART9_Init(void);
 void ESP8266_AT_Send(char * cmd );
 void ESP8266_Rst(void);

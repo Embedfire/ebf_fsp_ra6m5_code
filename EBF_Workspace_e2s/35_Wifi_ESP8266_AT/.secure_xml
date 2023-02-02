@@ -62,6 +62,7 @@
     <pincfg active="true" name="" symbol="">
       <configSetting altId="debug0.swclk.p300" configurationId="debug0.swclk" isUsedByDriver="true"/>
       <configSetting altId="debug0.swdio.p108" configurationId="debug0.swdio" isUsedByDriver="true"/>
+      <configSetting altId="p115.output.high" configurationId="p115"/>
       <configSetting altId="p400.output.high" configurationId="p400"/>
       <configSetting altId="p403.output.high" configurationId="p403"/>
       <configSetting altId="p404.output.high" configurationId="p404"/>

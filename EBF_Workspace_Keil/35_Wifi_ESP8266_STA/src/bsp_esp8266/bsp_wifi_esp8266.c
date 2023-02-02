@@ -127,7 +127,7 @@ void ESP8266_STA_JoinAP( char * id ,  char * password , uint8_t timeout )
                Clear_Buff();      //清除缓冲区数据
                break;
            }
-          if ( strstr( At_Rx_Buff , "ERROR\r\n" ) ) 
+          if ( strstr( At_Rx_Buff , "ERROR\r\n" ) ) //根据ESP8266的固件版本不同有不同的响应，一般为“FAIL”或“ERROR”
            {
                if( strstr( At_Rx_Buff , "+CWJAP:1\r\n" ))
                ESP8266_DEBUG_MSG("\r\nWifi连接超时，请检查各项配置是否正确\r\n");
@@ -275,7 +275,7 @@ void esp8266_uart9_callback(uart_callback_args_t * p_args)
                 At_Rx_Buff[Uart9_Num++] = (uint8_t ) p_args->data;  //将UART9收到的数据放到Buff缓冲区中
                 
                 /*进入透传模式后打开串口调试助手收发数据显示*/
-                if( Uart9_Show_Flag )
+                //if( Uart9_Show_Flag )
                 R_SCI_UART_Write(&g_uart4_ctrl, (uint8_t *)&(p_args->data), 1); 
                 
                 break;

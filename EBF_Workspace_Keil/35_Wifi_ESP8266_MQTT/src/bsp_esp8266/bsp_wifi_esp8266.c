@@ -9,7 +9,7 @@ char                At_Rx_Buff[256];
 uint8_t             Uart9_Num = 0;
 
 /*自动配置ESP8266函数*/
-void ESP8266_STA_Test(void)
+void ESP8266_MQTT_Test(void)
 {
         
     ESP8266_DEBUG_MSG("\r\n正在初始化ESP8266...\r\n");
