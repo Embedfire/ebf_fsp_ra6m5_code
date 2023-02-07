@@ -61,20 +61,10 @@ BYTE work[FF_MAX_SS]; /* Work area (larger is better for processing time) */
 void hal_entry(void)
 {
 
-//      //R_QSPI_DirectRead();
-//      R_BSP_SoftwareDelay(1000,BSP_DELAY_UNITS_MILLISECONDS);
-//      g_qspi_on_spi_flash((void*)R_QSPI_Open(Flash.p_ctrl, Flash.p_cfg));
-//
-
-
-
-
-
-
     /* TODO: add your own code here */
     fsp_err_t err;
 
-//主函数在启动文件里面分配了一定的堆栈空间的     在stm32里面分配有1024个字节  而我之前直接在mian函数里面创建5012个字节的数据所以函数直接就跑蹦了   叫做堆栈空间溢出
+    //fsp设置里面分配了一定的堆栈空间的
     Debug_UART4_Init();
 
 
