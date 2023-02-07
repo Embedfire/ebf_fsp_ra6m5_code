@@ -56,7 +56,6 @@ BYTE work[FF_MAX_SS]; /* Work area (larger is better for processing time) */
 void hal_entry(void)
 {
 
-    //主函数在启动文件里面分配了一定的堆栈空间的     在stm32里面分配有1024个字节  而我之前直接在mian函数里面创建5012个字节的数据所以函数直接就跑蹦了   叫做堆栈空间溢出
     bsp_uart4_init();
 
 
