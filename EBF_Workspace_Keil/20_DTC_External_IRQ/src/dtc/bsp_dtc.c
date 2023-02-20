@@ -206,6 +206,7 @@ void set_transfer_dst_src_address( transfer_cfg_t const * const p_config,
 }
 
 
+/* DTC 初始化函数 */
 void DTC_Init(void)
 {
     fsp_err_t err;

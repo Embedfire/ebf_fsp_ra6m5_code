@@ -349,5 +349,5 @@ FSP Configuration
       Transfer End Interrupt Priority: Priority 10
       Interrupt Frequency: Interrupt after all transfers have completed
       Offset value (Valid only when address mode is \'Offset\'): 1
-      Source Buffer Size: 4
+      Source Buffer Size: 1
       

@@ -282,7 +282,7 @@ void set_transfer_dst_src_address( transfer_cfg_t const * const p_config,
 }
 
 
-/* 初始化 DMAC 模块 */
+/* DMAC 初始化函数 */
 void DMAC_Init(void)
 {
     fsp_err_t err;

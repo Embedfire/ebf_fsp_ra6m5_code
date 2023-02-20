@@ -239,7 +239,7 @@
       <property id="module.driver.transfer.ipl" value="board.icu.common.irq.priority10"/>
       <property id="module.driver.transfer.interrupt" value="module.driver.transfer.interrupt.interrupt_end"/>
       <property id="module.driver.transfer.offset" value="1"/>
-      <property id="module.driver.transfer.src.buffer" value="4"/>
+      <property id="module.driver.transfer.src.buffer" value="1"/>
     </module>
     <context id="_hal.0">
       <stack module="module.driver.ioport_on_ioport.0"/>

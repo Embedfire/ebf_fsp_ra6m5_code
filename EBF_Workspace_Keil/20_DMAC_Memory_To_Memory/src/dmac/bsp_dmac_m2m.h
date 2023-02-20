@@ -15,7 +15,7 @@
   #define DMAC_TRANSFER_REPEAT_MODE         (2)   //重复模式
   #define DMAC_TRANSFER_BLOCK_MODE          (3)   //块模式
   #define DMAC_TRANSFER_REPEAT_BLOCK_MODE   (4)   //重复-块模式
-  #define DMAC_TRANSFER_MODE                DMAC_TRANSFER_REPEAT_BLOCK_MODE
+  #define DMAC_TRANSFER_MODE                DMAC_TRANSFER_NORMAL_MODE
 #endif
 
 
