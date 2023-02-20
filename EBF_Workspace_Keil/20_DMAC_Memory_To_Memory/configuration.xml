@@ -221,30 +221,30 @@
       <property id="module.driver.uart.tei_ipl" value="board.icu.common.irq.priority12"/>
       <property id="module.driver.uart.eri_ipl" value="board.icu.common.irq.priority12"/>
     </module>
-    <module id="module.driver.transfer_on_dmac.597103815">
+    <module id="module.driver.transfer_on_dmac.1971186759">
       <property id="module.driver.transfer.name" value="g_transfer_dmac0"/>
       <property id="module.driver.transfer.channel" value="0"/>
-      <property id="module.driver.transfer.mode" value="module.driver.transfer.mode.mode_block"/>
-      <property id="module.driver.transfer.size" value="module.driver.transfer.size.size_4_byte"/>
-      <property id="module.driver.transfer.dest_addr_mode" value="module.driver.transfer.dest_addr_mode.addr_mode_incremented"/>
-      <property id="module.driver.transfer.src_addr_mode" value="module.driver.transfer.src_addr_mode.addr_mode_incremented"/>
+      <property id="module.driver.transfer.mode" value="module.driver.transfer.mode.mode_normal"/>
+      <property id="module.driver.transfer.size" value="module.driver.transfer.size.size_2_byte"/>
+      <property id="module.driver.transfer.dest_addr_mode" value="module.driver.transfer.dest_addr_mode.addr_mode_fixed"/>
+      <property id="module.driver.transfer.src_addr_mode" value="module.driver.transfer.src_addr_mode.addr_mode_fixed"/>
       <property id="module.driver.transfer.repeat_area" value="module.driver.transfer.repeat_area.repeat_area_source"/>
       <property id="module.driver.transfer.p_dest" value="NULL"/>
       <property id="module.driver.transfer.p_src" value="NULL"/>
-      <property id="module.driver.transfer.length" value="32"/>
-      <property id="module.driver.transfer.num_blocks" value="1"/>
+      <property id="module.driver.transfer.length" value="1"/>
+      <property id="module.driver.transfer.num_blocks" value="0"/>
       <property id="module.driver.transfer.activation_event" value="enum.elc_none.none"/>
       <property id="module.driver.transfer.p_callback" value="dmac0_callback"/>
       <property id="module.driver.transfer.p_context" value="NULL"/>
-      <property id="module.driver.transfer.ipl" value="board.icu.common.irq.priority2"/>
+      <property id="module.driver.transfer.ipl" value="board.icu.common.irq.priority10"/>
       <property id="module.driver.transfer.interrupt" value="module.driver.transfer.interrupt.interrupt_end"/>
       <property id="module.driver.transfer.offset" value="1"/>
-      <property id="module.driver.transfer.src.buffer" value="1"/>
+      <property id="module.driver.transfer.src.buffer" value="4"/>
     </module>
     <context id="_hal.0">
       <stack module="module.driver.ioport_on_ioport.0"/>
       <stack module="module.driver.uart_on_sci_uart.735256851"/>
-      <stack module="module.driver.transfer_on_dmac.597103815"/>
+      <stack module="module.driver.transfer_on_dmac.1971186759"/>
     </context>
     <config id="config.driver.ioport">
       <property id="config.driver.ioport.checking" value="config.driver.ioport.checking.system"/>

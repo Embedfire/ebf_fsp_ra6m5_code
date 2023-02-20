@@ -334,20 +334,20 @@ FSP Configuration
     Instance "g_transfer_dmac0 Transfer (r_dmac) No ELC Trigger"
       Name: g_transfer_dmac0
       Channel: 0
-      Mode: Block
-      Transfer Size: 4 Bytes
-      Destination Address Mode: Incremented
-      Source Address Mode: Incremented
+      Mode: Normal
+      Transfer Size: 2 Bytes
+      Destination Address Mode: Fixed
+      Source Address Mode: Fixed
       Repeat Area (Unused in Normal Mode): Source
       Destination Pointer: NULL
       Source Pointer: NULL
-      Number of Transfers: 32
-      Number of Blocks (Valid only in Repeat,Block or Repeat-Block Mode): 1
+      Number of Transfers: 1
+      Number of Blocks (Valid only in Repeat,Block or Repeat-Block Mode): 0
       Activation Source: No ELC Trigger
       Callback: dmac0_callback
       Context: NULL
-      Transfer End Interrupt Priority: Priority 2
+      Transfer End Interrupt Priority: Priority 10
       Interrupt Frequency: Interrupt after all transfers have completed
       Offset value (Valid only when address mode is \'Offset\'): 1
-      Source Buffer Size: 1
+      Source Buffer Size: 4
       

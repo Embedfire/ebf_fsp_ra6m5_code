@@ -13,8 +13,8 @@
         <file category="include" name="src/"/>
         <file category="source" name="src/debug_uart/bsp_debug_uart.c"/>
         <file category="header" name="src/debug_uart/bsp_debug_uart.h" path=""/>
-        <file category="source" name="src/dmac/bsp_dmac.c"/>
-        <file category="header" name="src/dmac/bsp_dmac.h" path=""/>
+        <file category="source" name="src/dmac/bsp_dmac_m2m.c"/>
+        <file category="header" name="src/dmac/bsp_dmac_m2m.h" path=""/>
         <file category="source" name="src/hal_entry.c"/>
         <file category="source" name="src/led/bsp_led.c"/>
         <file category="header" name="src/led/bsp_led.h" path=""/>

@@ -132,7 +132,7 @@
             <UseTargetDll>1</UseTargetDll>
             <UseExternalTool>0</UseExternalTool>
             <RunIndependent>0</RunIndependent>
-            <UpdateFlashBeforeDebugging>0</UpdateFlashBeforeDebugging>
+            <UpdateFlashBeforeDebugging>1</UpdateFlashBeforeDebugging>
             <Capability>1</Capability>
             <DriverSelection>-1</DriverSelection>
           </Flash1>
@@ -412,14 +412,14 @@
               <FilePath>.\src\debug_uart\bsp_debug_uart.h</FilePath>
             </File>
             <File>
-              <FileName>bsp_dmac.c</FileName>
+              <FileName>bsp_dmac_m2m.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\src\dmac\bsp_dmac.c</FilePath>
+              <FilePath>.\src\dmac\bsp_dmac_m2m.c</FilePath>
             </File>
             <File>
-              <FileName>bsp_dmac.h</FileName>
+              <FileName>bsp_dmac_m2m.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\src\dmac\bsp_dmac.h</FilePath>
+              <FilePath>.\src\dmac\bsp_dmac_m2m.h</FilePath>
             </File>
           </Files>
         </Group>
