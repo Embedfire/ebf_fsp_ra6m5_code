@@ -8,14 +8,6 @@ FSP_CPP_FOOTER
 /* 用户头文件包含 */
 #include "led/bsp_led.h"
 #include "debug_uart/bsp_debug_uart.h"
-#include "dmac/bsp_dmac.h"
-
-
-extern const uint32_t aSRC_Buffer[BUFFER_SIZE];
-extern uint32_t aDST_Buffer[BUFFER_SIZE];
-extern volatile bool dmac0_complete_transmission_sign;
-
-uint8_t Buffercmp(const uint32_t* pBuffer, uint32_t* pBuffer1, uint16_t BufferLength);
 
 
 /*******************************************************************************************************************//**
@@ -26,77 +18,18 @@ void hal_entry(void)
 {
     /* TODO: add your own code here */
 
-    fsp_err_t err = FSP_SUCCESS;
-    uint8_t TransferStatus = 0; // 用于存放传输前后数据比较结果
-
     LED_Init();         // LED 初始化
     Debug_UART4_Init(); // SCI4 UART 调试串口初始化
 
-    printf("\r\n实验1：DMAC存储器到存储器传输\r\n");
-    printf("- DMA数据传输失败，则 LED1 亮（红色）\r\n");
-    printf("- DMA数据传输成功，则 LED2 亮（蓝色）\r\n");
-
-    /* 初始化 DMAC */
-    DMAC_Init();
-    dmac0_complete_transmission_sign = false;
-
-    /* 使能 DMAC 使之可以响应传输请求 */
-    err = g_transfer_on_dmac.enable(&g_transfer_dmac0_ctrl);
-    assert(FSP_SUCCESS == err);
-
-#if (DTC_TRANSFER_MODE == DTC_TRANSFER_BLOCK_MODE)     //块模式
-    err = g_transfer_on_dmac.softwareStart(&g_transfer_dmac0_ctrl, TRANSFER_START_MODE_SINGLE);
-    assert(FSP_SUCCESS == err);
-
-    /* 等待传输完成中断 */
-    while (dmac0_complete_transmission_sign == false);
-
-    /* 比较源数据与传输后数据 */
-    TransferStatus = Buffercmp(aSRC_Buffer, aDST_Buffer, BUFFER_SIZE);
-
-#elif (DTC_TRANSFER_MODE == DTC_TRANSFER_NORMAL_MODE)  //正常模式 （相当于重复次数为1的重复模式）
-    for (uint16_t i = 0; i < BUFFER_SIZE; i++)
-    {
-        err = g_transfer_on_dmac.softwareStart(&g_transfer_dmac0_ctrl, TRANSFER_START_MODE_SINGLE);
-        assert(FSP_SUCCESS == err);
-    }
-
-    /* 等待传输完成中断 */
-    while (dmac0_complete_transmission_sign == false);
-
-    /* 比较源数据与传输后数据 */
-    TransferStatus = Buffercmp(aSRC_Buffer, aDST_Buffer, BUFFER_SIZE);
-
-#elif (DTC_TRANSFER_MODE == DTC_TRANSFER_REPEAT_MODE)  //重复模式
-    for (uint16_t i = 0; i < BUFFER_SIZE * 2; i++)
-    {
-        err = g_transfer_on_dmac.softwareStart(&g_transfer_dmac0_ctrl, TRANSFER_START_MODE_SINGLE);
-        assert(FSP_SUCCESS == err);
-    }
-
-    /* 等待传输完成中断 */
-    while (dmac0_complete_transmission_sign == false);
-
-    /* 比较源数据与传输后数据 */
-    TransferStatus += Buffercmp(aSRC_Buffer, aDST_Buffer, BUFFER_SIZE);
-    TransferStatus += Buffercmp(aDST_Buffer, (&aDST_Buffer[BUFFER_SIZE]), BUFFER_SIZE);
-#endif
-
-    /* 判断源数据与传输后数据比较结果 */
-    if(TransferStatus == 0)
-    {
-        /* 源数据与传输后数据不相等时，LED1 亮（红色），表示传输失败 */
-        LED1_ON;
-    }
-    else
-    {
-        /* 源数据与传输后数据相等时，LED1 亮（蓝色），表示传输成功 */
-        LED2_ON;
-    }
+    printf("这是一个串口收发回显例程\r\n");
+    printf("打开串口助手发送数据，接收窗口会回显所发送的数据\r\n");
 
     while(1)
     {
-
+        LED1_ON;
+        R_BSP_SoftwareDelay(1, BSP_DELAY_UNITS_SECONDS);
+        LED1_OFF;
+        R_BSP_SoftwareDelay(1, BSP_DELAY_UNITS_SECONDS);
     }
 
 
@@ -105,31 +38,6 @@ void hal_entry(void)
     R_BSP_NonSecureEnter();
 #endif
 }
-
-
-/**
-  * 判断指定长度的两个数据源是否完全相等，
-  * 如果完全相等返回1，只要其中一对数据不相等返回0
-  */
-uint8_t Buffercmp(const uint32_t* pBuffer, uint32_t* pBuffer1, uint16_t BufferLength)
-{
-    /* 数据长度递减 */
-    while(BufferLength--)
-    {
-        /* 判断两个数据源是否对应相等 */
-        if(*pBuffer != *pBuffer1)
-        {
-            /* 对应数据源不相等马上退出函数，并返回0 */
-            return 0;
-        }
-        /* 递增两个数据源的地址指针 */
-        pBuffer++;
-        pBuffer1++;
-    }
-    /* 完成判断并且对应数据相对 */
-    return 1;
-}
-
 
 /*******************************************************************************************************************//**
  * This function is called at various points during the startup process.  This implementation uses the event that is

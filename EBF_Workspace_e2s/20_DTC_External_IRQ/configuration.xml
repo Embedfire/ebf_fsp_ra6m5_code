@@ -226,34 +226,34 @@
       <property id="module.driver.uart.tei_ipl" value="board.icu.common.irq.priority12"/>
       <property id="module.driver.uart.eri_ipl" value="board.icu.common.irq.priority12"/>
     </module>
-    <module id="module.driver.external_irq_on_icu.131380399">
-      <property id="module.driver.external_irq.name" value="g_external_irq10"/>
-      <property id="module.driver.external_irq.channel" value="10"/>
-      <property id="module.driver.external_irq.trigger" value="module.driver.external_irq.trigger.trig_falling"/>
+    <module id="module.driver.external_irq_on_icu.48181728">
+      <property id="module.driver.external_irq.name" value="g_external_irq9"/>
+      <property id="module.driver.external_irq.channel" value="9"/>
+      <property id="module.driver.external_irq.trigger" value="module.driver.external_irq.trigger.trig_rising"/>
       <property id="module.driver.external_irq.filter_enable" value="module.driver.external_irq.filter_enable.false"/>
       <property id="module.driver.external_irq.pclk_div" value="module.driver.external_irq.pclk_div.pclk_div_by_64"/>
-      <property id="module.driver.external_irq.p_callback" value="key_sw3_irq10_callback"/>
-      <property id="module.driver.external_irq.ipl" value="board.icu.common.irq.priority12"/>
+      <property id="module.driver.external_irq.p_callback" value="icu_external_irq_callback"/>
+      <property id="module.driver.external_irq.ipl" value="board.icu.common.irq.priority10"/>
     </module>
-    <module id="module.driver.transfer_on_dtc.487439738">
+    <module id="module.driver.transfer_on_dtc.438690953">
       <property id="module.driver.transfer.name" value="g_transfer_dtc"/>
-      <property id="module.driver.transfer.mode" value="module.driver.transfer.mode.mode_block"/>
-      <property id="module.driver.transfer.size" value="module.driver.transfer.size.size_4_byte"/>
-      <property id="module.driver.transfer.dest_addr_mode" value="module.driver.transfer.dest_addr_mode.addr_mode_incremented"/>
-      <property id="module.driver.transfer.src_addr_mode" value="module.driver.transfer.src_addr_mode.addr_mode_incremented"/>
+      <property id="module.driver.transfer.mode" value="module.driver.transfer.mode.mode_normal"/>
+      <property id="module.driver.transfer.size" value="module.driver.transfer.size.size_2_byte"/>
+      <property id="module.driver.transfer.dest_addr_mode" value="module.driver.transfer.dest_addr_mode.addr_mode_fixed"/>
+      <property id="module.driver.transfer.src_addr_mode" value="module.driver.transfer.src_addr_mode.addr_mode_fixed"/>
       <property id="module.driver.transfer.repeat_area" value="module.driver.transfer.repeat_area.repeat_area_source"/>
       <property id="module.driver.transfer.p_dest" value="NULL"/>
       <property id="module.driver.transfer.p_src" value="NULL"/>
       <property id="module.driver.transfer.interrupt" value="module.driver.transfer.interrupt.interrupt_end"/>
-      <property id="module.driver.transfer.length" value="32"/>
-      <property id="module.driver.transfer.num_blocks" value="1"/>
-      <property id="module.driver.transfer.activation_source" value="_interrupt.event.icu.irq10"/>
+      <property id="module.driver.transfer.length" value="1"/>
+      <property id="module.driver.transfer.num_blocks" value="0"/>
+      <property id="module.driver.transfer.activation_source" value="_interrupt.event.icu.irq9"/>
     </module>
     <context id="_hal.0">
       <stack module="module.driver.ioport_on_ioport.0"/>
       <stack module="module.driver.uart_on_sci_uart.1963891634"/>
-      <stack module="module.driver.external_irq_on_icu.131380399"/>
-      <stack module="module.driver.transfer_on_dtc.487439738"/>
+      <stack module="module.driver.external_irq_on_icu.48181728"/>
+      <stack module="module.driver.transfer_on_dtc.438690953"/>
     </context>
     <config id="config.driver.ioport">
       <property id="config.driver.ioport.checking" value="config.driver.ioport.checking.system"/>
@@ -278,11 +278,11 @@
       <configSetting altId="debug0.mode.swd" configurationId="debug0.mode"/>
       <configSetting altId="debug0.swclk.p300" configurationId="debug0.swclk"/>
       <configSetting altId="debug0.swdio.p108" configurationId="debug0.swdio"/>
-      <configSetting altId="irq0.irq10.p005" configurationId="irq0.irq10"/>
+      <configSetting altId="irq0.irq09.p004" configurationId="irq0.irq09"/>
       <configSetting altId="irq0.mode.enabled" configurationId="irq0.mode"/>
-      <configSetting altId="p005.irq0.irq10" configurationId="p005"/>
-      <configSetting altId="p005.gpio_irq.gpio_irq_enabled" configurationId="p005.gpio_irq"/>
-      <configSetting altId="p005.gpio_mode.gpio_mode_irq" configurationId="p005.gpio_mode"/>
+      <configSetting altId="p004.irq0.irq09" configurationId="p004"/>
+      <configSetting altId="p004.gpio_irq.gpio_irq_enabled" configurationId="p004.gpio_irq"/>
+      <configSetting altId="p004.gpio_mode.gpio_mode_irq" configurationId="p004.gpio_mode"/>
       <configSetting altId="p108.debug0.swdio" configurationId="p108"/>
       <configSetting altId="p108.gpio_mode.gpio_mode_peripheral" configurationId="p108.gpio_mode"/>
       <configSetting altId="p300.debug0.swclk" configurationId="p300"/>

@@ -27,7 +27,7 @@ void debug_uart4_callback (uart_callback_args_t * p_args)
             R_SCI_UART_Write(&g_uart4_ctrl, (uint8_t *)&(p_args->data), 1);
             break;
         }
-        case UART_EVENT_TX_DATA_EMPTY:
+        case UART_EVENT_TX_COMPLETE:
         {
             uart_send_complete_flag = true;
             break;

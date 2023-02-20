@@ -106,8 +106,8 @@ FSP Configuration
       P001 168 - - - - Disabled - - "ADC0: AN001; ADC1: AN101; ICU0: IRQ07" - None - - 
       P002 167 - - - - Disabled - - "ADC0: AN002; ADC1: AN102; ICU0: IRQ08" - None - - 
       P003 166 - - - - Disabled - - "ADC0: AN003" - None - - 
-      P004 165 - - - - Disabled - - "ADC0: AN004; ICU0: IRQ09" - None - - 
-      P005 164 ICU0_IRQ10 - - IRQ10 "IRQ mode" - None "ADC0: AN005; ICU0: IRQ10" - IO - - 
+      P004 165 ICU0_IRQ09 - - IRQ09 "IRQ mode" - None "ADC0: AN004; ICU0: IRQ09" - IO - - 
+      P005 164 - - - - Disabled - - "ADC0: AN005; ICU0: IRQ10" - None - - 
       P006 163 - - - - Disabled - - "ADC0: AN006; ICU0: IRQ11" - None - - 
       P007 162 - - - - Disabled - - "ADC0: AN007" - None - - 
       P008 161 - - - - Disabled - - "ADC0: AN008; ICU0: IRQ12" - None - - 
@@ -335,26 +335,26 @@ FSP Configuration
       Interrupts: Transmit End Interrupt Priority: Priority 12
       Interrupts: Error Interrupt Priority: Priority 12
       
-    Instance "g_external_irq10 External IRQ (r_icu)"
-      Name: g_external_irq10
-      Channel: 10
-      Trigger: Falling
+    Instance "g_external_irq9 External IRQ (r_icu)"
+      Name: g_external_irq9
+      Channel: 9
+      Trigger: Rising
       Digital Filtering: Disabled
       Digital Filtering Sample Clock (Only valid when Digital Filtering is Enabled): PCLK / 64
-      Callback: key_sw3_irq10_callback
-      Pin Interrupt Priority: Priority 12
+      Callback: icu_external_irq_callback
+      Pin Interrupt Priority: Priority 10
       
-    Instance "g_transfer_dtc Transfer (r_dtc) ICU IRQ10 (External pin interrupt 10)"
+    Instance "g_transfer_dtc Transfer (r_dtc) ICU IRQ9 (External pin interrupt 9)"
       Name: g_transfer_dtc
-      Mode: Block
-      Transfer Size: 4 Bytes
-      Destination Address Mode: Incremented
-      Source Address Mode: Incremented
+      Mode: Normal
+      Transfer Size: 2 Bytes
+      Destination Address Mode: Fixed
+      Source Address Mode: Fixed
       Repeat Area (Unused in Normal Mode): Source
       Destination Pointer: NULL
       Source Pointer: NULL
       Interrupt Frequency: After all transfers have completed
-      Number of Transfers: 32
-      Number of Blocks (Valid only in Block Mode): 1
-      Activation Source: ICU IRQ10 (External pin interrupt 10)
+      Number of Transfers: 1
+      Number of Blocks (Valid only in Block Mode): 0
+      Activation Source: ICU IRQ9 (External pin interrupt 9)
       
