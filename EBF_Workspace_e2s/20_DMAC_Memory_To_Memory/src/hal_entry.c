@@ -8,6 +8,17 @@ FSP_CPP_FOOTER
 /* 用户头文件包含 */
 #include "led/bsp_led.h"
 #include "debug_uart/bsp_debug_uart.h"
+#include "dmac/bsp_dmac_m2m.h"
+
+
+extern const uint32_t SRC_Buffer[BUFFER_SIZE];
+extern uint32_t DST_Buffer[BUFFER_SIZE];
+extern uint32_t Expected_DST_Buffer[BUFFER_SIZE];
+extern volatile bool dmac0_complete_transmission_sign;
+extern volatile uint16_t dmac0_transfer_count;
+
+uint8_t BufferCompare(const uint32_t *pBuffer1, const uint32_t *pBuffer2, uint16_t BufferLength);
+void    BufferShow_HexData(const uint32_t *pBuffer, uint16_t BufferLength);
 
 
 /*******************************************************************************************************************//**
@@ -17,19 +28,135 @@ FSP_CPP_FOOTER
 void hal_entry(void)
 {
     /* TODO: add your own code here */
+    fsp_err_t err = FSP_SUCCESS;
+    uint8_t res;
 
     LED_Init();         // LED 初始化
     Debug_UART4_Init(); // SCI4 UART 调试串口初始化
 
-    printf("这是一个串口收发回显例程\r\n");
-    printf("打开串口助手发送数据，接收窗口会回显所发送的数据\r\n");
+    /* 初始化 DMAC */
+    DMAC_Init();
+    dmac0_complete_transmission_sign = false; //传输完成标志位清零
+
+    printf("这是一个 DMAC 存储器到存储器的传输实验例程\r\n");
+    printf("打开串口助手，查看接收窗口打印的相关提示信息\r\n");
+    printf("观察板载LED灯，本实验使用两个LED灯来指示 DMAC 传输结果\r\n");
+    printf("- DMA 数据传输失败，则 LED1 亮（红色）\r\n");
+    printf("- DMA 数据传输成功，则 LED2 亮（蓝色）\r\n");
+    printf("--------------------------------------------\r\n");
+
+    /* 使能 DMAC 使之可以响应传输请求 */
+    R_DMAC_Enable(&g_transfer_dmac0_ctrl);
+
+    /************************************/
+    /* 使用软件触发的方式启动 DMAC 传输 */
+    /************************************/
+
+#ifndef USE_MY_TRANSFER_INFOR_CONFIG
+    /* 根据 FSP 配置界面的传输信息配置进行传输 */
+
+    //可以用下面这种方式：
+    R_DMAC_SoftwareStart(&g_transfer_dmac0_ctrl, TRANSFER_START_MODE_REPEAT);
+
+    //也可以用这种方式：
+    //for (uint16_t i = 0; i < 1; i++)
+    //{
+    //    err = R_DMAC_SoftwareStart(&g_transfer_dmac0_ctrl, TRANSFER_START_MODE_SINGLE);
+    //    assert(FSP_SUCCESS == err);
+    //}
+
+#else   // 下面的这些是使用自定义的传输配置信息配置
+
+#if (DMAC_TRANSFER_MODE == DMAC_TRANSFER_NORMAL_MODE)           //正常模式（相当于重复次数为1的重复模式）
+    //可以用下面这种方式：
+    R_DMAC_SoftwareStart(&g_transfer_dmac0_ctrl, TRANSFER_START_MODE_REPEAT);
+
+    //也可以用这种方式：
+    //for (uint16_t i = 0; i < BUFFER_SIZE; i++)
+    //{
+    //    err = R_DMAC_SoftwareStart(&g_transfer_dmac0_ctrl, TRANSFER_START_MODE_SINGLE);
+    //    assert(FSP_SUCCESS == err);
+    //}
+
+#elif (DMAC_TRANSFER_MODE == DMAC_TRANSFER_REPEAT_MODE)         //重复模式
+    //可以用下面这种方式：
+    R_DMAC_SoftwareStart(&g_transfer_dmac0_ctrl, TRANSFER_START_MODE_REPEAT);
+
+    //也可以用这种方式：
+    //for (uint16_t i = 0; i < BUFFER_SIZE; i++)
+    //{
+    //    err = R_DMAC_SoftwareStart(&g_transfer_dmac0_ctrl, TRANSFER_START_MODE_SINGLE);
+    //    assert(FSP_SUCCESS == err);
+    //}
+
+#elif (DMAC_TRANSFER_MODE == DMAC_TRANSFER_BLOCK_MODE)          //块模式
+    //可以用下面这种方式：
+    R_DMAC_SoftwareStart(&g_transfer_dmac0_ctrl, TRANSFER_START_MODE_REPEAT);
+
+    //也可以用这种方式：
+    //for (uint16_t i = 0; i < 4; i++)
+    //{
+    //    err = R_DMAC_SoftwareStart(&g_transfer_dmac0_ctrl, TRANSFER_START_MODE_SINGLE);
+    //    assert(FSP_SUCCESS == err);
+    //
+    //    //加个小延时，确保DMAC通道0传输完成之后才再次软件触发启动，否则传输可能出错
+    //    R_BSP_SoftwareDelay(1, BSP_DELAY_UNITS_MILLISECONDS);
+    //}
+
+#elif (DMAC_TRANSFER_MODE == DMAC_TRANSFER_REPEAT_BLOCK_MODE)   //重复-块模式
+    //可以用下面这种方式：
+    R_DMAC_SoftwareStart(&g_transfer_dmac0_ctrl, TRANSFER_START_MODE_REPEAT);
+
+    //也可以用这种方式：
+    //for (uint16_t i = 0; i < 4; i++)
+    //{
+    //    err = R_DMAC_SoftwareStart(&g_transfer_dmac0_ctrl, TRANSFER_START_MODE_SINGLE);
+    //    assert(FSP_SUCCESS == err);
+    //
+    //    //加个小延时，确保DMAC通道0传输完成之后才再次软件触发启动，否则传输可能出错
+    //    R_BSP_SoftwareDelay(1, BSP_DELAY_UNITS_MILLISECONDS);
+    //}
+
+#endif //DMAC_TRANSFER_MODE
+
+#endif //USE_MY_TRANSFER_INFOR_CONFIG
+
+
+    /* 判断传输完成中断（需至少触发过1次） */
+    while (false == dmac0_complete_transmission_sign);
+    /* 等待所有传输完成（如果是TRANSFER_IRQ_EACH模式，传输过程中可能会触发多次中断） */
+    R_BSP_SoftwareDelay(5, BSP_DELAY_UNITS_MILLISECONDS);   //加上延时确保所有传输都已完成
+    printf("\r\n传输计数（中断次数）：dmac0_transfer_count = %d\r\n", dmac0_transfer_count);
+
+
+    /* 将传输后的数据与我们所期待的结果相比较 */
+    res = BufferCompare(DST_Buffer, Expected_DST_Buffer, BUFFER_SIZE);
+
+    printf("传输结果：");
+    /* 根据两者数据的比较结果进行判断 */
+    if( res != 0)
+    {
+        /* 源数据与传输后数据不相等时，LED1 亮（红色），表示传输失败 */
+        LED1_ON;
+        printf("<传输失败>\r\n");
+    }
+    else
+    {
+        /* 源数据与传输后数据相等时，LED1 亮（蓝色），表示传输成功 */
+        LED2_ON;
+        printf("<传输成功>\r\n");
+    }
+
+    printf("\r\nSRC:");
+    BufferShow_HexData(SRC_Buffer, BUFFER_SIZE);
+    printf("\r\nDST:（应与 Expected_DST 一致）");
+    BufferShow_HexData(DST_Buffer, BUFFER_SIZE);
+    printf("\r\nExpected_DST:");
+    BufferShow_HexData(Expected_DST_Buffer, BUFFER_SIZE);
 
     while(1)
     {
-        LED1_ON;
-        R_BSP_SoftwareDelay(1, BSP_DELAY_UNITS_SECONDS);
-        LED1_OFF;
-        R_BSP_SoftwareDelay(1, BSP_DELAY_UNITS_SECONDS);
+
     }
 
 
@@ -38,6 +165,49 @@ void hal_entry(void)
     R_BSP_NonSecureEnter();
 #endif
 }
+
+
+/* 缓冲区数据比较函数
+   返回 0 表示两个缓冲区数据一致
+*/
+uint8_t BufferCompare(const uint32_t *pBuffer1, const uint32_t *pBuffer2, uint16_t BufferLength)
+{
+    /* 数据长度递减 */
+    while(BufferLength--)
+    {
+        /* 判断两个数据源是否对应相等 */
+        if(*pBuffer1 != *pBuffer2)
+        {
+            /* 对应数据源不相等马上退出函数，并返回1 */
+            return 1;
+        }
+        /* 递增两个数据源的地址指针 */
+        pBuffer1++;
+        pBuffer2++;
+    }
+    /* 完成判断并且两组数据完全一致 */
+    return 0;
+}
+
+/* 打印缓冲区数据函数
+   打印缓冲区数据：十六进制格式
+*/
+void BufferShow_HexData(const uint32_t *pBuffer, uint16_t BufferLength)
+{
+    while(BufferLength)
+    {
+        if((BufferLength % 4) == 0)
+            printf("\r\n\t");
+
+        printf("0x%08X ", *pBuffer);
+
+        pBuffer++;
+        BufferLength--;
+    }
+
+    printf("\r\n");
+}
+
 
 /*******************************************************************************************************************//**
  * This function is called at various points during the startup process.  This implementation uses the event that is
