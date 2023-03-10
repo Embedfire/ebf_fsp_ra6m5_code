@@ -12,7 +12,7 @@ void RTC_Init(void)
      .tm_mday = RTC_MDAY_SET,  //日（一个月中）
      .tm_wday = RTC_WDAY_SET,   //星期
      .tm_mon = RTC_MON_SET,   //月份
-     .tm_year = RTC_YEAR_SET-1900, //年份（如今年是2022，则这里输入2022-1900=122）
+     .tm_year = RTC_YEAR_SET-1900, //年份（如今年是2008，则这里输入2008-1900=108）
    };
    /*打开RTC模块*/
    R_RTC_Open (RTC.p_ctrl, RTC.p_cfg);
