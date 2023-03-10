@@ -218,7 +218,7 @@
       <property id="module.driver.uart.eri_ipl" value="board.icu.common.irq.priority10"/>
     </module>
     <module id="module.driver.rtc_on_rtc.72205903">
-      <property id="module.driver.rtc.name" value="RTC"/>
+      <property id="module.driver.rtc.name" value="rtc"/>
       <property id="module.driver.rtc.clock_source" value="module.driver.rtc.clock_source.clock_source_subclk"/>
       <property id="module.driver.rtc.freq_cmpr_value_loco" value="255"/>
       <property id="module.driver.rtc.err_adjustment_mode" value="module.driver.rtc.err_adjustment_mode.m1"/>

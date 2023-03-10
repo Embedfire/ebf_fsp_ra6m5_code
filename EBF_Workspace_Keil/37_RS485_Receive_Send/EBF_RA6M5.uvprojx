@@ -382,28 +382,6 @@
       <Groups>
         <Group>
           <GroupName>Source Group 1</GroupName>
-          <Files>
-            <File>
-              <FileName>bsp_debug_uart.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\src\debug_uart\bsp_debug_uart.c</FilePath>
-            </File>
-            <File>
-              <FileName>key.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\src\key\key.c</FilePath>
-            </File>
-            <File>
-              <FileName>bsp_led.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\src\led\bsp_led.c</FilePath>
-            </File>
-            <File>
-              <FileName>rs485.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\src\rs485\rs485.c</FilePath>
-            </File>
-          </Files>
         </Group>
         <Group>
           <GroupName>:Renesas RA Smart Configurator:Common Sources</GroupName>
@@ -412,6 +390,46 @@
               <FileName>hal_entry.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\src\hal_entry.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_debug_uart.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\debug_uart\bsp_debug_uart.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_debug_uart.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\debug_uart\bsp_debug_uart.h</FilePath>
+            </File>
+            <File>
+              <FileName>key.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\key\key.c</FilePath>
+            </File>
+            <File>
+              <FileName>key.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\key\key.h</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_led.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\led\bsp_led.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_led.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\led\bsp_led.h</FilePath>
+            </File>
+            <File>
+              <FileName>rs485.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\rs485\rs485.c</FilePath>
+            </File>
+            <File>
+              <FileName>rs485.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\rs485\rs485.h</FilePath>
             </File>
           </Files>
         </Group>

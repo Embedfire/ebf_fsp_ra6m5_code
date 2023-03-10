@@ -332,8 +332,8 @@ FSP Configuration
       Interrupts: Transmit End Interrupt Priority: Priority 10
       Interrupts: Error Interrupt Priority: Priority 10
       
-    Instance "RTC Realtime Clock (r_rtc)"
-      Name: RTC
+    Instance "rtc Realtime Clock (r_rtc)"
+      Name: rtc
       Clock Source: Sub-Clock
       Frequency Comparision Value (LOCO): 255
       Automatic Adjustment Mode: Enabled

@@ -340,8 +340,8 @@ FSP Configuration
       Callback: external_irq_callback
       Pin Interrupt Priority: Priority 4
       
-    Instance "RS485_1 UART (r_sci_uart)"
-      General: Name: RS485_1
+    Instance "rs485_1 UART (r_sci_uart)"
+      General: Name: rs485_1
       General: Channel: 5
       General: Data Bits: 8bits
       General: Parity: None
@@ -360,7 +360,7 @@ FSP Configuration
       Extra: RS-485: DE Pin Polarity: Active High
       Extra: RS-485: DE Port Number: 05
       Extra: RS-485: DE Pin Number: 03
-      Interrupts: Callback: RS485_1_Callback
+      Interrupts: Callback: rs485_1_callback
       Interrupts: Receive Interrupt Priority: Priority 12
       Interrupts: Transmit Data Empty Interrupt Priority: Priority 12
       Interrupts: Transmit End Interrupt Priority: Priority 12

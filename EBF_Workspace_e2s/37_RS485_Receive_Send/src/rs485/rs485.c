@@ -3,17 +3,17 @@
 
 void RS485_1_Init(void)
 {
-    R_SCI_UART_Open(RS485_1.p_ctrl, RS485_1.p_cfg);
+    R_SCI_UART_Open(rs485_1.p_ctrl, rs485_1.p_cfg);
 
 }
 
 void RS485_Send_Example( uint8_t ch )
 {
     /*串口写入函数*/
-    R_SCI_UART_Write (&RS485_1_ctrl, (uint8_t*) &ch, 1);
+    R_SCI_UART_Write (&rs485_1_ctrl, (uint8_t*) &ch, 1);
 }
 
-void RS485_1_Callback(uart_callback_args_t * p_args)
+void rs485_1_callback(uart_callback_args_t * p_args)
 {
     switch(p_args->event)
     {
