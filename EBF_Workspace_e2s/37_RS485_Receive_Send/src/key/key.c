@@ -17,6 +17,8 @@ void external_irq_callback(external_irq_callback_args_t *p_args)
 {
     (void)(p_args);
 
+    uint8_t i;
+
     /*配置RS485_1为发送模式*/
     RS485_1_TX;
 
@@ -24,10 +26,10 @@ void external_irq_callback(external_irq_callback_args_t *p_args)
     LED1_ON;
     LED3_OFF;
 
+    for(i =0; i <= 10; i++){
     /*发送数据*/
-    RS485_Send_Example();
-
-    /*等待发送完毕*/
-    R_BSP_SoftwareDelay(1,BSP_DELAY_UNITS_SECONDS);
-
+    RS485_Send_Example( i );
+    /*等待发送时间*/
+    R_BSP_SoftwareDelay(10, BSP_DELAY_UNITS_MILLISECONDS);
+    }
 }

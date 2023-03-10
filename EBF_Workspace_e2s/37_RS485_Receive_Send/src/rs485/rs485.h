@@ -7,6 +7,6 @@
 #define RS485_1_RX     R_IOPORT_PinWrite(&g_ioport_ctrl,BSP_IO_PORT_05_PIN_03,BSP_IO_LEVEL_LOW)
 
 void RS485_1_Init(void);
-void RS485_Send_Example(void);
+void RS485_Send_Example( uint8_t ch );
 
 #endif
