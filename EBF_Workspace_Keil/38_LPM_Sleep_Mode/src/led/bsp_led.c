@@ -25,11 +25,11 @@ void LED_Task(void)
    LED3_OFF;
     
    /*睡眠前打印*/
-   printf("MCU enters sleep mode\r\n");
-    
+   printf("MCU进入睡眠模式\r\n");
+
    /*执行完流水灯任务，进入睡眠模式*/
-   R_LPM_LowPowerModeEnter(Sleep.p_ctrl);
-    
+   R_LPM_LowPowerModeEnter(sleep.p_ctrl);
+
    /*被唤醒后打印*/
-   printf("MCU has been woken up\r\n");
+   printf("MCU已被唤醒\r\n");
 }

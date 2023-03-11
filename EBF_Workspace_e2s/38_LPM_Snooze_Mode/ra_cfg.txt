@@ -350,8 +350,8 @@ FSP Configuration
       Callback: key1_irq_callback
       Pin Interrupt Priority: Priority 12
       
-    Instance "Snooze Low Power Modes (r_lpm)"
-      General: Name: Snooze
+    Instance "snooze Low Power Modes (r_lpm)"
+      General: Name: snooze
       General: Low Power Mode: Snooze mode
       General: Output port state in standby and deep standby: No change
       Standby Options: Wake Sources: IRQ9
@@ -364,8 +364,8 @@ FSP Configuration
       Deep Standby Options: Cancel Sources: 
       Deep Standby Options: Cancel Edges: 
       
-    Instance "GPT_PWM Timer, General PWM (r_gpt)"
-      General: Name: GPT_PWM
+    Instance "gpt_pwm Timer, General PWM (r_gpt)"
+      General: Name: gpt_pwm
       General: Channel: 6
       General: Mode: PWM
       General: Period: 1

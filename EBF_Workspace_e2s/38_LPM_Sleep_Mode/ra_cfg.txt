@@ -344,8 +344,8 @@ FSP Configuration
       Callback: key1_irq_callback
       Pin Interrupt Priority: Priority 12
       
-    Instance "Sleep Low Power Modes (r_lpm)"
-      General: Name: Sleep
+    Instance "sleep Low Power Modes (r_lpm)"
+      General: Name: sleep
       General: Low Power Mode: Sleep mode
       General: Output port state in standby and deep standby: No change
       Standby Options: Wake Sources: 

@@ -20,9 +20,9 @@ void hal_entry(void)
    Debug_UART4_Init(); //调试串口初始化
    IRQ_Init(); //按键1中断初始化
    R_BSP_PinAccessEnable(); //启用对PFS寄存器的访问,因为后面写IO口都用BSP内联函数
-   R_LPM_Open(Snooze.p_ctrl, Snooze.p_cfg); //打开LPM
-   R_GPT_Open(GPT_PWM.p_ctrl, GPT_PWM.p_cfg);  //打开GPT计时器
-   R_GPT_Start(GPT_PWM.p_ctrl); //启动GPT计时器
+   R_LPM_Open(snooze.p_ctrl, snooze.p_cfg); //打开LPM
+   R_GPT_Open(gpt_pwm.p_ctrl, gpt_pwm.p_cfg);  //打开GPT计时器
+   R_GPT_Start(gpt_pwm.p_ctrl); //启动GPT计时器
 
    while(1)
    {

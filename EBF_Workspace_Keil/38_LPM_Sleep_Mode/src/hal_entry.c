@@ -19,7 +19,7 @@ void hal_entry(void)
    Debug_UART4_Init(); //初始化debug串口
    IRQ_Init(); //按键中断初始化
    R_BSP_PinAccessEnable(); //启用对PFS寄存器的访问,因为后面写IO口都用BSP内联函数
-   R_LPM_Open(Sleep.p_ctrl, Sleep.p_cfg); //打开LPM
+   R_LPM_Open(sleep.p_ctrl, sleep.p_cfg); //打开LPM
    while(1)
    {
        LED_Task(); //流水灯任务

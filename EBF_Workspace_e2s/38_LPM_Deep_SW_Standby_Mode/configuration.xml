@@ -235,7 +235,7 @@
       <property id="module.driver.external_irq.ipl" value="board.icu.common.irq.priority12"/>
     </module>
     <module id="module.driver.lpm.1453240163">
-      <property id="module.driver.lpm.name" value="Deep_SW_Standby"/>
+      <property id="module.driver.lpm.name" value="deep_sw_standby"/>
       <property id="module.driver.lpm.mode" value="module.driver.lpm.mode.deep"/>
       <property id="module.driver.lpm.output_port_enable_standby" value="module.driver.lpm.output_port_enable_standby.no_change"/>
       <property id="module.driver.lpm.standby_wake_sources" value=""/>

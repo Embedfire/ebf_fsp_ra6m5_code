@@ -11,9 +11,9 @@ void IO_Init(void)
 void GPT_Init(void)
 {
     /*打开GPT，初始化寄存器配置*/
-    R_GPT_Open (GPT_PWM.p_ctrl, GPT_PWM.p_cfg);
+    R_GPT_Open (gpt_pwm.p_ctrl, gpt_pwm.p_cfg);
     /*启动GPT计时*/
-    R_GPT_Start (GPT_PWM.p_ctrl);
+    R_GPT_Start (gpt_pwm.p_ctrl);
 }
 
 void GPT_PWM_Duty_Cycle_Set(timer_ctrl_t * const GPT_p_ctrl, uint32_t duty_cycle)
@@ -34,7 +34,7 @@ void GPT_LED1_PWM_ON_Snooze_Mode(void)
   /*调整PWM占空比，实现呼吸灯效果*/
     for (uint32_t duty_cycle = 0; duty_cycle <= 90; duty_cycle++)
     {
-        GPT_PWM_Duty_Cycle_Set (GPT_PWM.p_ctrl, duty_cycle);
+        GPT_PWM_Duty_Cycle_Set (gpt_pwm.p_ctrl, duty_cycle);
         R_BSP_SoftwareDelay(5, BSP_DELAY_UNITS_MILLISECONDS);
     }
 }
@@ -51,12 +51,12 @@ void LED_Task(void)
    R_BSP_SoftwareDelay(1, BSP_DELAY_UNITS_SECONDS);
    LED3_OFF;
 
-   /*睡眠前打印*/
-   printf("MCU enters SW standby mode\r\n");
+   /*贪睡前打印*/
+   printf("MCU进入贪睡模式状态\r\n");
 
-   /*执行完流水灯任务，进入睡眠模式*/
-   R_LPM_LowPowerModeEnter(Snooze.p_ctrl);
+   /*执行完流水灯任务，进入贪睡模式*/
+   R_LPM_LowPowerModeEnter(snooze.p_ctrl);
 
    /*被唤醒后打印*/
-   printf("MCU has been woken up\r\n");
+   printf("MCU被唤醒成功\r\n");
 }

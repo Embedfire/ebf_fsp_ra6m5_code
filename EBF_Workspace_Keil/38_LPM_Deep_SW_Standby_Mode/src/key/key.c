@@ -2,7 +2,7 @@
 #include "bsp_led.h"
 
 /*设置标志位*/
-volatile bool key_flag = false;
+volatile _Bool key_flag = false;
 
 void IRQ_Init(void)
 {

@@ -24,12 +24,12 @@ void LED_Task(void)
    R_BSP_SoftwareDelay(1, BSP_DELAY_UNITS_SECONDS);
    LED3_OFF;
 
-   /*睡眠前打印*/
-   printf("MCU enters sleep mode\r\n");
+   /*待机前打印*/
+   printf("MCU进入软件待机模式\r\n");
 
-   /*执行完流水灯任务，进入睡眠模式*/
-   R_LPM_LowPowerModeEnter(Standby.p_ctrl);
+   /*执行完流水灯任务，进入待机模式*/
+   R_LPM_LowPowerModeEnter(standby.p_ctrl);
 
    /*被唤醒后打印*/
-   printf("MCU has been woken up\r\n");
+   printf("MCU已被唤醒\r\n");
 }

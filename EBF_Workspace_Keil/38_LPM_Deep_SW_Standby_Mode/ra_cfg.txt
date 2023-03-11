@@ -340,8 +340,8 @@ FSP Configuration
       Callback: key1_irq_callback
       Pin Interrupt Priority: Priority 12
       
-    Instance "Deep_SW_Standby Low Power Modes (r_lpm)"
-      General: Name: Deep_SW_Standby
+    Instance "deep_sw_standby Low Power Modes (r_lpm)"
+      General: Name: deep_sw_standby
       General: Low Power Mode: Deep Software Standby mode
       General: Output port state in standby and deep standby: No change
       Standby Options: Wake Sources: 
@@ -360,6 +360,6 @@ FSP Configuration
       Trigger: Rising
       Digital Filtering: Disabled
       Digital Filtering Sample Clock (Only valid when Digital Filtering is Enabled): PCLK / 64
-      Callback: key1_irq_callback
+      Callback: key2_irq_callback
       Pin Interrupt Priority: Priority 15
       

@@ -235,7 +235,7 @@
       <property id="module.driver.external_irq.ipl" value="board.icu.common.irq.priority12"/>
     </module>
     <module id="module.driver.lpm.1453240163">
-      <property id="module.driver.lpm.name" value="Snooze"/>
+      <property id="module.driver.lpm.name" value="snooze"/>
       <property id="module.driver.lpm.mode" value="module.driver.lpm.mode.standby_snooze"/>
       <property id="module.driver.lpm.output_port_enable_standby" value="module.driver.lpm.output_port_enable_standby.no_change"/>
       <property id="module.driver.lpm.standby_wake_sources" value="module.driver.lpm.standby_wake_irq9"/>
@@ -249,7 +249,7 @@
       <property id="module.driver.lpm.deep_standby_cancel_edges" value=""/>
     </module>
     <module id="module.driver.timer_on_gpt.861277761">
-      <property id="module.driver.timer.name" value="GPT_PWM"/>
+      <property id="module.driver.timer.name" value="gpt_pwm"/>
       <property id="module.driver.timer.channel" value="6"/>
       <property id="module.driver.timer.mode" value="module.driver.timer.mode.mode_pwm"/>
       <property id="module.driver.timer.period" value="1"/>
