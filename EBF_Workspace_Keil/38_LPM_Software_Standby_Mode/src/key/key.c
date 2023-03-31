@@ -14,5 +14,6 @@ void IRQ_Init(void)
 /*按键中断回调函数*/
 void key1_irq_callback(external_irq_callback_args_t *p_args)
 {
-    (void)(p_args);
+     /*防止编译器产生没有使用形参的警告*/
+    FSP_PARAMETER_NOT_USED(p_args);
 }

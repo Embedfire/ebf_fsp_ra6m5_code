@@ -22,12 +22,14 @@ void IRQ_Init(void)
 /*按键1中断回调函数，用于进入深度睡眠或唤醒*/
 void key1_irq_callback(external_irq_callback_args_t *p_args)
 {
-    (void)(p_args);
+     /*防止编译器产生没有使用形参的警告*/
+    FSP_PARAMETER_NOT_USED(p_args);
 		key_flag = true;
 }
 
 /*按键2中断回调函数，用于唤醒*/
 void key2_irq_callback(external_irq_callback_args_t *p_args)
 {
-    (void)(p_args);
+     /*防止编译器产生没有使用形参的警告*/
+    FSP_PARAMETER_NOT_USED(p_args);
 }
