@@ -1,8 +1,8 @@
 /* 自己写库——构建库函数雏形 */
-#ifndef __RA6M5_IOPORT_H
-#define __RA6M5_IOPORT_H
+#ifndef __RA_IOPORT_H
+#define __RA_IOPORT_H
 
-#include "hal_data.h"
+#include "hal_data.h"   //间接包含了寄存器定义头文件 "R7FA6M5BH.h"
 
 
 /* IOPORT 端口定义 */
@@ -97,7 +97,7 @@ typedef enum
 {
     IO_NO_PULL =   0x00u,   /* 浮空输入 */
     IO_PULL_UP =   0x01u,   /* 上拉输入 */
-    //IO_PULL_DOWN = 0x02u  /* RA6M5 引脚没有下拉功能 */
+    //IO_PULL_DOWN = 0x02u  /* RA6M5/RA4M2/RA2L1 引脚没有下拉功能 */
 } IO_Pull_t;
 
 
@@ -131,4 +131,4 @@ void     IOPORT_PinAccessDisable (void);
 void     IOPORT_Init (IOPORT_Init_t *ioport_init);
 
 
-#endif //__RA6M5_IOPORT_H
+#endif //__RA_IOPORT_H

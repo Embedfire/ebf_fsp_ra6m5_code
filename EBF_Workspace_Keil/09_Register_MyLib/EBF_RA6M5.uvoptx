@@ -202,8 +202,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\src\ioport\ra6m5_ioport.c</PathWithFileName>
-      <FilenameWithoutPath>ra6m5_ioport.c</FilenameWithoutPath>
+      <PathWithFileName>.\src\ioport\ra_ioport.c</PathWithFileName>
+      <FilenameWithoutPath>ra_ioport.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -214,8 +214,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\src\ioport\ra6m5_ioport.h</PathWithFileName>
-      <FilenameWithoutPath>ra6m5_ioport.h</FilenameWithoutPath>
+      <PathWithFileName>.\src\ioport\ra_ioport.h</PathWithFileName>
+      <FilenameWithoutPath>ra_ioport.h</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -223,7 +223,7 @@
 
   <Group>
     <GroupName>::Flex Software</GroupName>
-    <tvExp>0</tvExp>
+    <tvExp>1</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>1</RteFlg>
