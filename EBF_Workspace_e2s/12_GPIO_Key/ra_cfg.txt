@@ -72,7 +72,7 @@ FSP Configuration
   Clocks
     XTAL 24000000Hz
     HOCO 20MHz
-    PLL Src: HOCO
+    PLL Src: XTAL
     PLL Div /3
     PLL Mul x25.0
     PLL2 Disabled
@@ -106,8 +106,8 @@ FSP Configuration
       P001 168 - - - - Disabled - - "ADC0: AN001; ADC1: AN101; ICU0: IRQ07" - None - - 
       P002 167 - - - - Disabled - - "ADC0: AN002; ADC1: AN102; ICU0: IRQ08" - None - - 
       P003 166 - - - - Disabled - - "ADC0: AN003" - None - - 
-      P004 165 GPIO Key_1 - None "Input mode" - None "ADC0: AN004; ICU0: IRQ09" - IO - - 
-      P005 164 GPIO Key_2 - None "Input mode" - None "ADC0: AN005; ICU0: IRQ10" - IO - - 
+      P004 165 GPIO - - None "Input mode" - None "ADC0: AN004; ICU0: IRQ09" - IO - - 
+      P005 164 GPIO - - None "Input mode" - None "ADC0: AN005; ICU0: IRQ10" - IO - - 
       P006 163 - - - - Disabled - - "ADC0: AN006; ICU0: IRQ11" - None - - 
       P007 162 - - - - Disabled - - "ADC0: AN007" - None - - 
       P008 161 - - - - Disabled - - "ADC0: AN008; ICU0: IRQ12" - None - - 
@@ -195,7 +195,7 @@ FSP Configuration
       P602 120 - - - - Disabled - - "AGT3: AGTO3; BUS_ASYNCH0: EBCLK; GPT7: GTIOC7B; OSPI0: OMCS1; SCI9: SDA9; SCI9: TXD9" - None - - 
       P603 119 - - - - Disabled - - "AGT4: AGTIO4; BUS_ASYNCH0: D13; GPT7: GTIOC7A; SCI9: CTSRTS9" - None - - 
       P604 118 - - - - Disabled - - "AGT4: AGTEE4; BUS_ASYNCH0: D12; GPT8: GTIOC8B; SCI9: CTS9" - None - - 
-      P605 117 GPIO bee Low - "Output mode (Initial Low)" CMOS - "AGT4: AGTO4; BUS_ASYNCH0: D11; GPT8: GTIOC8A; SCI8: CTS8" - IO - - 
+      P605 117 - - - - Disabled - - "AGT4: AGTO4; BUS_ASYNCH0: D11; GPT8: GTIOC8A; SCI8: CTS8" - None - - 
       P606 116 - - - - Disabled - - "RTC0: RTCOUT; SCI8: CTSRTS8" - None - - 
       P607 115 - - - - Disabled - - "SCI8: RXD8; SCI8: SCL8" - None - - 
       P608 99 - - - - Disabled - - "BUS_ASYNCH0: A00; GPT4: GTIOC4B" - None - - 
