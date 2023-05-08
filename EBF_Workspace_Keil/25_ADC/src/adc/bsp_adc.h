@@ -1,10 +1,9 @@
-#ifndef _BSP_ADC_H_
-#define _BSP_ADC_H_
+#ifndef __BSP_ADC_H
+#define __BSP_ADC_H
 
 #include "hal_data.h"
 
-void adc_Init(void);
-double adc_read(void);
-void adc_callback(adc_callback_args_t * p_args);
+void ADC_Init(void);
+double Read_ADC_Voltage_Value(void);
 
 #endif
