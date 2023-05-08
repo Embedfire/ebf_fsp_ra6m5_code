@@ -1,13 +1,14 @@
 #include "hal_data.h"
-#include "adc/bsp_adc.h"
-#include "debug_uart/bsp_debug_uart.h"
-#include "led/bsp_led.h"
-#include "stdio.h"
 
 FSP_CPP_HEADER
 void R_BSP_WarmStart(bsp_warm_start_event_t event);
 FSP_CPP_FOOTER
 
+
+/* 用户头文件包含 */
+#include "led/bsp_led.h"
+#include "debug_uart/bsp_debug_uart.h"
+#include "adc/bsp_adc.h"
 
 
 /*******************************************************************************************************************//**
@@ -16,17 +17,25 @@ FSP_CPP_FOOTER
  **********************************************************************************************************************/
 void hal_entry(void)
 {
+    /* TODO: add your own code here */
 
-    R_SCI_UART_Open (&g_uart4_ctrl, &g_uart4_cfg);
-    printf("开始读取ADC的数值\r\n");
-    adc_Init();
+    LED_Init();         // LED 初始化
+    Debug_UART4_Init(); // SCI4 UART 调试串口初始化
+
+    /* ADC 初始化 */
+    ADC_Init();
+
+    printf("这是一个读取电位器ADC电压转换值的例程\r\n");
+    printf("打开串口助手查看ADC转换结果，旋钮电位器，可以看到ADC值在一定范围之内发生变化\r\n");
+    printf("开始读取ADC转换值：\r\n");
 
 
-    while(1){
-        printf("a0=%f\r\n",adc_read());
-        R_BSP_SoftwareDelay(100,BSP_DELAY_UNITS_MILLISECONDS); //大概1秒钟读取一次
+    while(1)
+    {
+        printf("a0 = %f\r\n", Read_ADC_Voltage_Value());
+        R_BSP_SoftwareDelay(500, BSP_DELAY_UNITS_MILLISECONDS); //大概0.5秒钟读取一次
+        LED1_TOGGLE;
     }
-
 
 
 #if BSP_TZ_SECURE_BUILD
