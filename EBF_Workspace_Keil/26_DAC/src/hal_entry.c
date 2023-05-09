@@ -1,9 +1,14 @@
 #include "hal_data.h"
-#include "dac/bsp_dac.h"
 
 FSP_CPP_HEADER
 void R_BSP_WarmStart(bsp_warm_start_event_t event);
 FSP_CPP_FOOTER
+
+
+/* 用户头文件包含 */
+#include "led/bsp_led.h"
+#include "debug_uart/bsp_debug_uart.h"
+#include "dac/bsp_dac.h"
 
 
 /*******************************************************************************************************************//**
@@ -12,11 +17,20 @@ FSP_CPP_FOOTER
  **********************************************************************************************************************/
 void hal_entry(void)
 {
-    dac_Init();
-       while(1)
-       {
-           dac_Circle(100);
-       }
+    /* TODO: add your own code here */
+
+    LED_Init();         // LED 初始化
+    Debug_UART4_Init(); // SCI4 UART 调试串口初始化
+    DAC_Init();         // DAC 初始化
+
+    printf("这是一个DAC输出正弦波的实验例程\r\n");
+    printf("使用示波器测量 P014 引脚（DAC 0）\r\n");
+
+    while(1)
+    {
+        DAC_SinWave_Cycle(1);
+    }
+
 
 #if BSP_TZ_SECURE_BUILD
     /* Enter non-secure code */

@@ -3,8 +3,8 @@
 
 #include "hal_data.h"
 
-void dac_Init();
-void dac_Set(float voltage);
-void dac_Circle(uint32_t timer);
+void DAC_Init();
+void DAC_SetVoltage(float voltage);
+void DAC_SinWave_Cycle(uint32_t time_interval);
 
 #endif

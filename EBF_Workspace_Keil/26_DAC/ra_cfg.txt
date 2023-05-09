@@ -102,7 +102,7 @@ FSP Configuration
       AVCCUSBHS 26 USB_HS0_AVCC_USBHS - - - - - - - - IO "Read only" - 
       AVSS0 156 ANALOG0_AVSS0 - - - - - - - - IO "Read only" - 
       AVSSUSBHS 28 USB_HS0_AVSS_USBHS - - - - - - - - IO "Read only" - 
-      P000 169 ADC0_AN000 - - - "Analog mode" - None "ADC0: AN000; ADC1: AN100; ICU0: IRQ06" - IO - - 
+      P000 169 - - - - Disabled - - "ADC0: AN000; ADC1: AN100; ICU0: IRQ06" - None - - 
       P001 168 - - - - Disabled - - "ADC0: AN001; ADC1: AN101; ICU0: IRQ07" - None - - 
       P002 167 - - - - Disabled - - "ADC0: AN002; ADC1: AN102; ICU0: IRQ08" - None - - 
       P003 166 - - - - Disabled - - "ADC0: AN003" - None - - 
@@ -176,8 +176,8 @@ FSP Configuration
       P411 40 - - - - Disabled - - "AGT1: AGTOA1; CTSU0: TS07; ETHERC_MII0: ET0_ERXD1; ETHERC_RMII0: RMII_RXD0; GPT_OPS0: GTOVUP; GPT9: GTIOC9A; ICU0: IRQ04; SCI0: SDA0; SCI0: TXD0; SCI3: CTSRTS3; SDHI0: SD0DAT0; SPI1: MOSIB" - None - - 
       P412 39 - - - - Disabled - - "AGT1: AGTEE1; CTSU0: TS08; ETHERC_MII0: ET0_ETXD0; ETHERC_RMII0: REF50CK; GPT_OPS0: GTOULO; SCI0: SCK0; SCI3: CTS3; SDHI0: SD0CMD; SPI1: RSPCKB" - None - - 
       P413 38 - - - - Disabled - - "AGT3: AGTEE3; CTSU0: TS09; ETHERC_MII0: ET0_ETXD1; ETHERC_RMII0: RMII_TXD0; GPT_OPS0: GTOUUP; SCI0: CTSRTS0; SDHI0: SD0CLK; SPI1: SSLB0" - None - - 
-      P414 37 IIC2_SDA2 - Medium None "Peripheral mode" CMOS None "AGT5: AGTIO5; CTSU0: TS10; ETHERC_MII0: ET0_RX_ER; ETHERC_RMII0: RMII_TXD1; GPT0: GTIOC0B; ICU0: IRQ09; IIC2: SDA2; SCI0: CTS0; SDHI0: SD0WP; SPI1: SSLB1" - IO - - 
-      P415 36 IIC2_SCL2 - Medium None "Peripheral mode" CMOS None "AGT4: AGTIO4; CTSU0: TS11; ETHERC_MII0: ET0_TX_EN; ETHERC_RMII0: RMII_TXD_EN; GPT0: GTIOC0A; ICU0: IRQ08; IIC2: SCL2; SDHI0: SD0CD; SPI1: SSLB2; USB_FS0: USB_VBUSEN" - IO - - 
+      P414 37 - - - - Disabled - - "AGT5: AGTIO5; CTSU0: TS10; ETHERC_MII0: ET0_RX_ER; ETHERC_RMII0: RMII_TXD1; GPT0: GTIOC0B; ICU0: IRQ09; IIC2: SDA2; SCI0: CTS0; SDHI0: SD0WP; SPI1: SSLB1" - None - - 
+      P415 36 - - - - Disabled - - "AGT4: AGTIO4; CTSU0: TS11; ETHERC_MII0: ET0_TX_EN; ETHERC_RMII0: RMII_TXD_EN; GPT0: GTIOC0A; ICU0: IRQ08; IIC2: SCL2; SDHI0: SD0CD; SPI1: SSLB2; USB_FS0: USB_VBUSEN" - None - - 
       P500 140 - - - - Disabled - - "ADC1: AN116; AGT0: AGTOA0; CAC0: CACREF; GPT_OPS0: GTIU; QSPI0: QSPCLK; SCI5: CTS5; USB_FS0: USB_VBUSEN" - None - - 
       P501 141 - - - - Disabled - - "ADC1: AN117; AGT0: AGTOB0; GPT_OPS0: GTIV; ICU0: IRQ11; QSPI0: QSSL; SCI5: SDA5; SCI5: TXD5; USB_FS0: USB_OVRCURA" - None - - 
       P502 142 - - - - Disabled - - "ADC1: AN118; AGT2: AGTOA2; GPT_OPS0: GTIW; ICU0: IRQ12; QSPI0: QIO0; SCI5: RXD5; SCI5: SCL5; SCI6: CTS6; USB_FS0: USB_OVRCURB" - None - - 
@@ -331,8 +331,8 @@ FSP Configuration
       Interrupts: Transmit End Interrupt Priority: Priority 12
       Interrupts: Error Interrupt Priority: Priority 12
       
-    Instance "DAC DAC (r_dac)"
-      Name: DAC
+    Instance "g_dac0 DAC (r_dac)"
+      Name: g_dac0
       Channel: 0
       Synchronize with ADC: Disabled
       Data Format: Right Justified

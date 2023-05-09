@@ -2,9 +2,6 @@
 #define __BSP_LED_H
 #include "hal_data.h"
 
-#define led_green (BSP_IO_PORT_04_PIN_04)
-#define led_red 	(BSP_IO_PORT_04_PIN_00)
-
 /* LED引脚置低电平 LED灯亮 */
 #define LED1_ON     R_IOPORT_PinWrite(&g_ioport_ctrl, BSP_IO_PORT_04_PIN_00, BSP_IO_LEVEL_LOW)
 #define LED2_ON     R_IOPORT_PinWrite(&g_ioport_ctrl, BSP_IO_PORT_04_PIN_03, BSP_IO_LEVEL_LOW)

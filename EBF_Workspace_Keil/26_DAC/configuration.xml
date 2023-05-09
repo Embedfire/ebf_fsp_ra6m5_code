@@ -221,8 +221,8 @@
       <property id="module.driver.uart.tei_ipl" value="board.icu.common.irq.priority12"/>
       <property id="module.driver.uart.eri_ipl" value="board.icu.common.irq.priority12"/>
     </module>
-    <module id="module.driver.dac_on_dac.1326893966">
-      <property id="module.driver.dac.name" value="DAC"/>
+    <module id="module.driver.dac_on_dac.633297941">
+      <property id="module.driver.dac.name" value="g_dac0"/>
       <property id="module.driver.dac.channel_id" value="0"/>
       <property id="module.driver.dac.ad_da_synchronized" value="module.driver.dac.ad_da_synchronized.disabled"/>
       <property id="module.driver.dac.data_format" value="module.driver.dac.data_format.data_format_flush_right"/>
@@ -234,7 +234,7 @@
     <context id="_hal.0">
       <stack module="module.driver.ioport_on_ioport.0"/>
       <stack module="module.driver.uart_on_sci_uart.735256851"/>
-      <stack module="module.driver.dac_on_dac.1326893966"/>
+      <stack module="module.driver.dac_on_dac.633297941"/>
     </context>
     <config id="config.driver.ioport">
       <property id="config.driver.ioport.checking" value="config.driver.ioport.checking.system"/>
@@ -252,19 +252,11 @@
   </raModuleConfiguration>
   <raPinConfiguration>
     <pincfg active="true" name="R7FA6M5BH3CFC.pincfg" selected="true" symbol="g_bsp_pin_cfg">
-      <configSetting altId="adc0.an00.p000" configurationId="adc0.an00"/>
-      <configSetting altId="adc0.mode.custom" configurationId="adc0.mode"/>
       <configSetting altId="dac0.da.p014" configurationId="dac0.da"/>
       <configSetting altId="dac0.mode.enabled" configurationId="dac0.mode"/>
       <configSetting altId="debug0.mode.swd" configurationId="debug0.mode"/>
       <configSetting altId="debug0.swclk.p300" configurationId="debug0.swclk"/>
       <configSetting altId="debug0.swdio.p108" configurationId="debug0.swdio"/>
-      <configSetting altId="iic2.mode.enabled.b" configurationId="iic2.mode"/>
-      <configSetting altId="iic2.pairing.b" configurationId="iic2.pairing"/>
-      <configSetting altId="iic2.scl.p415" configurationId="iic2.scl"/>
-      <configSetting altId="iic2.sda.p414" configurationId="iic2.sda"/>
-      <configSetting altId="p000.asel" configurationId="p000"/>
-      <configSetting altId="p000.gpio_mode.gpio_mode_an" configurationId="p000.gpio_mode"/>
       <configSetting altId="p014.dac0.da" configurationId="p014"/>
       <configSetting altId="p014.gpio_mode.gpio_mode_an" configurationId="p014.gpio_mode"/>
       <configSetting altId="p108.debug0.swdio" configurationId="p108"/>
@@ -277,12 +269,6 @@
       <configSetting altId="p403.gpio_mode.gpio_mode_out.high" configurationId="p403.gpio_mode"/>
       <configSetting altId="p404.output.high" configurationId="p404"/>
       <configSetting altId="p404.gpio_mode.gpio_mode_out.high" configurationId="p404.gpio_mode"/>
-      <configSetting altId="p414.iic2.sda" configurationId="p414"/>
-      <configSetting altId="p414.gpio_speed.gpio_speed_medium" configurationId="p414.gpio_drivecapacity"/>
-      <configSetting altId="p414.gpio_mode.gpio_mode_peripheral" configurationId="p414.gpio_mode"/>
-      <configSetting altId="p415.iic2.scl" configurationId="p415"/>
-      <configSetting altId="p415.gpio_speed.gpio_speed_medium" configurationId="p415.gpio_drivecapacity"/>
-      <configSetting altId="p415.gpio_mode.gpio_mode_peripheral" configurationId="p415.gpio_mode"/>
       <configSetting altId="p511.sci4.rxd" configurationId="p511"/>
       <configSetting altId="p511.gpio_mode.gpio_mode_peripheral" configurationId="p511.gpio_mode"/>
       <configSetting altId="p512.sci4.txd" configurationId="p512"/>
