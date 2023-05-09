@@ -9,7 +9,7 @@
     <option key="#DeviceCommand#" value="R7FA6M5BH"/>
     <option key="#RTOS#" value="_none"/>
     <option key="#pinconfiguration#" value="R7FA6M5BH3CFC.pincfg"/>
-    <option key="#FSPVersion#" value="4.0.0-beta.0"/>
+    <option key="#FSPVersion#" value="4.0.0"/>
     <option key="#SELECTED_TOOLCHAIN#" value="gcc-arm-embedded"/>
     <option key="#ToolchainVersion#" value="10.3.1.20210824"/>
   </generalSettings>
@@ -61,9 +61,13 @@
   <raPinConfiguration>
     <pincfg active="true" name="" symbol="">
       <configSetting altId="dac0.da.p014" configurationId="dac0.da" isUsedByDriver="true"/>
-      <configSetting altId="dac1.da.p015" configurationId="dac1.da"/>
       <configSetting altId="debug0.swclk.p300" configurationId="debug0.swclk" isUsedByDriver="true"/>
       <configSetting altId="debug0.swdio.p108" configurationId="debug0.swdio" isUsedByDriver="true"/>
+      <configSetting altId="p400.output.high" configurationId="p400"/>
+      <configSetting altId="p403.output.high" configurationId="p403"/>
+      <configSetting altId="p404.output.high" configurationId="p404"/>
+      <configSetting altId="sci4.rxd.p511" configurationId="sci4.rxd" isUsedByDriver="true"/>
+      <configSetting altId="sci4.txd.p512" configurationId="sci4.txd" isUsedByDriver="true"/>
     </pincfg>
   </raPinConfiguration>
 </raConfiguration>
