@@ -33,13 +33,13 @@ void hal_entry(void)
         LED2_ON; // LED2亮
         LED3_ON; // LED3亮
         //R_BSP_SoftwareDelay(1, BSP_DELAY_UNITS_SECONDS); //延时1秒
-        Delay(0x0FFFFFF); //不精确延时，延时时间会随系统时钟变化
+        Delay(0x05FFFFF); //不精确延时，延时时间会随系统时钟变化
 
         LED1_OFF; // LED1灭
         LED2_OFF; // LED2灭
         LED3_OFF; // LED3灭
         //R_BSP_SoftwareDelay(1, BSP_DELAY_UNITS_SECONDS); //延时1秒
-        Delay(0x0FFFFFF); //不精确延时，延时时间会随系统时钟变化
+        Delay(0x05FFFFF); //不精确延时，延时时间会随系统时钟变化
     }
 
 
