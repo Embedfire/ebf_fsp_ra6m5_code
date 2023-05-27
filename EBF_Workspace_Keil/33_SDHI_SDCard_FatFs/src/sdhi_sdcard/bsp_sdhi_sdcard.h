@@ -13,6 +13,5 @@ extern sdmmc_device_t my_sdmmc_device;
 void SDCard_Init(void);
 void SDCard_DeInit(void);
 
-void SDCard_FatFs(void);
 
 #endif

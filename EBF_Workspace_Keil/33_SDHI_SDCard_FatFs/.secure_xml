@@ -9,9 +9,10 @@
     <option key="#DeviceCommand#" value="R7FA6M5BH"/>
     <option key="#RTOS#" value="_none"/>
     <option key="#pinconfiguration#" value="R7FA6M5BH3CFC.pincfg"/>
-    <option key="#FSPVersion#" value="4.1.0"/>
+    <option key="#FSPVersion#" value="4.0.0"/>
     <option key="#SELECTED_TOOLCHAIN#" value="com.arm.toolchain"/>
   </generalSettings>
+  <raBspConfiguration/>
   <raClockConfiguration>
     <node id="board.clock.xtal.freq" mul="24000000" option="_edit"/>
     <node id="board.clock.hoco.freq" option="board.clock.hoco.freq.20m"/>
@@ -56,7 +57,6 @@
     <node id="board.clock.octaspiclk.display" option="board.clock.octaspiclk.display.value"/>
     <node id="board.clock.canfdclk.display" option="board.clock.canfdclk.display.value"/>
   </raClockConfiguration>
-  <raModuleConfiguration/>
   <raPinConfiguration>
     <pincfg active="true" name="" symbol="">
       <configSetting altId="debug0.swclk.p300" configurationId="debug0.swclk" isUsedByDriver="true"/>

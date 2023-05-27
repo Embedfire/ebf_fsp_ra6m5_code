@@ -8,7 +8,29 @@ FSP_CPP_FOOTER
 /* 用户头文件包含 */
 #include "led/bsp_led.h"
 #include "debug_uart/bsp_debug_uart.h"
-#include "sdhi_sdcard/bsp_sdhi_sdcard.h"
+//#include "sdhi_sdcard/bsp_sdhi_sdcard.h" //这里不需要直接包含
+
+//FatFs
+#include "FatFs/ff15/ff.h"
+
+
+
+MKFS_PARM f_opt = {
+    .fmt = FM_FAT32,       //格式选项
+    .n_fat = 0,     //FATs大小
+    .align = 0,     //数据区域对齐（扇区）
+    .n_root = 0,    //根目录条目数
+    .au_size = 0,   //群集大小（字节）
+};
+FATFS fs;                         /* FatFs文件系统对象 */
+FIL fnew;                         /* 文件对象 */
+UINT fnum;                        /* 文件成功读写数量 */
+FRESULT res_sd;                   /* 文件操作结果 */
+BYTE ReadBuffer[1024]={0};        /* 读缓冲区 */
+BYTE WriteBuffer[] =              /* 写缓冲区*/
+        "感谢您选用野火启明瑞萨RA开发板 [FatFs读写测试文件.txt]";
+BYTE work[FF_MAX_SS]; /* Work area (larger is better for processing time) */
+
 
 
 /*******************************************************************************************************************//**
@@ -21,19 +43,111 @@ void hal_entry(void)
 
     LED_Init();         // LED 初始化
     Debug_UART4_Init(); // SCI4 UART 调试串口初始化
-    
-    SDCard_Init();      // SD卡初始化
 
-    /* 对SD卡进行文件读写操作 */
-    SDCard_FatFs();
-    
-    while(1)
+    printf("这是一个基于SD卡的FatFs使用演示例程\r\n");
+    printf("打开串口助手查看打印的信息\r\n\r\n");
+
+
+    /*----------------------- 格式化测试 ---------------------------*/
+    /* 尝试挂载外部FLASH FAT文件系统 */
+    res_sd = f_mount(&fs, "1:", 1);
+    /* 如果没有文件系统就格式化SD卡创建文件系统 */
+    if(res_sd == FR_NO_FILESYSTEM)
     {
-        LED3_ON;
-        R_BSP_SoftwareDelay(1, BSP_DELAY_UNITS_SECONDS);
-        LED3_OFF;
-        R_BSP_SoftwareDelay(1, BSP_DELAY_UNITS_SECONDS);
+        printf("》SD卡还没有文件系统，即将进行格式化...\r\n");
+        /* 格式化 */
+        res_sd = f_mkfs("1:", NULL, work, sizeof(work));
+        if(res_sd == FR_OK)
+        {
+            printf("》SD卡已成功格式化文件系统。\r\n");
+            /* 格式化后，先取消挂载 */
+            res_sd = f_mount(NULL, "1:", 1);
+            /* 重新挂载   */
+            res_sd = f_mount(&fs, "1:", 1);
+        }
+        else
+        {
+            LED1_ON;  //红灯亮
+            printf("《《格式化失败。》》\r\n");
+            while(1);
+        }
     }
+    else if(res_sd != FR_OK)
+    {
+        LED1_ON;      //红灯亮
+        printf("！！SD卡挂载文件系统失败。(%d)\r\n", res_sd);
+        printf("！！可能原因：SD卡初始化不成功。\r\n");
+        while(1);
+    }
+    else
+    {
+        printf("》文件系统挂载成功，可以进行读写测试\r\n");
+    }
+
+    /*----------------------- 文件系统测试：写测试 -----------------------------*/
+    /* 打开文件，如果文件不存在则创建它 */
+    printf("\r\n****** 即将进行文件写入测试... ******\r\n");
+    // 创建新文件。如果该文件存在，则覆盖。  |
+    // 可以写文件
+    res_sd = f_open(&fnew, "1:FatFs读写测试文件.txt", FA_CREATE_ALWAYS | FA_WRITE);  //FatFs读写测试文件 FatFs_files
+    if ( res_sd == FR_OK )
+    {
+        printf("》打开/创建FatFs读写测试文件.txt文件成功，向文件写入数据。\r\n");
+        /* 将指定存储区内容写入到文件内 */
+        res_sd = f_write(&fnew, WriteBuffer, sizeof(WriteBuffer), &fnum);
+        if(res_sd == FR_OK)
+        {
+            printf("》文件写入成功，写入字节数据：%d\n", fnum);
+            printf("》向文件写入的数据为：\r\n%s\r\n", WriteBuffer);
+        }
+        else
+        {
+            LED1_ON;  //红灯亮
+            printf("！！文件写入失败：(%d)\n", res_sd);
+        }
+        /* 不再写，关闭文件 */
+        f_close(&fnew);
+    }
+    else
+    {
+        LED1_ON;  //红灯亮
+        printf("！！打开/创建文件失败。\r\n");
+        while(1);
+    }
+
+    /*------------------- 文件系统测试：读测试 ------------------------------------*/
+    printf("\r\n****** 即将进行文件读取测试... ******\r\n");
+    res_sd = f_open(&fnew, "1:FatFs读写测试文件.txt", FA_OPEN_EXISTING | FA_READ);
+    if(res_sd == FR_OK)
+    {
+        printf("》打开文件成功。\r\n");
+        res_sd = f_read(&fnew, ReadBuffer, sizeof(ReadBuffer), &fnum);
+        if(res_sd == FR_OK)
+        {
+            printf("》文件读取成功,读到字节数据：%d\r\n", fnum);
+            printf("》读取得的文件数据为：\r\n%s \r\n", ReadBuffer);
+        }
+        else
+        {
+            LED1_ON;  //红灯亮
+            printf("！！文件读取失败：(%d)\n", res_sd);
+        }
+    }
+    else
+    {
+        LED1_ON;  //红灯亮
+        printf("！！打开文件失败。\r\n");
+        while(1);
+    }
+    /* 不再读，关闭文件 */
+    f_close(&fnew);
+
+    /* 不再使用文件系统，取消挂载文件系统 */
+    f_mount(NULL, "1:", 1);
+
+    printf("****** 测试结束 ******\r\n");
+    while(1);
+
 
 #if BSP_TZ_SECURE_BUILD
     /* Enter non-secure code */
