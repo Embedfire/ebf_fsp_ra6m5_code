@@ -35,7 +35,7 @@ void RTC_Init(void)
      .tm_hour = RTC_HOUR_SET,  //小时
      .tm_mday = RTC_MDAY_SET,  //日（一个月中）
      .tm_wday = RTC_WDAY_SET,   //星期
-     .tm_mon = RTC_MON_SET,   //月份
+     .tm_mon = RTC_MON_SET - 1,   //月份
      .tm_year = RTC_YEAR_SET-1900, //年份（如今年是2008，则这里输入2008-1900=108）
    };
    /*打开RTC模块*/
@@ -68,7 +68,7 @@ void rtc_callback(rtc_callback_args_t *p_args)
             R_RTC_CalendarTimeGet (rtc.p_ctrl, &get_time);
 
             /*打印当前时间*/
-            printf ("\r\n%d-%d-%d-%d:%d:%d\r\n", get_time.tm_year + 1900, get_time.tm_mon, get_time.tm_mday,
+            printf ("\r\n%d-%d-%d-%d:%d:%d\r\n", get_time.tm_year + 1900, get_time.tm_mon + 1, get_time.tm_mday,
                                 get_time.tm_hour, get_time.tm_min, get_time.tm_sec);
 
             LED1_TOGGLE; //反转LED

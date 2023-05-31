@@ -7,7 +7,7 @@
 #define RTC_YEAR_SET 2008       //年
 #define RTC_MON_SET 8           //月
 #define RTC_MDAY_SET 8          //日
-/*通过蔡勒公式计算星期*/
+/*通过蔡勒公式计算星期，1~6代表周一到周六，0代表周日*/
 #define RTC_WDAY_SET (RTC_YEAR_SET-2000 \
                   + ((RTC_YEAR_SET-2000)/4) \
                   - 35 + (26*(RTC_MON_SET+1))/10 \

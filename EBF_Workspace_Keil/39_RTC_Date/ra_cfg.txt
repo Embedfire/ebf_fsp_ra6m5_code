@@ -24,6 +24,7 @@ FSP Configuration
     Security: SRAM Accessibility: Standby RAM: Regions 7-0 are all Secure.
     Security: BUS Accessibility: Bus Security Attribution Register A: Both Secure and Non-Secure State
     Security: BUS Accessibility: Bus Security Attribution Register B: Both Secure and Non-Secure State
+    Security: Uninitialized Non-Secure Application Fallback: Enable Uninitialized Non-Secure Application Fallback
     Startup C-Cache Line Size: 32 Bytes
     OFS0 register settings: Independent WDT: Start Mode: IWDT is Disabled
     OFS0 register settings: Independent WDT: Timeout Period: 2048 cycles
@@ -81,8 +82,10 @@ FSP Configuration
     Clock Src: PLL
     CLKOUT Disabled
     UCLK Disabled
+    U60CK Disabled
     OCTASPICLK Disabled
     CANFDCLK Disabled
+    CECCLK Disabled
     ICLK Div /1
     PCLKA Div /2
     PCLKB Div /4
@@ -93,8 +96,10 @@ FSP Configuration
     FCLK Div /4
     CLKOUT Div /1
     UCLK Div /5
+    U60CK Div /1
     OCTASPICLK Div /1
     CANFDCLK Div /6
+    CECCLK Div /1
     
   Pin Configurations
     R7FA6M5BH3CFC.pincfg -> g_bsp_pin_cfg
@@ -290,7 +295,7 @@ FSP Configuration
     RS-485 Support: Disable
     
   Module "Realtime Clock (r_rtc)"
-    Parameter Checking: Default (BSP)
+    Parameter Checking: Enabled
     Set Source Clock in Open: Enabled
     
   HAL
@@ -338,6 +343,6 @@ FSP Configuration
       Error Adjustment Value: 0
       Callback: rtc_callback
       Alarm Interrupt Priority: Disabled
-      Period Interrupt Priority: Priority 12
-      Carry Interrupt Priority: Priority 12
+      Period Interrupt Priority: Priority 13
+      Carry Interrupt Priority: Priority 0 (highest)
       
