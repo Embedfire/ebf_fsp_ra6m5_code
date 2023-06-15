@@ -81,7 +81,7 @@ void hal_entry(void)
             
             printf("等待 CANFD0 接收完成中断\r\n");
             while (false == canfd0_rx_complete_flag);
-            canfd1_rx_complete_flag = false;
+            canfd0_rx_complete_flag = false;
             
             printf("CANFD1 > CANFD0 开始验证数据\r\n");
             for( uint16_t j = 0; j < canfd1_tx_frame.data_length_code; j++)
