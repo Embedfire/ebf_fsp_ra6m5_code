@@ -42,6 +42,15 @@ void hal_entry(void)
     printf("- 红色灯亮 - 接收失败、发送失败\r\n");
     printf("\r\n发送内容如下：\r\n");
 
+    /*
+    SCI_UART_Write_DMA_Transfer();
+        ICU中断_ 手动触发发送数据寄存器空中断
+    发送完成触发：DMA传输完成中断、UART发送完成中断
+    
+    接收中断，DMA接收完成中断
+    串口接收中断要一直开着……
+    优化方案：UART接收+ELC中断+GPT清零，根据GPT未被清零可以判断串口处于空闲状态
+    */
 
     /* 通过CPU和中断处理程序发送数据 */
     R_SCI_UART_Write(&g_uart4_ctrl, &sci_tx_data[0], BUFFER_SIZE);

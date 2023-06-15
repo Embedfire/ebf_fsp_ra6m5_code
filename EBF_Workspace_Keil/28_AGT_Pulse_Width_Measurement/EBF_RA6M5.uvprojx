@@ -14,14 +14,14 @@
       <uAC6>1</uAC6>
       <TargetOption>
         <TargetCommonOption>
-          <Device>R7FA6M5BH3CFC</Device>
+          <Device>R7FA6M5BH</Device>
           <Vendor>Renesas</Vendor>
-          <PackID>Renesas.RA_DFP.4.0.0</PackID>
+          <PackID>Renesas.RA_DFP.4.4.0</PackID>
           <PackURL>https://www2.renesas.eu/Keil_MDK_Packs/</PackURL>
           <Cpu>IRAM(0x20000000,0x040000) IROM(0x00000000,0x200000) CPUTYPE("Cortex-M33") FPU3(SFPU) DSP TZ CLOCK(12000000) ELITTLE</Cpu>
           <FlashUtilSpec></FlashUtilSpec>
           <StartupFile></StartupFile>
-          <FlashDriverDll>UL2V8M(-S0 -C0 -P0 -FD20000000 -FC2000 -FN3 -FF0RA6M5_2M -FS00 -FL0200000 -FF1RA6M5_DATA_C2M -FS18000000 -FL12000 -FF2RA6M5_CONF -FS2100A000 -FL2300 -FP0($$Device:R7FA6M5BH3CFC$Flash\RA6M5_2M.FLM) -FP1($$Device:R7FA6M5BH3CFC$Flash\RA6M5_DATA_C2M.FLM) -FP2($$Device:R7FA6M5BH3CFC$Flash\RA6M5_CONF.FLM))</FlashDriverDll>
+          <FlashDriverDll>UL2V8M(-S0 -C0 -P0 -FD20000000 -FC2000 -FN3 -FF0RA6M5_2M -FS00 -FL0200000 -FF1RA6M5_DATA_C2M -FS18000000 -FL12000 -FF2RA6M5_CONF -FS2100A000 -FL2300 -FP0($$Device:R7FA6M5BH$Flash\RA6M5_2M.FLM) -FP1($$Device:R7FA6M5BH$Flash\RA6M5_DATA_C2M.FLM) -FP2($$Device:R7FA6M5BH$Flash\RA6M5_CONF.FLM))</FlashDriverDll>
           <DeviceId>0</DeviceId>
           <RegisterFile></RegisterFile>
           <MemoryEnv></MemoryEnv>
@@ -33,7 +33,7 @@
           <SLE66CMisc></SLE66CMisc>
           <SLE66AMisc></SLE66AMisc>
           <SLE66LinkerMisc></SLE66LinkerMisc>
-          <SFDFile>$$Device:R7FA6M5BH3CFC$SVD\R7FA6M5BH.svd</SFDFile>
+          <SFDFile>$$Device:R7FA6M5BH$SVD\R7FA6M5BH.svd</SFDFile>
           <bCustSvd>0</bCustSvd>
           <UseEnv>0</UseEnv>
           <BinPath></BinPath>
@@ -451,7 +451,7 @@
     <apis/>
     <components>
       <component Cclass="Flex Software" Cgroup="RA Configuration" Cvendor="Renesas" Cversion="1.0.0" condition="RA Device" generator="Renesas RA Smart Configurator">
-        <package name="RA_DFP" schemaVersion="1.7.2" url="https://www2.renesas.eu/Keil_MDK_Packs/" vendor="Renesas" version="4.0.0"/>
+        <package name="RA_DFP" schemaVersion="1.7.2" url="https://www2.renesas.eu/Keil_MDK_Packs/" vendor="Renesas" version="4.4.0"/>
         <targetInfos>
           <targetInfo name="Target 1"/>
         </targetInfos>
