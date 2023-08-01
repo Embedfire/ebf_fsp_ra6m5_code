@@ -70,7 +70,7 @@ void IOPORT_Init(IOPORT_Init_t *ioport_init)
         {
             pfs_bits |= (ioport_init->Dir) << 2;    //设置为输出
             pfs_bits |= (ioport_init->Level) << 0;  //设置输出电平
-            pfs_bits |= (ioport_init->Mode) << 6;   //设置输出模式
+            pfs_bits |= (ioport_init->OType) << 6;  //设置输出模式
             pfs_bits |= (ioport_init->Drive) << 10; //设置输出驱动能力
         }
     }
